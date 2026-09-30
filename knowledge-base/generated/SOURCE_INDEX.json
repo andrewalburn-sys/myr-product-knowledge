@@ -1,0 +1,4472 @@
+{
+  "generated": true,
+  "authoritative": false,
+  "schemaVersion": 1,
+  "knowledgeRef": "HEAD",
+  "sourceFingerprint": "65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78",
+  "sources": [
+    {
+      "id": "assistant-product-prd",
+      "path": "prd/PRD - MyRecipes Assistant.md",
+      "title": "PRD — MyRecipes Assistant",
+      "authority": "canonical",
+      "status": "draft for engineering review",
+      "answers": "Product purpose, features, trust principles, success criteria",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production"
+      ],
+      "supersedes": [
+        "prd/poc/PRD - Agentic Recipe Assistant.md"
+      ],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - Assistant Discovery MVP (Backend).md",
+        "prd/Assistant Conversation and Interaction Behavior.md",
+        "prd/PRD - Assistant Semantic Query Planner.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — MyRecipes Assistant",
+          "anchor": "prd-myrecipes-assistant"
+        },
+        {
+          "level": 1,
+          "title": "Problem Alignment",
+          "anchor": "problem-alignment"
+        },
+        {
+          "level": 2,
+          "title": "Goals",
+          "anchor": "goals"
+        },
+        {
+          "level": 1,
+          "title": "Solution Alignment",
+          "anchor": "solution-alignment"
+        },
+        {
+          "level": 2,
+          "title": "What the assistant is",
+          "anchor": "what-the-assistant-is"
+        },
+        {
+          "level": 2,
+          "title": "Who it's for",
+          "anchor": "who-its-for"
+        },
+        {
+          "level": 2,
+          "title": "Key Features",
+          "anchor": "key-features"
+        },
+        {
+          "level": 3,
+          "title": "1. Conversational Discovery",
+          "anchor": "1-conversational-discovery"
+        },
+        {
+          "level": 3,
+          "title": "2. Grounded Recipe Answers",
+          "anchor": "2-grounded-recipe-answers"
+        },
+        {
+          "level": 3,
+          "title": "3. My Library, Queryable",
+          "anchor": "3-my-library-queryable"
+        },
+        {
+          "level": 3,
+          "title": "4. Meal Planning & Smart Collections",
+          "anchor": "4-meal-planning-smart-collections"
+        },
+        {
+          "level": 3,
+          "title": "5. Photo as Input",
+          "anchor": "5-photo-as-input"
+        },
+        {
+          "level": 3,
+          "title": "6. Voice as Input",
+          "anchor": "6-voice-as-input"
+        },
+        {
+          "level": 3,
+          "title": "7. Hands-Free Cooking Companion",
+          "anchor": "7-hands-free-cooking-companion"
+        },
+        {
+          "level": 2,
+          "title": "Key Flows",
+          "anchor": "key-flows"
+        },
+        {
+          "level": 2,
+          "title": "Key Logic",
+          "anchor": "key-logic"
+        },
+        {
+          "level": 2,
+          "title": "Success Measures",
+          "anchor": "success-measures"
+        },
+        {
+          "level": 2,
+          "title": "Open Questions",
+          "anchor": "open-questions"
+        }
+      ]
+    },
+    {
+      "id": "assistant-discovery-backend-mvp",
+      "path": "prd/PRD - Assistant Discovery MVP (Backend).md",
+      "title": "PRD — Assistant Discovery MVP (Backend)",
+      "authority": "release",
+      "status": "draft for engineering scoping",
+      "answers": "Q4 backend flows, service behavior, contracts, release acceptance",
+      "directAnswer": "Yes, for Q4",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "q4-release",
+        "production"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - MyRecipes Assistant.md",
+        "prd/Assistant Discovery MVP - App Requirements.md",
+        "prd/PRD - Assistant Semantic Query Planner.md",
+        "prd/Assistant Discovery - Golden Sequences.csv"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Assistant Discovery MVP (Backend)",
+          "anchor": "prd-assistant-discovery-mvp-backend"
+        },
+        {
+          "level": 2,
+          "title": "1. What we're building",
+          "anchor": "1-what-were-building"
+        },
+        {
+          "level": 2,
+          "title": "2. Flow 1 — A request on Home",
+          "anchor": "2-flow-1-a-request-on-home"
+        },
+        {
+          "level": 3,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 3,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 3,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 3,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 2,
+          "title": "4. Flow 2 — The dinner shortcut",
+          "anchor": "4-flow-2-the-dinner-shortcut"
+        },
+        {
+          "level": 3,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 3,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 3,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 3,
+          "title": "If the user gives us ingredients",
+          "anchor": "if-the-user-gives-us-ingredients"
+        },
+        {
+          "level": 3,
+          "title": "The product promise",
+          "anchor": "the-product-promise"
+        },
+        {
+          "level": 2,
+          "title": "5. Flow 3 — Refining a result set",
+          "anchor": "5-flow-3-refining-a-result-set"
+        },
+        {
+          "level": 3,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 3,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 3,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 3,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 2,
+          "title": "6. Flow 4 — Generating follow-up suggestions",
+          "anchor": "6-flow-4-generating-follow-up-suggestions"
+        },
+        {
+          "level": 3,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 3,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 3,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 3,
+          "title": "How this is powered",
+          "anchor": "how-this-is-powered"
+        },
+        {
+          "level": 3,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 2,
+          "title": "7. Flow 5 — An abstract request",
+          "anchor": "7-flow-5-an-abstract-request"
+        },
+        {
+          "level": 3,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 3,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 3,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 3,
+          "title": "On transparency",
+          "anchor": "on-transparency"
+        },
+        {
+          "level": 3,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 2,
+          "title": "8. Ingredient requirements",
+          "anchor": "8-ingredient-requirements"
+        },
+        {
+          "level": 3,
+          "title": "Flow 6 — Requiring ingredients",
+          "anchor": "flow-6-requiring-ingredients"
+        },
+        {
+          "level": 4,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 4,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 4,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 4,
+          "title": "Controlled fallback",
+          "anchor": "controlled-fallback"
+        },
+        {
+          "level": 4,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 4,
+          "title": "What changes from search today",
+          "anchor": "what-changes-from-search-today"
+        },
+        {
+          "level": 3,
+          "title": "Flow 7 — Excluding an ingredient",
+          "anchor": "flow-7-excluding-an-ingredient"
+        },
+        {
+          "level": 4,
+          "title": "Receives",
+          "anchor": "receives"
+        },
+        {
+          "level": 4,
+          "title": "Must determine",
+          "anchor": "must-determine"
+        },
+        {
+          "level": 4,
+          "title": "Must return",
+          "anchor": "must-return"
+        },
+        {
+          "level": 4,
+          "title": "When it can't",
+          "anchor": "when-it-cant"
+        },
+        {
+          "level": 2,
+          "title": "9. Rules that apply across every flow",
+          "anchor": "9-rules-that-apply-across-every-flow"
+        },
+        {
+          "level": 3,
+          "title": "8.1 Which constraints are absolute",
+          "anchor": "81-which-constraints-are-absolute"
+        },
+        {
+          "level": 3,
+          "title": "8.2 Failing honestly",
+          "anchor": "82-failing-honestly"
+        },
+        {
+          "level": 3,
+          "title": "8.3 Personalization",
+          "anchor": "83-personalization"
+        },
+        {
+          "level": 3,
+          "title": "8.5 When context expires",
+          "anchor": "85-when-context-expires"
+        },
+        {
+          "level": 3,
+          "title": "8.6 Speed, cost, and failure",
+          "anchor": "86-speed-cost-and-failure"
+        },
+        {
+          "level": 3,
+          "title": "8.7 Observability",
+          "anchor": "87-observability"
+        },
+        {
+          "level": 2,
+          "title": "10. What we keep between conversations",
+          "anchor": "10-what-we-keep-between-conversations"
+        },
+        {
+          "level": 2,
+          "title": "11. What a response has to carry",
+          "anchor": "11-what-a-response-has-to-carry"
+        },
+        {
+          "level": 2,
+          "title": "12. Known gaps",
+          "anchor": "12-known-gaps"
+        },
+        {
+          "level": 2,
+          "title": "13. Decisions before ticketing",
+          "anchor": "13-decisions-before-ticketing"
+        }
+      ]
+    },
+    {
+      "id": "assistant-discovery-design-brief",
+      "path": "prd/Assistant Discovery MVP - Design Brief.md",
+      "title": "Assistant Discovery MVP — Design Brief",
+      "authority": "supporting",
+      "status": "active",
+      "answers": "Design use cases, required states, unresolved interaction work",
+      "directAnswer": "Only with canonical or release support",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Assistant Discovery MVP — Design Brief",
+          "anchor": "assistant-discovery-mvp-design-brief"
+        },
+        {
+          "level": 2,
+          "title": "Design Needs Overview",
+          "anchor": "design-needs-overview"
+        },
+        {
+          "level": 2,
+          "title": "4. Use case — Open discovery",
+          "anchor": "4-use-case-open-discovery"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "5. Use case — Dinner Tonight",
+          "anchor": "5-use-case-dinner-tonight"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "6. Use case — Multi-turn refinement",
+          "anchor": "6-use-case-multi-turn-refinement"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 3,
+          "title": "Design question",
+          "anchor": "design-question"
+        },
+        {
+          "level": 2,
+          "title": "7. Use case — Contextual follow-up suggestions",
+          "anchor": "7-use-case-contextual-follow-up-suggestions"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "8. Use case — An abstract request",
+          "anchor": "8-use-case-an-abstract-request"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "9. Use case — Required ingredients",
+          "anchor": "9-use-case-required-ingredients"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "10. Use case — Ingredient exclusion",
+          "anchor": "10-use-case-ingredient-exclusion"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "11. Use case — Search my saves",
+          "anchor": "11-use-case-search-my-saves"
+        },
+        {
+          "level": 3,
+          "title": "Scenario",
+          "anchor": "scenario"
+        },
+        {
+          "level": 3,
+          "title": "What the user needs",
+          "anchor": "what-the-user-needs"
+        },
+        {
+          "level": 3,
+          "title": "Design must account for",
+          "anchor": "design-must-account-for"
+        },
+        {
+          "level": 2,
+          "title": "12. Information the experience has to communicate",
+          "anchor": "12-information-the-experience-has-to-communicate"
+        }
+      ]
+    },
+    {
+      "id": "assistant-discovery-app-requirements",
+      "path": "prd/Assistant Discovery MVP - App Requirements.md",
+      "title": "Assistant Discovery MVP — App Requirements",
+      "authority": "release",
+      "status": "draft release requirements",
+      "answers": "Q4 app ownership, shell, rendering, entry points, navigation",
+      "directAnswer": "Yes, for Q4",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "q4-release",
+        "production"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - Assistant Discovery MVP (Backend).md",
+        "prd/Assistant Conversation and Interaction Behavior.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Assistant Discovery MVP — App Requirements",
+          "anchor": "assistant-discovery-mvp-app-requirements"
+        },
+        {
+          "level": 2,
+          "title": "1. The entry point",
+          "anchor": "1-the-entry-point"
+        },
+        {
+          "level": 2,
+          "title": "2. Opening and dismissing",
+          "anchor": "2-opening-and-dismissing"
+        },
+        {
+          "level": 2,
+          "title": "3. Rendering results",
+          "anchor": "3-rendering-results"
+        },
+        {
+          "level": 3,
+          "title": "Result formats to support",
+          "anchor": "result-formats-to-support"
+        },
+        {
+          "level": 2,
+          "title": "4. Input",
+          "anchor": "4-input"
+        },
+        {
+          "level": 2,
+          "title": "5. Suggestions",
+          "anchor": "5-suggestions"
+        },
+        {
+          "level": 2,
+          "title": "6. Working and failure states",
+          "anchor": "6-working-and-failure-states"
+        },
+        {
+          "level": 2,
+          "title": "7. Scope indicator",
+          "anchor": "7-scope-indicator"
+        },
+        {
+          "level": 2,
+          "title": "8. Carrying context through navigation",
+          "anchor": "8-carrying-context-through-navigation"
+        },
+        {
+          "level": 2,
+          "title": "9. Open",
+          "anchor": "9-open"
+        }
+      ]
+    },
+    {
+      "id": "assistant-conversation-behavior",
+      "path": "prd/Assistant Conversation and Interaction Behavior.md",
+      "title": "Assistant Conversation and Interaction Behavior",
+      "authority": "canonical",
+      "status": "working product contract",
+      "answers": "Turns, context, scope, response presentation, drill-in, return, history",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - MyRecipes Assistant.md",
+        "prd/PRD - Assistant Discovery MVP (Backend).md",
+        "prd/Assistant Discovery MVP - App Requirements.md",
+        "knowledge-base/DECISION_LOG.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Assistant Conversation and Interaction Behavior",
+          "anchor": "assistant-conversation-and-interaction-behavior"
+        },
+        {
+          "level": 2,
+          "title": "1. How to use this document",
+          "anchor": "1-how-to-use-this-document"
+        },
+        {
+          "level": 2,
+          "title": "2. Conversation model",
+          "anchor": "2-conversation-model"
+        },
+        {
+          "level": 3,
+          "title": "Conversation",
+          "anchor": "conversation"
+        },
+        {
+          "level": 3,
+          "title": "Turn",
+          "anchor": "turn"
+        },
+        {
+          "level": 3,
+          "title": "Surface context",
+          "anchor": "surface-context"
+        },
+        {
+          "level": 3,
+          "title": "Scope",
+          "anchor": "scope"
+        },
+        {
+          "level": 2,
+          "title": "3. Opening, dismissing, and starting over",
+          "anchor": "3-opening-dismissing-and-starting-over"
+        },
+        {
+          "level": 3,
+          "title": "Opening",
+          "anchor": "opening"
+        },
+        {
+          "level": 3,
+          "title": "Dismissing",
+          "anchor": "dismissing"
+        },
+        {
+          "level": 3,
+          "title": "New chat",
+          "anchor": "new-chat"
+        },
+        {
+          "level": 2,
+          "title": "4. Context and constraint behavior",
+          "anchor": "4-context-and-constraint-behavior"
+        },
+        {
+          "level": 3,
+          "title": "Additive refinements",
+          "anchor": "additive-refinements"
+        },
+        {
+          "level": 3,
+          "title": "Replacements",
+          "anchor": "replacements"
+        },
+        {
+          "level": 3,
+          "title": "Hard and soft constraints",
+          "anchor": "hard-and-soft-constraints"
+        },
+        {
+          "level": 3,
+          "title": "Topic changes",
+          "anchor": "topic-changes"
+        },
+        {
+          "level": 3,
+          "title": "Context transparency",
+          "anchor": "context-transparency"
+        },
+        {
+          "level": 2,
+          "title": "5. Feed and working-state behavior",
+          "anchor": "5-feed-and-working-state-behavior"
+        },
+        {
+          "level": 2,
+          "title": "6. Opening a recipe and returning to chat",
+          "anchor": "6-opening-a-recipe-and-returning-to-chat"
+        },
+        {
+          "level": 2,
+          "title": "7. Recommendation and partial-match presentation",
+          "anchor": "7-recommendation-and-partial-match-presentation"
+        },
+        {
+          "level": 3,
+          "title": "Complete matches",
+          "anchor": "complete-matches"
+        },
+        {
+          "level": 3,
+          "title": "Partial matches",
+          "anchor": "partial-matches"
+        },
+        {
+          "level": 3,
+          "title": "Saved-library results",
+          "anchor": "saved-library-results"
+        },
+        {
+          "level": 2,
+          "title": "8. Cooking questions and citations",
+          "anchor": "8-cooking-questions-and-citations"
+        },
+        {
+          "level": 3,
+          "title": "Questions that benefit from expert guidance",
+          "anchor": "questions-that-benefit-from-expert-guidance"
+        },
+        {
+          "level": 3,
+          "title": "Mechanical questions",
+          "anchor": "mechanical-questions"
+        },
+        {
+          "level": 3,
+          "title": "Demo note",
+          "anchor": "demo-note"
+        },
+        {
+          "level": 2,
+          "title": "9. Recipe-specific suggested questions",
+          "anchor": "9-recipe-specific-suggested-questions"
+        },
+        {
+          "level": 2,
+          "title": "10. Follow-up suggestions",
+          "anchor": "10-follow-up-suggestions"
+        },
+        {
+          "level": 2,
+          "title": "11. Chat history",
+          "anchor": "11-chat-history"
+        },
+        {
+          "level": 3,
+          "title": "Titles",
+          "anchor": "titles"
+        },
+        {
+          "level": 3,
+          "title": "Restoration",
+          "anchor": "restoration"
+        },
+        {
+          "level": 3,
+          "title": "Photos",
+          "anchor": "photos"
+        },
+        {
+          "level": 3,
+          "title": "Demo note",
+          "anchor": "demo-note"
+        },
+        {
+          "level": 2,
+          "title": "12. State transition reference",
+          "anchor": "12-state-transition-reference"
+        },
+        {
+          "level": 2,
+          "title": "13. Acceptance sequences",
+          "anchor": "13-acceptance-sequences"
+        },
+        {
+          "level": 3,
+          "title": "Recipe drill-in continuity",
+          "anchor": "recipe-drill-in-continuity"
+        },
+        {
+          "level": 3,
+          "title": "Additive context",
+          "anchor": "additive-context"
+        },
+        {
+          "level": 3,
+          "title": "Relative refinement",
+          "anchor": "relative-refinement"
+        },
+        {
+          "level": 3,
+          "title": "Cuisine refinement",
+          "anchor": "cuisine-refinement"
+        },
+        {
+          "level": 3,
+          "title": "Saves scope",
+          "anchor": "saves-scope"
+        },
+        {
+          "level": 3,
+          "title": "New chat",
+          "anchor": "new-chat"
+        },
+        {
+          "level": 2,
+          "title": "14. Current decisions and open decisions",
+          "anchor": "14-current-decisions-and-open-decisions"
+        },
+        {
+          "level": 3,
+          "title": "Current product decisions",
+          "anchor": "current-product-decisions"
+        },
+        {
+          "level": 3,
+          "title": "Open decisions",
+          "anchor": "open-decisions"
+        },
+        {
+          "level": 2,
+          "title": "15. Related specifications",
+          "anchor": "15-related-specifications"
+        }
+      ]
+    },
+    {
+      "id": "assistant-discovery-golden-sequences",
+      "path": "prd/Assistant Discovery - Golden Sequences.csv",
+      "title": "assistant-discovery-golden-sequences",
+      "authority": "release",
+      "status": "active benchmark",
+      "answers": "Executable examples, expected behavior, hard constraints",
+      "directAnswer": "Yes, as release examples",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": []
+    },
+    {
+      "id": "assistant-build-plan",
+      "path": "prd/Build Plan - MyRecipes Assistant.md",
+      "title": "Build Plan — MyRecipes Assistant",
+      "authority": "supporting",
+      "status": "active",
+      "answers": "Engineering sequence and delivery dependencies",
+      "directAnswer": "No product authority",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Build Plan — MyRecipes Assistant",
+          "anchor": "build-plan-myrecipes-assistant"
+        },
+        {
+          "level": 2,
+          "title": "1. What this is, and what I need from you",
+          "anchor": "1-what-this-is-and-what-i-need-from-you"
+        },
+        {
+          "level": 2,
+          "title": "2. What's changed since the Capability Map",
+          "anchor": "2-whats-changed-since-the-capability-map"
+        },
+        {
+          "level": 2,
+          "title": "3. The organizing idea",
+          "anchor": "3-the-organizing-idea"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Two conditions, both testable now",
+          "anchor": "31-two-conditions-both-testable-now"
+        },
+        {
+          "level": 3,
+          "title": "3.2 A third workstream, easy to miss",
+          "anchor": "32-a-third-workstream-easy-to-miss"
+        },
+        {
+          "level": 2,
+          "title": "4. How I prioritized",
+          "anchor": "4-how-i-prioritized"
+        },
+        {
+          "level": 2,
+          "title": "5. The sequence",
+          "anchor": "5-the-sequence"
+        },
+        {
+          "level": 3,
+          "title": "Track 0 — Starts now, independent of everything else",
+          "anchor": "track-0-starts-now-independent-of-everything-else"
+        },
+        {
+          "level": 3,
+          "title": "Phase 1 — The assistant lands in the app",
+          "anchor": "phase-1-the-assistant-lands-in-the-app"
+        },
+        {
+          "level": 3,
+          "title": "Phase 2 — Depth behind the shell",
+          "anchor": "phase-2-depth-behind-the-shell"
+        },
+        {
+          "level": 3,
+          "title": "Phase 3 — The second negotiation",
+          "anchor": "phase-3-the-second-negotiation"
+        },
+        {
+          "level": 3,
+          "title": "Phase 4 — Gated on things we don't control",
+          "anchor": "phase-4-gated-on-things-we-dont-control"
+        },
+        {
+          "level": 2,
+          "title": "6. Sizing",
+          "anchor": "6-sizing"
+        },
+        {
+          "level": 2,
+          "title": "7. Positions on the open arguments",
+          "anchor": "7-positions-on-the-open-arguments"
+        },
+        {
+          "level": 2,
+          "title": "8. Risks",
+          "anchor": "8-risks"
+        },
+        {
+          "level": 2,
+          "title": "9. What I'd like to walk out of the session with",
+          "anchor": "9-what-id-like-to-walk-out-of-the-session-with"
+        }
+      ]
+    },
+    {
+      "id": "assistant-backend-capability-map",
+      "path": "prd/Assistant Backend Capability Map.md",
+      "title": "MyRecipes Assistant — Backend Capability Map",
+      "authority": "supporting",
+      "status": "active",
+      "answers": "Backend capabilities, dependencies, ownership boundaries",
+      "directAnswer": "Only with requirement support",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "MyRecipes Assistant — Backend Capability Map",
+          "anchor": "myrecipes-assistant-backend-capability-map"
+        },
+        {
+          "level": 2,
+          "title": "1. Why this document exists",
+          "anchor": "1-why-this-document-exists"
+        },
+        {
+          "level": 3,
+          "title": "What we need from the session",
+          "anchor": "what-we-need-from-the-session"
+        },
+        {
+          "level": 3,
+          "title": "Scope",
+          "anchor": "scope"
+        },
+        {
+          "level": 2,
+          "title": "2. What we're building toward",
+          "anchor": "2-what-were-building-toward"
+        },
+        {
+          "level": 2,
+          "title": "3. How to read each entry",
+          "anchor": "3-how-to-read-each-entry"
+        },
+        {
+          "level": 1,
+          "title": "Part 1 — Foundations",
+          "anchor": "part-1-foundations"
+        },
+        {
+          "level": 2,
+          "title": "F1 — Intent & Orchestration Service",
+          "anchor": "f1-intent-orchestration-service"
+        },
+        {
+          "level": 2,
+          "title": "F2 — User Profile & Preference Service",
+          "anchor": "f2-user-profile-preference-service"
+        },
+        {
+          "level": 2,
+          "title": "F3 — Session & Context Store",
+          "anchor": "f3-session-context-store"
+        },
+        {
+          "level": 2,
+          "title": "F4 — Write Path",
+          "anchor": "f4-write-path"
+        },
+        {
+          "level": 2,
+          "title": "F5 — Evaluation & Observability Harness",
+          "anchor": "f5-evaluation-observability-harness"
+        },
+        {
+          "level": 1,
+          "title": "Part 2 — Feature Capabilities",
+          "anchor": "part-2-feature-capabilities"
+        },
+        {
+          "level": 2,
+          "title": "4. C1 — Grounded Answer Service",
+          "anchor": "4-c1-grounded-answer-service"
+        },
+        {
+          "level": 3,
+          "title": "What the Content API actually gives us",
+          "anchor": "what-the-content-api-actually-gives-us"
+        },
+        {
+          "level": 3,
+          "title": "C1b — Community content grounding",
+          "anchor": "c1b-community-content-grounding"
+        },
+        {
+          "level": 2,
+          "title": "5. C2 — Dinner Recommendation & Makability",
+          "anchor": "5-c2-dinner-recommendation-makability"
+        },
+        {
+          "level": 2,
+          "title": "6. C3 — Saved-Library Retrieval",
+          "anchor": "6-c3-saved-library-retrieval"
+        },
+        {
+          "level": 2,
+          "title": "7. C4 — Meal Planning & Smart Collections",
+          "anchor": "7-c4-meal-planning-smart-collections"
+        },
+        {
+          "level": 2,
+          "title": "8. C5 — Photo Understanding",
+          "anchor": "8-c5-photo-understanding"
+        },
+        {
+          "level": 2,
+          "title": "9. C6 — Voice",
+          "anchor": "9-c6-voice"
+        },
+        {
+          "level": 3,
+          "title": "C6a — Speech-to-text input",
+          "anchor": "c6a-speech-to-text-input"
+        },
+        {
+          "level": 3,
+          "title": "C6b — Grounded answers in the voice cooking companion",
+          "anchor": "c6b-grounded-answers-in-the-voice-cooking-companion"
+        },
+        {
+          "level": 2,
+          "title": "10. How it all hangs together",
+          "anchor": "10-how-it-all-hangs-together"
+        },
+        {
+          "level": 2,
+          "title": "11. A proposed sequence",
+          "anchor": "11-a-proposed-sequence"
+        },
+        {
+          "level": 3,
+          "title": "Phase 0 — Prove the premise",
+          "anchor": "phase-0-prove-the-premise"
+        },
+        {
+          "level": 3,
+          "title": "11.1 Why recipe intelligence goes first",
+          "anchor": "111-why-recipe-intelligence-goes-first"
+        },
+        {
+          "level": 3,
+          "title": "Phase 1 — Recipe intelligence, on the recipe page",
+          "anchor": "phase-1-recipe-intelligence-on-the-recipe-page"
+        },
+        {
+          "level": 3,
+          "title": "Phase 2 — Extend to discovery",
+          "anchor": "phase-2-extend-to-discovery"
+        },
+        {
+          "level": 3,
+          "title": "Phase 3 — Complete the loop",
+          "anchor": "phase-3-complete-the-loop"
+        },
+        {
+          "level": 2,
+          "title": "12. Arguments I expect us to have",
+          "anchor": "12-arguments-i-expect-us-to-have"
+        },
+        {
+          "level": 2,
+          "title": "13. What I need from you",
+          "anchor": "13-what-i-need-from-you"
+        },
+        {
+          "level": 2,
+          "title": "Appendix A — Content API v1 reference notes",
+          "anchor": "appendix-a-content-api-v1-reference-notes"
+        }
+      ]
+    },
+    {
+      "id": "dinner-tonight-data-science-problem",
+      "path": "prd/Dinner Tonight - Data Science Problem Statement.md",
+      "title": "What's for Dinner Tonight — Data Science Problem Statement",
+      "authority": "supporting",
+      "status": "active",
+      "answers": "Taste, makeability, signals, and explainability research questions",
+      "directAnswer": "No product authority",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "What's for Dinner Tonight — Data Science Problem Statement",
+          "anchor": "whats-for-dinner-tonight-data-science-problem-statement"
+        },
+        {
+          "level": 2,
+          "title": "The problem",
+          "anchor": "the-problem"
+        },
+        {
+          "level": 2,
+          "title": "A few product hunches (tell me where I'm wrong)",
+          "anchor": "a-few-product-hunches-tell-me-where-im-wrong"
+        },
+        {
+          "level": 2,
+          "title": "What's already decided",
+          "anchor": "whats-already-decided"
+        },
+        {
+          "level": 2,
+          "title": "Signals on the table",
+          "anchor": "signals-on-the-table"
+        },
+        {
+          "level": 2,
+          "title": "The ask",
+          "anchor": "the-ask"
+        },
+        {
+          "level": 3,
+          "title": "1. The dinner algorithm (Q4 delivery)",
+          "anchor": "1-the-dinner-algorithm-q4-delivery"
+        },
+        {
+          "level": 3,
+          "title": "2. Cook signals as standalone outputs",
+          "anchor": "2-cook-signals-as-standalone-outputs"
+        },
+        {
+          "level": 3,
+          "title": "3. Explainability (Q4 discovery, not a launch requirement)",
+          "anchor": "3-explainability-q4-discovery-not-a-launch-requirement"
+        },
+        {
+          "level": 2,
+          "title": "How we'll judge it",
+          "anchor": "how-well-judge-it"
+        },
+        {
+          "level": 2,
+          "title": "Timeline (proposed)",
+          "anchor": "timeline-proposed"
+        },
+        {
+          "level": 2,
+          "title": "Open questions",
+          "anchor": "open-questions"
+        }
+      ]
+    },
+    {
+      "id": "assistant-semantic-query-planner",
+      "path": "prd/PRD - Assistant Semantic Query Planner.md",
+      "title": "PRD — Assistant Semantic Query Planner",
+      "authority": "canonical",
+      "status": "approved logic; implementation pending",
+      "answers": "Intent interpretation, constraint carry-forward, routing, abstract situations",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - MyRecipes Assistant.md",
+        "prd/Assistant Semantic Retrieval - Elasticsearch Execution Spec.md",
+        "prd/PRD - Assistant Discovery MVP (Backend).md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Assistant Semantic Query Planner",
+          "anchor": "prd-assistant-semantic-query-planner"
+        },
+        {
+          "level": 2,
+          "title": "1. Purpose",
+          "anchor": "1-purpose"
+        },
+        {
+          "level": 2,
+          "title": "2. Product Goal",
+          "anchor": "2-product-goal"
+        },
+        {
+          "level": 2,
+          "title": "3. Scope",
+          "anchor": "3-scope"
+        },
+        {
+          "level": 3,
+          "title": "In scope",
+          "anchor": "in-scope"
+        },
+        {
+          "level": 3,
+          "title": "Out of scope",
+          "anchor": "out-of-scope"
+        },
+        {
+          "level": 2,
+          "title": "4. Product Decisions",
+          "anchor": "4-product-decisions"
+        },
+        {
+          "level": 2,
+          "title": "5. Core Principles",
+          "anchor": "5-core-principles"
+        },
+        {
+          "level": 3,
+          "title": "Interpret first, search second",
+          "anchor": "interpret-first-search-second"
+        },
+        {
+          "level": 3,
+          "title": "Explicit intent overrides location",
+          "anchor": "explicit-intent-overrides-location"
+        },
+        {
+          "level": 3,
+          "title": "Separate requirements from strategies",
+          "anchor": "separate-requirements-from-strategies"
+        },
+        {
+          "level": 3,
+          "title": "Plan for the retrieval system that exists",
+          "anchor": "plan-for-the-retrieval-system-that-exists"
+        },
+        {
+          "level": 3,
+          "title": "Generate copy from meaning, not tokens",
+          "anchor": "generate-copy-from-meaning-not-tokens"
+        },
+        {
+          "level": 3,
+          "title": "Keep the demo honest",
+          "anchor": "keep-the-demo-honest"
+        },
+        {
+          "level": 2,
+          "title": "6. End-to-End Flow",
+          "anchor": "6-end-to-end-flow"
+        },
+        {
+          "level": 2,
+          "title": "7. Structured Semantic Intent",
+          "anchor": "7-structured-semantic-intent"
+        },
+        {
+          "level": 2,
+          "title": "8. Hybrid Intent Planning",
+          "anchor": "8-hybrid-intent-planning"
+        },
+        {
+          "level": 3,
+          "title": "8.1 Common cached plans",
+          "anchor": "81-common-cached-plans"
+        },
+        {
+          "level": 3,
+          "title": "8.2 LLM fallback",
+          "anchor": "82-llm-fallback"
+        },
+        {
+          "level": 3,
+          "title": "8.3 Cache behavior",
+          "anchor": "83-cache-behavior"
+        },
+        {
+          "level": 2,
+          "title": "9. Surface-Aware Routing and Tool Execution",
+          "anchor": "9-surface-aware-routing-and-tool-execution"
+        },
+        {
+          "level": 3,
+          "title": "9.1 Default behavior by surface",
+          "anchor": "91-default-behavior-by-surface"
+        },
+        {
+          "level": 3,
+          "title": "9.2 Tool-specific planning",
+          "anchor": "92-tool-specific-planning"
+        },
+        {
+          "level": 2,
+          "title": "10. MCP Search Planning",
+          "anchor": "10-mcp-search-planning"
+        },
+        {
+          "level": 2,
+          "title": "11. Constraint Policy",
+          "anchor": "11-constraint-policy"
+        },
+        {
+          "level": 3,
+          "title": "Hard requirements",
+          "anchor": "hard-requirements"
+        },
+        {
+          "level": 3,
+          "title": "Soft strategies",
+          "anchor": "soft-strategies"
+        },
+        {
+          "level": 2,
+          "title": "12. Retrieval, Ranking, and Diversity",
+          "anchor": "12-retrieval-ranking-and-diversity"
+        },
+        {
+          "level": 2,
+          "title": "13. Response Synthesis",
+          "anchor": "13-response-synthesis"
+        },
+        {
+          "level": 3,
+          "title": "Picky-eater example",
+          "anchor": "picky-eater-example"
+        },
+        {
+          "level": 3,
+          "title": "Follow-ups",
+          "anchor": "follow-ups"
+        },
+        {
+          "level": 2,
+          "title": "14. Loading and Failure Behavior",
+          "anchor": "14-loading-and-failure-behavior"
+        },
+        {
+          "level": 3,
+          "title": "Loading",
+          "anchor": "loading"
+        },
+        {
+          "level": 3,
+          "title": "Failure",
+          "anchor": "failure"
+        },
+        {
+          "level": 2,
+          "title": "15. Acceptance Criteria",
+          "anchor": "15-acceptance-criteria"
+        },
+        {
+          "level": 3,
+          "title": "Routing and context",
+          "anchor": "routing-and-context"
+        },
+        {
+          "level": 3,
+          "title": "Semantic understanding",
+          "anchor": "semantic-understanding"
+        },
+        {
+          "level": 3,
+          "title": "Search planning",
+          "anchor": "search-planning"
+        },
+        {
+          "level": 3,
+          "title": "Personalization",
+          "anchor": "personalization"
+        },
+        {
+          "level": 3,
+          "title": "Response quality",
+          "anchor": "response-quality"
+        },
+        {
+          "level": 3,
+          "title": "Safety and trust",
+          "anchor": "safety-and-trust"
+        },
+        {
+          "level": 2,
+          "title": "16. Evaluation Queries",
+          "anchor": "16-evaluation-queries"
+        },
+        {
+          "level": 2,
+          "title": "17. Rollout",
+          "anchor": "17-rollout"
+        }
+      ]
+    },
+    {
+      "id": "assistant-semantic-retrieval",
+      "path": "prd/Assistant Semantic Retrieval - Elasticsearch Execution Spec.md",
+      "title": "Assistant Semantic Retrieval — Elasticsearch Execution Spec",
+      "authority": "canonical",
+      "status": "draft v0.1",
+      "answers": "Hard filters, retrieval, partial matches, reranking, honest failure",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - Assistant Semantic Query Planner.md",
+        "prd/PRD - Assistant Discovery MVP (Backend).md",
+        "prd/Assistant Follow-Up Suggestions - Relevance Rules.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Assistant Semantic Retrieval — Elasticsearch Execution Spec",
+          "anchor": "assistant-semantic-retrieval-elasticsearch-execution-spec"
+        },
+        {
+          "level": 2,
+          "title": "1. Purpose",
+          "anchor": "1-purpose"
+        },
+        {
+          "level": 2,
+          "title": "2. Scope",
+          "anchor": "2-scope"
+        },
+        {
+          "level": 3,
+          "title": "In scope",
+          "anchor": "in-scope"
+        },
+        {
+          "level": 3,
+          "title": "Out of scope",
+          "anchor": "out-of-scope"
+        },
+        {
+          "level": 2,
+          "title": "3. Known boundary and assumptions",
+          "anchor": "3-known-boundary-and-assumptions"
+        },
+        {
+          "level": 2,
+          "title": "4. Core execution principles",
+          "anchor": "4-core-execution-principles"
+        },
+        {
+          "level": 3,
+          "title": "Interpret once; compile deterministically",
+          "anchor": "interpret-once-compile-deterministically"
+        },
+        {
+          "level": 3,
+          "title": "Separate explicit constraints from inferred strategies",
+          "anchor": "separate-explicit-constraints-from-inferred-strategies"
+        },
+        {
+          "level": 3,
+          "title": "Elasticsearch retrieves candidates; policy chooses the answer",
+          "anchor": "elasticsearch-retrieves-candidates-policy-chooses-the-answer"
+        },
+        {
+          "level": 3,
+          "title": "Broaden queries, never constraints",
+          "anchor": "broaden-queries-never-constraints"
+        },
+        {
+          "level": 3,
+          "title": "The generated plan is data, not executable code",
+          "anchor": "the-generated-plan-is-data-not-executable-code"
+        },
+        {
+          "level": 2,
+          "title": "5. Planner-to-retrieval contract",
+          "anchor": "5-planner-to-retrieval-contract"
+        },
+        {
+          "level": 2,
+          "title": "6. Logical recipe index contract",
+          "anchor": "6-logical-recipe-index-contract"
+        },
+        {
+          "level": 2,
+          "title": "7. From an abstract request to retrieval strategies",
+          "anchor": "7-from-an-abstract-request-to-retrieval-strategies"
+        },
+        {
+          "level": 3,
+          "title": "Interpret the situation",
+          "anchor": "interpret-the-situation"
+        },
+        {
+          "level": 3,
+          "title": "Generate focused strategies",
+          "anchor": "generate-focused-strategies"
+        },
+        {
+          "level": 3,
+          "title": "Add positive and negative signals",
+          "anchor": "add-positive-and-negative-signals"
+        },
+        {
+          "level": 2,
+          "title": "8. Compiling the plan for Elasticsearch",
+          "anchor": "8-compiling-the-plan-for-elasticsearch"
+        },
+        {
+          "level": 3,
+          "title": "Recommended first version",
+          "anchor": "recommended-first-version"
+        },
+        {
+          "level": 3,
+          "title": "Logical query shape",
+          "anchor": "logical-query-shape"
+        },
+        {
+          "level": 3,
+          "title": "Hard-filter compilation",
+          "anchor": "hard-filter-compilation"
+        },
+        {
+          "level": 3,
+          "title": "Lexical field priority",
+          "anchor": "lexical-field-priority"
+        },
+        {
+          "level": 3,
+          "title": "Optional hybrid recall",
+          "anchor": "optional-hybrid-recall"
+        },
+        {
+          "level": 2,
+          "title": "9. Pooling and score normalization",
+          "anchor": "9-pooling-and-score-normalization"
+        },
+        {
+          "level": 2,
+          "title": "10. Hard gates after retrieval",
+          "anchor": "10-hard-gates-after-retrieval"
+        },
+        {
+          "level": 2,
+          "title": "11. Situation-aware reranking",
+          "anchor": "11-situation-aware-reranking"
+        },
+        {
+          "level": 2,
+          "title": "12. Set selection and diversity",
+          "anchor": "12-set-selection-and-diversity"
+        },
+        {
+          "level": 2,
+          "title": "13. Thin results, fallback, and clarification",
+          "anchor": "13-thin-results-fallback-and-clarification"
+        },
+        {
+          "level": 2,
+          "title": "14. Follow-up viability reuse",
+          "anchor": "14-follow-up-viability-reuse"
+        },
+        {
+          "level": 2,
+          "title": "15. Caching",
+          "anchor": "15-caching"
+        },
+        {
+          "level": 2,
+          "title": "16. Failure and timeout behavior",
+          "anchor": "16-failure-and-timeout-behavior"
+        },
+        {
+          "level": 2,
+          "title": "17. Observability",
+          "anchor": "17-observability"
+        },
+        {
+          "level": 2,
+          "title": "18. Adapter response",
+          "anchor": "18-adapter-response"
+        },
+        {
+          "level": 2,
+          "title": "19. Worked example",
+          "anchor": "19-worked-example"
+        },
+        {
+          "level": 2,
+          "title": "20. Evaluation and acceptance",
+          "anchor": "20-evaluation-and-acceptance"
+        },
+        {
+          "level": 3,
+          "title": "Contract and retrieval tests",
+          "anchor": "contract-and-retrieval-tests"
+        },
+        {
+          "level": 3,
+          "title": "Golden abstract requests",
+          "anchor": "golden-abstract-requests"
+        },
+        {
+          "level": 2,
+          "title": "21. Implementation packages",
+          "anchor": "21-implementation-packages"
+        },
+        {
+          "level": 2,
+          "title": "22. Decisions required before engineering estimates",
+          "anchor": "22-decisions-required-before-engineering-estimates"
+        }
+      ]
+    },
+    {
+      "id": "assistant-follow-up-suggestions",
+      "path": "prd/Assistant Follow-Up Suggestions - Relevance Rules.md",
+      "title": "Assistant Follow-Up Suggestions — Relevance Rules",
+      "authority": "canonical",
+      "status": "draft v1",
+      "answers": "Post-result follow-up relevance and viability",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - MyRecipes Assistant.md",
+        "prd/PRD - Assistant Discovery MVP (Backend).md",
+        "prd/Recipe-Specific Suggested Questions - Relevance Rules.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Assistant Follow-Up Suggestions — Relevance Rules",
+          "anchor": "assistant-follow-up-suggestions-relevance-rules"
+        },
+        {
+          "level": 2,
+          "title": "1. Purpose",
+          "anchor": "1-purpose"
+        },
+        {
+          "level": 2,
+          "title": "2. Core principle",
+          "anchor": "2-core-principle"
+        },
+        {
+          "level": 3,
+          "title": "Where candidates come from",
+          "anchor": "where-candidates-come-from"
+        },
+        {
+          "level": 2,
+          "title": "3. Signals",
+          "anchor": "3-signals"
+        },
+        {
+          "level": 2,
+          "title": "4. Resolved and open dimensions",
+          "anchor": "4-resolved-and-open-dimensions"
+        },
+        {
+          "level": 2,
+          "title": "5. Refinement types",
+          "anchor": "5-refinement-types"
+        },
+        {
+          "level": 2,
+          "title": "6. Hard eligibility checks",
+          "anchor": "6-hard-eligibility-checks"
+        },
+        {
+          "level": 2,
+          "title": "7. Scoring",
+          "anchor": "7-scoring"
+        },
+        {
+          "level": 2,
+          "title": "8. Selection",
+          "anchor": "8-selection"
+        },
+        {
+          "level": 2,
+          "title": "9. Library results",
+          "anchor": "9-library-results"
+        },
+        {
+          "level": 2,
+          "title": "10. Candidate record",
+          "anchor": "10-candidate-record"
+        },
+        {
+          "level": 2,
+          "title": "11. Pipeline",
+          "anchor": "11-pipeline"
+        },
+        {
+          "level": 2,
+          "title": "12. On speed and cost",
+          "anchor": "12-on-speed-and-cost"
+        },
+        {
+          "level": 2,
+          "title": "13. Examples",
+          "anchor": "13-examples"
+        },
+        {
+          "level": 2,
+          "title": "14. Acceptance criteria",
+          "anchor": "14-acceptance-criteria"
+        },
+        {
+          "level": 2,
+          "title": "15. Guardrails",
+          "anchor": "15-guardrails"
+        }
+      ]
+    },
+    {
+      "id": "recipe-specific-suggested-questions",
+      "path": "prd/Recipe-Specific Suggested Questions - Relevance Rules.md",
+      "title": "Recipe-Specific Suggested Questions — Relevance Rules",
+      "authority": "canonical",
+      "status": "draft v1",
+      "answers": "Recipe-page question relevance and evidence requirements",
+      "directAnswer": "Yes",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/PRD - MyRecipes Assistant.md",
+        "prd/Assistant Follow-Up Suggestions - Relevance Rules.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Recipe-Specific Suggested Questions — Relevance Rules",
+          "anchor": "recipe-specific-suggested-questions-relevance-rules"
+        },
+        {
+          "level": 2,
+          "title": "1. Purpose",
+          "anchor": "1-purpose"
+        },
+        {
+          "level": 2,
+          "title": "2. Core Principle",
+          "anchor": "2-core-principle"
+        },
+        {
+          "level": 2,
+          "title": "3. Recipe Signals",
+          "anchor": "3-recipe-signals"
+        },
+        {
+          "level": 2,
+          "title": "4. Candidate Question Rules",
+          "anchor": "4-candidate-question-rules"
+        },
+        {
+          "level": 3,
+          "title": "4.1 Ingredient substitution",
+          "anchor": "41-ingredient-substitution"
+        },
+        {
+          "level": 3,
+          "title": "4.2 Dietary adaptation",
+          "anchor": "42-dietary-adaptation"
+        },
+        {
+          "level": 3,
+          "title": "4.3 Technique and failure prevention",
+          "anchor": "43-technique-and-failure-prevention"
+        },
+        {
+          "level": 3,
+          "title": "4.4 Doneness",
+          "anchor": "44-doneness"
+        },
+        {
+          "level": 3,
+          "title": "4.5 Equipment alternatives",
+          "anchor": "45-equipment-alternatives"
+        },
+        {
+          "level": 3,
+          "title": "4.6 Timing, prep, and make-ahead",
+          "anchor": "46-timing-prep-and-make-ahead"
+        },
+        {
+          "level": 3,
+          "title": "4.7 Scaling",
+          "anchor": "47-scaling"
+        },
+        {
+          "level": 3,
+          "title": "4.8 Storage and reheating",
+          "anchor": "48-storage-and-reheating"
+        },
+        {
+          "level": 2,
+          "title": "5. Hard Eligibility Checks",
+          "anchor": "5-hard-eligibility-checks"
+        },
+        {
+          "level": 2,
+          "title": "6. Relevance Scoring",
+          "anchor": "6-relevance-scoring"
+        },
+        {
+          "level": 2,
+          "title": "7. Candidate Record",
+          "anchor": "7-candidate-record"
+        },
+        {
+          "level": 2,
+          "title": "8. Selection Pipeline",
+          "anchor": "8-selection-pipeline"
+        },
+        {
+          "level": 2,
+          "title": "9. Safe Fallback Behavior",
+          "anchor": "9-safe-fallback-behavior"
+        },
+        {
+          "level": 2,
+          "title": "10. Examples",
+          "anchor": "10-examples"
+        },
+        {
+          "level": 3,
+          "title": "Air Fryer Salmon with Maple-Bourbon Glaze",
+          "anchor": "air-fryer-salmon-with-maple-bourbon-glaze"
+        },
+        {
+          "level": 3,
+          "title": "Classic Dinner Rolls",
+          "anchor": "classic-dinner-rolls"
+        },
+        {
+          "level": 2,
+          "title": "11. Evaluation and Acceptance Criteria",
+          "anchor": "11-evaluation-and-acceptance-criteria"
+        },
+        {
+          "level": 2,
+          "title": "12. Product Guardrails",
+          "anchor": "12-product-guardrails"
+        }
+      ]
+    },
+    {
+      "id": "poc-agentic-recipe-assistant",
+      "path": "prd/poc/PRD - Agentic Recipe Assistant.md",
+      "title": "PRD — Agentic Recipe Assistant (Persistent Companion)",
+      "authority": "poc",
+      "status": "superseded prototype record",
+      "answers": "Original assistant prototype behavior",
+      "directAnswer": "Demo questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Agentic Recipe Assistant (Persistent Companion)",
+          "anchor": "prd-agentic-recipe-assistant-persistent-companion"
+        },
+        {
+          "level": 2,
+          "title": "1. Overview",
+          "anchor": "1-overview"
+        },
+        {
+          "level": 3,
+          "title": "1.1 Feature Summary",
+          "anchor": "11-feature-summary"
+        },
+        {
+          "level": 3,
+          "title": "1.2 The Bet, and Why Now",
+          "anchor": "12-the-bet-and-why-now"
+        },
+        {
+          "level": 3,
+          "title": "1.3 Business Goals & KPIs",
+          "anchor": "13-business-goals-kpis"
+        },
+        {
+          "level": 3,
+          "title": "1.4 Scope & Non-Scope (v1)",
+          "anchor": "14-scope-non-scope-v1"
+        },
+        {
+          "level": 3,
+          "title": "1.5 Assumptions & Dependencies",
+          "anchor": "15-assumptions-dependencies"
+        },
+        {
+          "level": 2,
+          "title": "2. Users & Context",
+          "anchor": "2-users-context"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Personas & AI Posture",
+          "anchor": "21-personas-ai-posture"
+        },
+        {
+          "level": 3,
+          "title": "2.2 What \"Context-Aware\" Means",
+          "anchor": "22-what-context-aware-means"
+        },
+        {
+          "level": 2,
+          "title": "3. Product Requirements",
+          "anchor": "3-product-requirements"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Core Interaction Model",
+          "anchor": "31-core-interaction-model"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Functional Requirements by Surface",
+          "anchor": "32-functional-requirements-by-surface"
+        },
+        {
+          "level": 3,
+          "title": "3.3 Agent / Orchestration Architecture",
+          "anchor": "33-agent-orchestration-architecture"
+        },
+        {
+          "level": 3,
+          "title": "3.4 Context & Intent Object",
+          "anchor": "34-context-intent-object"
+        },
+        {
+          "level": 3,
+          "title": "3.5 Response & Component Model",
+          "anchor": "35-response-component-model"
+        },
+        {
+          "level": 3,
+          "title": "3.6 Trust & Failure Modes",
+          "anchor": "36-trust-failure-modes"
+        },
+        {
+          "level": 3,
+          "title": "3.7 Non-Functional Requirements",
+          "anchor": "37-non-functional-requirements"
+        },
+        {
+          "level": 2,
+          "title": "4. What's Real vs. Mocked in v1",
+          "anchor": "4-whats-real-vs-mocked-in-v1"
+        },
+        {
+          "level": 2,
+          "title": "5. MVP Definition",
+          "anchor": "5-mvp-definition"
+        },
+        {
+          "level": 2,
+          "title": "6. Out of Scope (v1) — restated for clarity",
+          "anchor": "6-out-of-scope-v1-restated-for-clarity"
+        },
+        {
+          "level": 2,
+          "title": "7. Future Enhancements",
+          "anchor": "7-future-enhancements"
+        },
+        {
+          "level": 2,
+          "title": "8. Open Questions",
+          "anchor": "8-open-questions"
+        },
+        {
+          "level": 2,
+          "title": "9. Naming Note",
+          "anchor": "9-naming-note"
+        },
+        {
+          "level": 2,
+          "title": "Appendix A — Illustrative Context + Intent Object (non-binding)",
+          "anchor": "appendix-a-illustrative-context-intent-object-non-binding"
+        },
+        {
+          "level": 2,
+          "title": "Appendix B — v1 Tool Catalog (orchestrator interface)",
+          "anchor": "appendix-b-v1-tool-catalog-orchestrator-interface"
+        },
+        {
+          "level": 2,
+          "title": "Appendix C — Example Flows",
+          "anchor": "appendix-c-example-flows"
+        },
+        {
+          "level": 2,
+          "title": "Appendix D — Prototype Implementation Status (as of Jul 24, 2026)",
+          "anchor": "appendix-d-prototype-implementation-status-as-of-jul-24-2026"
+        }
+      ]
+    },
+    {
+      "id": "poc-dinner-decision-engine",
+      "path": "prd/poc/PRD - Dinner Decision Engine.md",
+      "title": "PRD — Dinner Decision Engine (“What’s for Dinner Tonight?”)",
+      "authority": "poc",
+      "status": "placeholder detail",
+      "answers": "Prototype dinner decision behavior",
+      "directAnswer": "Demo questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Dinner Decision Engine (“What’s for Dinner Tonight?”)",
+          "anchor": "prd-dinner-decision-engine-whats-for-dinner-tonight"
+        },
+        {
+          "level": 2,
+          "title": "1. Overview",
+          "anchor": "1-overview"
+        },
+        {
+          "level": 3,
+          "title": "1.1 Feature Summary",
+          "anchor": "11-feature-summary"
+        },
+        {
+          "level": 3,
+          "title": "1.2 Relationship to the Agentic Recipe Assistant",
+          "anchor": "12-relationship-to-the-agentic-recipe-assistant"
+        },
+        {
+          "level": 3,
+          "title": "1.3 Product Bet",
+          "anchor": "13-product-bet"
+        },
+        {
+          "level": 3,
+          "title": "1.4 Strategic Guardrail",
+          "anchor": "14-strategic-guardrail"
+        },
+        {
+          "level": 2,
+          "title": "2. Goals and Non-Goals",
+          "anchor": "2-goals-and-non-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Goals",
+          "anchor": "21-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.2 Non-Goals",
+          "anchor": "22-non-goals"
+        },
+        {
+          "level": 2,
+          "title": "3. Target User and Job to Be Done",
+          "anchor": "3-target-user-and-job-to-be-done"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Primary Persona",
+          "anchor": "31-primary-persona"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Core Job",
+          "anchor": "32-core-job"
+        },
+        {
+          "level": 3,
+          "title": "3.3 Secondary Users",
+          "anchor": "33-secondary-users"
+        },
+        {
+          "level": 2,
+          "title": "4. Experience Principles",
+          "anchor": "4-experience-principles"
+        },
+        {
+          "level": 3,
+          "title": "4.1 Collapse the Decision, Not the User’s Agency",
+          "anchor": "41-collapse-the-decision-not-the-users-agency"
+        },
+        {
+          "level": 3,
+          "title": "4.2 Every Option Must Be Viable",
+          "anchor": "42-every-option-must-be-viable"
+        },
+        {
+          "level": 3,
+          "title": "4.3 Differentiate the Choices",
+          "anchor": "43-differentiate-the-choices"
+        },
+        {
+          "level": 3,
+          "title": "4.4 Explain, Don’t Over-Explain",
+          "anchor": "44-explain-dont-over-explain"
+        },
+        {
+          "level": 3,
+          "title": "4.5 Ask Only When It Changes the Answer",
+          "anchor": "45-ask-only-when-it-changes-the-answer"
+        },
+        {
+          "level": 3,
+          "title": "4.6 Refinement Must Feel Instant",
+          "anchor": "46-refinement-must-feel-instant"
+        },
+        {
+          "level": 2,
+          "title": "5. Core User Flow",
+          "anchor": "5-core-user-flow"
+        },
+        {
+          "level": 3,
+          "title": "5.1 Entry",
+          "anchor": "51-entry"
+        },
+        {
+          "level": 3,
+          "title": "5.2 Recommendation",
+          "anchor": "52-recommendation"
+        },
+        {
+          "level": 3,
+          "title": "5.3 Evaluation",
+          "anchor": "53-evaluation"
+        },
+        {
+          "level": 3,
+          "title": "5.4 Refinement",
+          "anchor": "54-refinement"
+        },
+        {
+          "level": 3,
+          "title": "5.5 Feedback",
+          "anchor": "55-feedback"
+        },
+        {
+          "level": 2,
+          "title": "6. Functional Requirements",
+          "anchor": "6-functional-requirements"
+        },
+        {
+          "level": 3,
+          "title": "FR1 — Dinner-Only Eligibility",
+          "anchor": "fr1-dinner-only-eligibility"
+        },
+        {
+          "level": 3,
+          "title": "FR2 — Default Result Count",
+          "anchor": "fr2-default-result-count"
+        },
+        {
+          "level": 3,
+          "title": "FR3 — Hard Constraint Enforcement",
+          "anchor": "fr3-hard-constraint-enforcement"
+        },
+        {
+          "level": 3,
+          "title": "FR4 — Personalization Inputs",
+          "anchor": "fr4-personalization-inputs"
+        },
+        {
+          "level": 3,
+          "title": "FR5 — Candidate Source Hierarchy",
+          "anchor": "fr5-candidate-source-hierarchy"
+        },
+        {
+          "level": 3,
+          "title": "FR6 — Fit Scoring",
+          "anchor": "fr6-fit-scoring"
+        },
+        {
+          "level": 3,
+          "title": "FR7 — Shortlist Diversity",
+          "anchor": "fr7-shortlist-diversity"
+        },
+        {
+          "level": 3,
+          "title": "FR8 — “Why This Fits”",
+          "anchor": "fr8-why-this-fits"
+        },
+        {
+          "level": 3,
+          "title": "FR9 — Conviction Signals",
+          "anchor": "fr9-conviction-signals"
+        },
+        {
+          "level": 3,
+          "title": "FR10 — Follow-Up Refinements",
+          "anchor": "fr10-follow-up-refinements"
+        },
+        {
+          "level": 3,
+          "title": "FR11 — Negative Feedback",
+          "anchor": "fr11-negative-feedback"
+        },
+        {
+          "level": 3,
+          "title": "FR12 — Variety and Repeat Protection",
+          "anchor": "fr12-variety-and-repeat-protection"
+        },
+        {
+          "level": 3,
+          "title": "FR13 — Loading State",
+          "anchor": "fr13-loading-state"
+        },
+        {
+          "level": 3,
+          "title": "FR14 — Conservative Failure",
+          "anchor": "fr14-conservative-failure"
+        },
+        {
+          "level": 3,
+          "title": "FR15 — Native Component Reuse",
+          "anchor": "fr15-native-component-reuse"
+        },
+        {
+          "level": 2,
+          "title": "7. Recommendation Logic",
+          "anchor": "7-recommendation-logic"
+        },
+        {
+          "level": 3,
+          "title": "7.1 Processing Sequence",
+          "anchor": "71-processing-sequence"
+        },
+        {
+          "level": 3,
+          "title": "7.2 Illustrative Scoring Model",
+          "anchor": "72-illustrative-scoring-model"
+        },
+        {
+          "level": 3,
+          "title": "7.3 Shortlist Assembly",
+          "anchor": "73-shortlist-assembly"
+        },
+        {
+          "level": 2,
+          "title": "8. UX and Content Requirements",
+          "anchor": "8-ux-and-content-requirements"
+        },
+        {
+          "level": 3,
+          "title": "8.1 Initial Response",
+          "anchor": "81-initial-response"
+        },
+        {
+          "level": 3,
+          "title": "8.2 Card Copy",
+          "anchor": "82-card-copy"
+        },
+        {
+          "level": 3,
+          "title": "8.3 Refinement Response",
+          "anchor": "83-refinement-response"
+        },
+        {
+          "level": 3,
+          "title": "8.4 Feedback Response",
+          "anchor": "84-feedback-response"
+        },
+        {
+          "level": 3,
+          "title": "8.5 Tone",
+          "anchor": "85-tone"
+        },
+        {
+          "level": 2,
+          "title": "9. POC / Demo Specification",
+          "anchor": "9-poc-demo-specification"
+        },
+        {
+          "level": 3,
+          "title": "9.1 POC Principle",
+          "anchor": "91-poc-principle"
+        },
+        {
+          "level": 3,
+          "title": "9.2 Fixed Demo Persona",
+          "anchor": "92-fixed-demo-persona"
+        },
+        {
+          "level": 3,
+          "title": "9.3 Live Retrieval (POC)",
+          "anchor": "93-live-retrieval-poc"
+        },
+        {
+          "level": 3,
+          "title": "9.4 Variety Without Static Sets",
+          "anchor": "94-variety-without-static-sets"
+        },
+        {
+          "level": 3,
+          "title": "9.5 POC Refinement Matrix",
+          "anchor": "95-poc-refinement-matrix"
+        },
+        {
+          "level": 3,
+          "title": "9.6 POC Honesty",
+          "anchor": "96-poc-honesty"
+        },
+        {
+          "level": 2,
+          "title": "10. Data and Service Contract",
+          "anchor": "10-data-and-service-contract"
+        },
+        {
+          "level": 3,
+          "title": "10.1 Inputs",
+          "anchor": "101-inputs"
+        },
+        {
+          "level": 3,
+          "title": "10.2 Output",
+          "anchor": "102-output"
+        },
+        {
+          "level": 3,
+          "title": "10.3 Inspectability",
+          "anchor": "103-inspectability"
+        },
+        {
+          "level": 2,
+          "title": "11. Measurement",
+          "anchor": "11-measurement"
+        },
+        {
+          "level": 3,
+          "title": "11.1 Primary Production Metric",
+          "anchor": "111-primary-production-metric"
+        },
+        {
+          "level": 3,
+          "title": "11.2 Supporting Metrics",
+          "anchor": "112-supporting-metrics"
+        },
+        {
+          "level": 3,
+          "title": "11.3 POC Evaluation",
+          "anchor": "113-poc-evaluation"
+        },
+        {
+          "level": 2,
+          "title": "12. Acceptance Criteria",
+          "anchor": "12-acceptance-criteria"
+        },
+        {
+          "level": 2,
+          "title": "13. Dependencies",
+          "anchor": "13-dependencies"
+        },
+        {
+          "level": 2,
+          "title": "14. Risks and Mitigations",
+          "anchor": "14-risks-and-mitigations"
+        },
+        {
+          "level": 2,
+          "title": "15. Open Questions",
+          "anchor": "15-open-questions"
+        },
+        {
+          "level": 2,
+          "title": "Appendix A — Example Initial Shortlist",
+          "anchor": "appendix-a-example-initial-shortlist"
+        },
+        {
+          "level": 2,
+          "title": "Appendix B — Example Faster Shortlist",
+          "anchor": "appendix-b-example-faster-shortlist"
+        },
+        {
+          "level": 2,
+          "title": "Appendix C — Required Regression Set",
+          "anchor": "appendix-c-required-regression-set"
+        }
+      ]
+    },
+    {
+      "id": "poc-photo-recipe-discovery",
+      "path": "prd/poc/PRD - Photo-Based Recipe Discovery.md",
+      "title": "PRD — Photo-Based Recipe Discovery (\"What Can I Make From This?\")",
+      "authority": "poc",
+      "status": "placeholder detail",
+      "answers": "Prototype camera and photo discovery behavior",
+      "directAnswer": "Demo questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Photo-Based Recipe Discovery (\"What Can I Make From This?\")",
+          "anchor": "prd-photo-based-recipe-discovery-what-can-i-make-from-this"
+        },
+        {
+          "level": 2,
+          "title": "1. Overview",
+          "anchor": "1-overview"
+        },
+        {
+          "level": 3,
+          "title": "1.1 Feature Summary",
+          "anchor": "11-feature-summary"
+        },
+        {
+          "level": 3,
+          "title": "1.2 Relationship to the Agentic Recipe Assistant",
+          "anchor": "12-relationship-to-the-agentic-recipe-assistant"
+        },
+        {
+          "level": 3,
+          "title": "1.3 Product Bet",
+          "anchor": "13-product-bet"
+        },
+        {
+          "level": 3,
+          "title": "1.4 Strategic Guardrail",
+          "anchor": "14-strategic-guardrail"
+        },
+        {
+          "level": 2,
+          "title": "2. Goals and Non-Goals",
+          "anchor": "2-goals-and-non-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Goals",
+          "anchor": "21-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.2 Non-Goals",
+          "anchor": "22-non-goals"
+        },
+        {
+          "level": 2,
+          "title": "3. Target User and Job to Be Done",
+          "anchor": "3-target-user-and-job-to-be-done"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Primary Personas",
+          "anchor": "31-primary-personas"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Core Jobs",
+          "anchor": "32-core-jobs"
+        },
+        {
+          "level": 3,
+          "title": "3.3 Secondary Users",
+          "anchor": "33-secondary-users"
+        },
+        {
+          "level": 2,
+          "title": "4. Experience Principles",
+          "anchor": "4-experience-principles"
+        },
+        {
+          "level": 3,
+          "title": "4.1 Show Your Work",
+          "anchor": "41-show-your-work"
+        },
+        {
+          "level": 3,
+          "title": "4.2 Correction Is Cheap",
+          "anchor": "42-correction-is-cheap"
+        },
+        {
+          "level": 3,
+          "title": "4.3 One Photo, One Fast Path",
+          "anchor": "43-one-photo-one-fast-path"
+        },
+        {
+          "level": 3,
+          "title": "4.4 Same Recipe, Same Trust Signals",
+          "anchor": "44-same-recipe-same-trust-signals"
+        },
+        {
+          "level": 3,
+          "title": "4.5 Fail Like a Person Would",
+          "anchor": "45-fail-like-a-person-would"
+        },
+        {
+          "level": 2,
+          "title": "5. Core User Flow",
+          "anchor": "5-core-user-flow"
+        },
+        {
+          "level": 3,
+          "title": "5.1 Entry",
+          "anchor": "51-entry"
+        },
+        {
+          "level": 3,
+          "title": "5.2 Analysis",
+          "anchor": "52-analysis"
+        },
+        {
+          "level": 3,
+          "title": "5.3a Pantry Scan Result",
+          "anchor": "53a-pantry-scan-result"
+        },
+        {
+          "level": 3,
+          "title": "5.3b Dish Match Result",
+          "anchor": "53b-dish-match-result"
+        },
+        {
+          "level": 3,
+          "title": "5.4 Miss / Low Confidence",
+          "anchor": "54-miss-low-confidence"
+        },
+        {
+          "level": 3,
+          "title": "5.5 Evaluation and Refinement",
+          "anchor": "55-evaluation-and-refinement"
+        },
+        {
+          "level": 2,
+          "title": "6. Functional Requirements",
+          "anchor": "6-functional-requirements"
+        },
+        {
+          "level": 3,
+          "title": "FR1 — Camera Entry Point",
+          "anchor": "fr1-camera-entry-point"
+        },
+        {
+          "level": 3,
+          "title": "FR2 — Capture and Upload, Every Platform",
+          "anchor": "fr2-capture-and-upload-every-platform"
+        },
+        {
+          "level": 3,
+          "title": "FR3 — Automatic Mode Detection",
+          "anchor": "fr3-automatic-mode-detection"
+        },
+        {
+          "level": 3,
+          "title": "FR4 — Pantry Scan: Ingredient Extraction and Confirmation",
+          "anchor": "fr4-pantry-scan-ingredient-extraction-and-confirmation"
+        },
+        {
+          "level": 3,
+          "title": "FR4a — Add a Missed Ingredient",
+          "anchor": "fr4a-add-a-missed-ingredient"
+        },
+        {
+          "level": 3,
+          "title": "FR5 — Dish Match: Guess and Search",
+          "anchor": "fr5-dish-match-guess-and-search"
+        },
+        {
+          "level": 3,
+          "title": "FR6 — Shared Result Rules with Existing Discovery Tools",
+          "anchor": "fr6-shared-result-rules-with-existing-discovery-tools"
+        },
+        {
+          "level": 3,
+          "title": "FR7 — Conservative Failure on Unclear Photos",
+          "anchor": "fr7-conservative-failure-on-unclear-photos"
+        },
+        {
+          "level": 3,
+          "title": "FR8 — Analyzing Loading State",
+          "anchor": "fr8-analyzing-loading-state"
+        },
+        {
+          "level": 3,
+          "title": "FR9 — Ephemeral Photo Handling",
+          "anchor": "fr9-ephemeral-photo-handling"
+        },
+        {
+          "level": 3,
+          "title": "FR10 — Availability Gating (Online / Authenticated Only)",
+          "anchor": "fr10-availability-gating-online-authenticated-only"
+        },
+        {
+          "level": 3,
+          "title": "FR11 — Native Component Reuse",
+          "anchor": "fr11-native-component-reuse"
+        },
+        {
+          "level": 2,
+          "title": "7. Recognition and Recommendation Logic",
+          "anchor": "7-recognition-and-recommendation-logic"
+        },
+        {
+          "level": 3,
+          "title": "7.1 Processing Sequence",
+          "anchor": "71-processing-sequence"
+        },
+        {
+          "level": 3,
+          "title": "7.2 Illustrative Vision Output",
+          "anchor": "72-illustrative-vision-output"
+        },
+        {
+          "level": 3,
+          "title": "7.3 Confidence Handling",
+          "anchor": "73-confidence-handling"
+        },
+        {
+          "level": 2,
+          "title": "8. UX and Content Requirements",
+          "anchor": "8-ux-and-content-requirements"
+        },
+        {
+          "level": 3,
+          "title": "8.1 Entry Point Treatment",
+          "anchor": "81-entry-point-treatment"
+        },
+        {
+          "level": 3,
+          "title": "8.2 Analyzing State",
+          "anchor": "82-analyzing-state"
+        },
+        {
+          "level": 3,
+          "title": "8.3 Pantry Scan Result Layout",
+          "anchor": "83-pantry-scan-result-layout"
+        },
+        {
+          "level": 3,
+          "title": "8.4 Dish Match Result Layout",
+          "anchor": "84-dish-match-result-layout"
+        },
+        {
+          "level": 3,
+          "title": "8.5 Platform Capture Behavior",
+          "anchor": "85-platform-capture-behavior"
+        },
+        {
+          "level": 3,
+          "title": "8.6 Net-New UI Surface (for design handoff)",
+          "anchor": "86-net-new-ui-surface-for-design-handoff"
+        },
+        {
+          "level": 3,
+          "title": "8.7 Tone",
+          "anchor": "87-tone"
+        },
+        {
+          "level": 2,
+          "title": "9. POC / Demo Specification",
+          "anchor": "9-poc-demo-specification"
+        },
+        {
+          "level": 3,
+          "title": "9.1 POC Principle",
+          "anchor": "91-poc-principle"
+        },
+        {
+          "level": 3,
+          "title": "9.2 Vision Analysis (POC)",
+          "anchor": "92-vision-analysis-poc"
+        },
+        {
+          "level": 3,
+          "title": "9.3 Retrieval (POC)",
+          "anchor": "93-retrieval-poc"
+        },
+        {
+          "level": 3,
+          "title": "9.4 POC Test Photos",
+          "anchor": "94-poc-test-photos"
+        },
+        {
+          "level": 3,
+          "title": "9.5 POC Honesty",
+          "anchor": "95-poc-honesty"
+        },
+        {
+          "level": 2,
+          "title": "10. Data and Service Contract",
+          "anchor": "10-data-and-service-contract"
+        },
+        {
+          "level": 3,
+          "title": "10.1 Tool",
+          "anchor": "101-tool"
+        },
+        {
+          "level": 3,
+          "title": "10.2 Input",
+          "anchor": "102-input"
+        },
+        {
+          "level": 3,
+          "title": "10.3 Output — Pantry Scan",
+          "anchor": "103-output-pantry-scan"
+        },
+        {
+          "level": 3,
+          "title": "10.4 Output — Dish Match",
+          "anchor": "104-output-dish-match"
+        },
+        {
+          "level": 3,
+          "title": "10.5 Output — Unclear / Miss",
+          "anchor": "105-output-unclear-miss"
+        },
+        {
+          "level": 3,
+          "title": "10.6 Inspectability",
+          "anchor": "106-inspectability"
+        },
+        {
+          "level": 2,
+          "title": "11. Measurement",
+          "anchor": "11-measurement"
+        },
+        {
+          "level": 3,
+          "title": "11.1 Primary Production Metric",
+          "anchor": "111-primary-production-metric"
+        },
+        {
+          "level": 3,
+          "title": "11.2 Supporting Metrics",
+          "anchor": "112-supporting-metrics"
+        },
+        {
+          "level": 3,
+          "title": "11.3 POC Evaluation",
+          "anchor": "113-poc-evaluation"
+        },
+        {
+          "level": 2,
+          "title": "12. Acceptance Criteria",
+          "anchor": "12-acceptance-criteria"
+        },
+        {
+          "level": 2,
+          "title": "13. Dependencies",
+          "anchor": "13-dependencies"
+        },
+        {
+          "level": 2,
+          "title": "14. Risks and Mitigations",
+          "anchor": "14-risks-and-mitigations"
+        },
+        {
+          "level": 2,
+          "title": "15. Open Questions",
+          "anchor": "15-open-questions"
+        },
+        {
+          "level": 2,
+          "title": "Appendix A — Example Pantry Scan Turn",
+          "anchor": "appendix-a-example-pantry-scan-turn"
+        },
+        {
+          "level": 2,
+          "title": "Appendix B — Example Dish Match Turn",
+          "anchor": "appendix-b-example-dish-match-turn"
+        },
+        {
+          "level": 2,
+          "title": "Appendix C — Required Regression Set",
+          "anchor": "appendix-c-required-regression-set"
+        }
+      ]
+    },
+    {
+      "id": "poc-user-recommendation-preferences",
+      "path": "prd/poc/PRD - User Recommendation Preferences.md",
+      "title": "PRD — User Recommendation Preferences",
+      "authority": "poc",
+      "status": "placeholder detail",
+      "answers": "Prototype preference controls and personalization",
+      "directAnswer": "Demo questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — User Recommendation Preferences",
+          "anchor": "prd-user-recommendation-preferences"
+        },
+        {
+          "level": 2,
+          "title": "1. Overview",
+          "anchor": "1-overview"
+        },
+        {
+          "level": 3,
+          "title": "1.1 Feature Summary",
+          "anchor": "11-feature-summary"
+        },
+        {
+          "level": 3,
+          "title": "1.2 Relationship to the Agentic Recipe Assistant",
+          "anchor": "12-relationship-to-the-agentic-recipe-assistant"
+        },
+        {
+          "level": 3,
+          "title": "1.3 Product Bet",
+          "anchor": "13-product-bet"
+        },
+        {
+          "level": 3,
+          "title": "1.4 Strategic Guardrail",
+          "anchor": "14-strategic-guardrail"
+        },
+        {
+          "level": 2,
+          "title": "2. Goals and Non-Goals",
+          "anchor": "2-goals-and-non-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Goals",
+          "anchor": "21-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.2 Non-Goals",
+          "anchor": "22-non-goals"
+        },
+        {
+          "level": 2,
+          "title": "3. Target User and Job to Be Done",
+          "anchor": "3-target-user-and-job-to-be-done"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Primary Persona",
+          "anchor": "31-primary-persona"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Core Job",
+          "anchor": "32-core-job"
+        },
+        {
+          "level": 2,
+          "title": "4. Experience Principles",
+          "anchor": "4-experience-principles"
+        },
+        {
+          "level": 3,
+          "title": "4.1 Set It Once, Used Everywhere",
+          "anchor": "41-set-it-once-used-everywhere"
+        },
+        {
+          "level": 3,
+          "title": "4.2 Editable Is Not Optional",
+          "anchor": "42-editable-is-not-optional"
+        },
+        {
+          "level": 3,
+          "title": "4.3 Hard Things Stay Hard",
+          "anchor": "43-hard-things-stay-hard"
+        },
+        {
+          "level": 3,
+          "title": "4.4 Staples Are a Signal, Not a Guarantee",
+          "anchor": "44-staples-are-a-signal-not-a-guarantee"
+        },
+        {
+          "level": 2,
+          "title": "5. Core User Flow",
+          "anchor": "5-core-user-flow"
+        },
+        {
+          "level": 3,
+          "title": "5.1 Entry",
+          "anchor": "51-entry"
+        },
+        {
+          "level": 3,
+          "title": "5.2 First Run (Empty State)",
+          "anchor": "52-first-run-empty-state"
+        },
+        {
+          "level": 3,
+          "title": "5.3 Editing",
+          "anchor": "53-editing"
+        },
+        {
+          "level": 3,
+          "title": "5.4 Using It (Cross-Reference in Existing Surfaces)",
+          "anchor": "54-using-it-cross-reference-in-existing-surfaces"
+        },
+        {
+          "level": 2,
+          "title": "6. Functional Requirements",
+          "anchor": "6-functional-requirements"
+        },
+        {
+          "level": 3,
+          "title": "FR1 — Dietary Restrictions: Fixed Taxonomy",
+          "anchor": "fr1-dietary-restrictions-fixed-taxonomy"
+        },
+        {
+          "level": 3,
+          "title": "FR2 — Dietary Restrictions: Severity",
+          "anchor": "fr2-dietary-restrictions-severity"
+        },
+        {
+          "level": 3,
+          "title": "FR3 — Cooking Style: Fixed Multi-Select",
+          "anchor": "fr3-cooking-style-fixed-multi-select"
+        },
+        {
+          "level": 3,
+          "title": "FR4 — Disliked Ingredients: Freeform List",
+          "anchor": "fr4-disliked-ingredients-freeform-list"
+        },
+        {
+          "level": 3,
+          "title": "FR5 — Flavors & Cuisines",
+          "anchor": "fr5-flavors-cuisines"
+        },
+        {
+          "level": 3,
+          "title": "FR6 — Pantry Staples",
+          "anchor": "fr6-pantry-staples"
+        },
+        {
+          "level": 3,
+          "title": "FR7 — Cross-Reference: Pantry Staples × Photo-Detected Ingredients",
+          "anchor": "fr7-cross-reference-pantry-staples-photo-detected-ingredients"
+        },
+        {
+          "level": 3,
+          "title": "FR8 — Hard Exclusion Everywhere",
+          "anchor": "fr8-hard-exclusion-everywhere"
+        },
+        {
+          "level": 3,
+          "title": "FR9 — Persistence",
+          "anchor": "fr9-persistence"
+        },
+        {
+          "level": 3,
+          "title": "FR10 — Retiring the Mocked Persona",
+          "anchor": "fr10-retiring-the-mocked-persona"
+        },
+        {
+          "level": 2,
+          "title": "7. Alignment with Real, Filterable Data",
+          "anchor": "7-alignment-with-real-filterable-data"
+        },
+        {
+          "level": 2,
+          "title": "8. UX and Content Requirements",
+          "anchor": "8-ux-and-content-requirements"
+        },
+        {
+          "level": 3,
+          "title": "8.1 Account Restructure",
+          "anchor": "81-account-restructure"
+        },
+        {
+          "level": 3,
+          "title": "8.2 Recommendation Preferences Screen Layout",
+          "anchor": "82-recommendation-preferences-screen-layout"
+        },
+        {
+          "level": 3,
+          "title": "8.3 Net-New UI Surface (for design handoff)",
+          "anchor": "83-net-new-ui-surface-for-design-handoff"
+        },
+        {
+          "level": 3,
+          "title": "8.4 Tone",
+          "anchor": "84-tone"
+        },
+        {
+          "level": 2,
+          "title": "9. POC / Demo Specification",
+          "anchor": "9-poc-demo-specification"
+        },
+        {
+          "level": 3,
+          "title": "9.1 POC Principle",
+          "anchor": "91-poc-principle"
+        },
+        {
+          "level": 3,
+          "title": "9.2 Migration from the Existing Mock",
+          "anchor": "92-migration-from-the-existing-mock"
+        },
+        {
+          "level": 3,
+          "title": "9.3 What's Real vs. Mocked",
+          "anchor": "93-whats-real-vs-mocked"
+        },
+        {
+          "level": 2,
+          "title": "10. Data and Service Contract",
+          "anchor": "10-data-and-service-contract"
+        },
+        {
+          "level": 3,
+          "title": "10.1 Profile Shape (illustrative)",
+          "anchor": "101-profile-shape-illustrative"
+        },
+        {
+          "level": 3,
+          "title": "10.2 Consumption by Existing Tools",
+          "anchor": "102-consumption-by-existing-tools"
+        },
+        {
+          "level": 2,
+          "title": "11. Measurement",
+          "anchor": "11-measurement"
+        },
+        {
+          "level": 3,
+          "title": "11.1 Primary Metric",
+          "anchor": "111-primary-metric"
+        },
+        {
+          "level": 3,
+          "title": "11.2 Supporting Metrics",
+          "anchor": "112-supporting-metrics"
+        },
+        {
+          "level": 3,
+          "title": "11.3 POC Evaluation",
+          "anchor": "113-poc-evaluation"
+        },
+        {
+          "level": 2,
+          "title": "12. Acceptance Criteria",
+          "anchor": "12-acceptance-criteria"
+        },
+        {
+          "level": 2,
+          "title": "13. Dependencies",
+          "anchor": "13-dependencies"
+        },
+        {
+          "level": 2,
+          "title": "14. Risks and Mitigations",
+          "anchor": "14-risks-and-mitigations"
+        },
+        {
+          "level": 2,
+          "title": "15. Open Questions",
+          "anchor": "15-open-questions"
+        },
+        {
+          "level": 3,
+          "title": "Resolved",
+          "anchor": "resolved"
+        },
+        {
+          "level": 3,
+          "title": "Still open",
+          "anchor": "still-open"
+        }
+      ]
+    },
+    {
+      "id": "poc-catch-a-vibe",
+      "path": "prd/poc/PRD - Catch a Vibe.md",
+      "title": "PRD — Catch a Vibe",
+      "authority": "poc",
+      "status": "prototype",
+      "answers": "Vibe-photo concept and output behavior",
+      "directAnswer": "Demo questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Catch a Vibe",
+          "anchor": "prd-catch-a-vibe"
+        },
+        {
+          "level": 2,
+          "title": "1. Overview",
+          "anchor": "1-overview"
+        },
+        {
+          "level": 3,
+          "title": "1.1 Feature Summary",
+          "anchor": "11-feature-summary"
+        },
+        {
+          "level": 3,
+          "title": "1.2 Product Bet",
+          "anchor": "12-product-bet"
+        },
+        {
+          "level": 3,
+          "title": "1.3 Relationship to Existing Photo Discovery",
+          "anchor": "13-relationship-to-existing-photo-discovery"
+        },
+        {
+          "level": 2,
+          "title": "2. Goals and Non-Goals",
+          "anchor": "2-goals-and-non-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Goals",
+          "anchor": "21-goals"
+        },
+        {
+          "level": 3,
+          "title": "2.2 Non-Goals",
+          "anchor": "22-non-goals"
+        },
+        {
+          "level": 2,
+          "title": "3. Experience Principles",
+          "anchor": "3-experience-principles"
+        },
+        {
+          "level": 3,
+          "title": "3.1 One Photo, One Confident Pick",
+          "anchor": "31-one-photo-one-confident-pick"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Explain the Flavor Match",
+          "anchor": "32-explain-the-flavor-match"
+        },
+        {
+          "level": 3,
+          "title": "3.3 Playful, Never Personal at the User’s Expense",
+          "anchor": "33-playful-never-personal-at-the-users-expense"
+        },
+        {
+          "level": 3,
+          "title": "3.4 Constraints Beat Vibes",
+          "anchor": "34-constraints-beat-vibes"
+        },
+        {
+          "level": 3,
+          "title": "3.5 Neutral Is Still a Vibe",
+          "anchor": "35-neutral-is-still-a-vibe"
+        },
+        {
+          "level": 2,
+          "title": "4. Core User Flow",
+          "anchor": "4-core-user-flow"
+        },
+        {
+          "level": 2,
+          "title": "5. Functional Requirements",
+          "anchor": "5-functional-requirements"
+        },
+        {
+          "level": 3,
+          "title": "FR1 — Homepage Suggested Action",
+          "anchor": "fr1-homepage-suggested-action"
+        },
+        {
+          "level": 3,
+          "title": "FR2 — Single-Photo Input",
+          "anchor": "fr2-single-photo-input"
+        },
+        {
+          "level": 3,
+          "title": "FR3 — Structured Vibe Analysis",
+          "anchor": "fr3-structured-vibe-analysis"
+        },
+        {
+          "level": 3,
+          "title": "FR4 — Meal Context",
+          "anchor": "fr4-meal-context"
+        },
+        {
+          "level": 3,
+          "title": "FR5 — Dietary Restriction Enforcement",
+          "anchor": "fr5-dietary-restriction-enforcement"
+        },
+        {
+          "level": 3,
+          "title": "FR6 — Local-Corpus Retrieval and Ranking",
+          "anchor": "fr6-local-corpus-retrieval-and-ranking"
+        },
+        {
+          "level": 3,
+          "title": "FR7 — One Featured Result",
+          "anchor": "fr7-one-featured-result"
+        },
+        {
+          "level": 3,
+          "title": "FR8 - Vibe Explanation",
+          "anchor": "fr8---vibe-explanation"
+        },
+        {
+          "level": 3,
+          "title": "FR9 — Try Another",
+          "anchor": "fr9-try-another"
+        },
+        {
+          "level": 3,
+          "title": "FR10 — Use Another Photo",
+          "anchor": "fr10-use-another-photo"
+        },
+        {
+          "level": 3,
+          "title": "FR11 — Share My Vibe",
+          "anchor": "fr11-share-my-vibe"
+        },
+        {
+          "level": 3,
+          "title": "FR12 — Failure States",
+          "anchor": "fr12-failure-states"
+        },
+        {
+          "level": 2,
+          "title": "6. Privacy and Responsible Use",
+          "anchor": "6-privacy-and-responsible-use"
+        },
+        {
+          "level": 2,
+          "title": "7. POC Architecture",
+          "anchor": "7-poc-architecture"
+        },
+        {
+          "level": 2,
+          "title": "8. Success Signals",
+          "anchor": "8-success-signals"
+        },
+        {
+          "level": 2,
+          "title": "9. Acceptance Scenarios",
+          "anchor": "9-acceptance-scenarios"
+        },
+        {
+          "level": 2,
+          "title": "10. Resolved Product Decisions",
+          "anchor": "10-resolved-product-decisions"
+        },
+        {
+          "level": 2,
+          "title": "11. Delivery Documents",
+          "anchor": "11-delivery-documents"
+        }
+      ]
+    },
+    {
+      "id": "poc-catch-a-vibe-build-plan",
+      "path": "prd/poc/Build Plan - Catch a Vibe.md",
+      "title": "Build Plan — Catch a Vibe",
+      "authority": "poc",
+      "status": "prototype plan",
+      "answers": "Prototype implementation sequence",
+      "directAnswer": "No",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Build Plan — Catch a Vibe",
+          "anchor": "build-plan-catch-a-vibe"
+        },
+        {
+          "level": 2,
+          "title": "1. Objective",
+          "anchor": "1-objective"
+        },
+        {
+          "level": 2,
+          "title": "2. Locked Product and Technical Decisions",
+          "anchor": "2-locked-product-and-technical-decisions"
+        },
+        {
+          "level": 2,
+          "title": "3. Existing Architecture to Reuse",
+          "anchor": "3-existing-architecture-to-reuse"
+        },
+        {
+          "level": 2,
+          "title": "4. Target Data Contracts",
+          "anchor": "4-target-data-contracts"
+        },
+        {
+          "level": 2,
+          "title": "5. Work Packages",
+          "anchor": "5-work-packages"
+        },
+        {
+          "level": 3,
+          "title": "Package V1 — Contracts and Session Lifecycle",
+          "anchor": "package-v1-contracts-and-session-lifecycle"
+        },
+        {
+          "level": 3,
+          "title": "Package V2 — Safe Structured Vision Analysis",
+          "anchor": "package-v2-safe-structured-vision-analysis"
+        },
+        {
+          "level": 3,
+          "title": "Package V3 — Offline Retrieval, Safety Gates, and Ranking",
+          "anchor": "package-v3-offline-retrieval-safety-gates-and-ranking"
+        },
+        {
+          "level": 3,
+          "title": "Package V4 — Pairing Explanation",
+          "anchor": "package-v4-pairing-explanation"
+        },
+        {
+          "level": 3,
+          "title": "Package V5 — Assistant Entry and Orchestration",
+          "anchor": "package-v5-assistant-entry-and-orchestration"
+        },
+        {
+          "level": 3,
+          "title": "Package V6 — Result UI",
+          "anchor": "package-v6-result-ui"
+        },
+        {
+          "level": 3,
+          "title": "Package V7 — Share Preview and Export",
+          "anchor": "package-v7-share-preview-and-export"
+        },
+        {
+          "level": 3,
+          "title": "Package V8 — Failure States, Regression, and Public Parity",
+          "anchor": "package-v8-failure-states-regression-and-public-parity"
+        },
+        {
+          "level": 2,
+          "title": "6. Required Acceptance Matrix",
+          "anchor": "6-required-acceptance-matrix"
+        },
+        {
+          "level": 2,
+          "title": "7. Suggested File Map",
+          "anchor": "7-suggested-file-map"
+        },
+        {
+          "level": 2,
+          "title": "8. Definition of Done",
+          "anchor": "8-definition-of-done"
+        },
+        {
+          "level": 2,
+          "title": "9. Out of Scope for This Build",
+          "anchor": "9-out-of-scope-for-this-build"
+        }
+      ]
+    },
+    {
+      "id": "poc-catch-a-vibe-figma-handoff",
+      "path": "prd/poc/Figma Handoff - Catch a Vibe.md",
+      "title": "Figma Handoff — Catch a Vibe",
+      "authority": "poc",
+      "status": "design handoff",
+      "answers": "Prototype screen and content guidance",
+      "directAnswer": "Demo design questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Figma Handoff — Catch a Vibe",
+          "anchor": "figma-handoff-catch-a-vibe"
+        },
+        {
+          "level": 2,
+          "title": "1. Design Objective",
+          "anchor": "1-design-objective"
+        },
+        {
+          "level": 2,
+          "title": "2. Sources of Truth",
+          "anchor": "2-sources-of-truth"
+        },
+        {
+          "level": 2,
+          "title": "3. Existing Components to Reuse",
+          "anchor": "3-existing-components-to-reuse"
+        },
+        {
+          "level": 3,
+          "title": "One controlled component extension",
+          "anchor": "one-controlled-component-extension"
+        },
+        {
+          "level": 2,
+          "title": "4. Visual Guardrails",
+          "anchor": "4-visual-guardrails"
+        },
+        {
+          "level": 2,
+          "title": "5. Required Frames",
+          "anchor": "5-required-frames"
+        },
+        {
+          "level": 3,
+          "title": "J1 — Home Assistant Opening",
+          "anchor": "j1-home-assistant-opening"
+        },
+        {
+          "level": 3,
+          "title": "J2 — Photo Chooser",
+          "anchor": "j2-photo-chooser"
+        },
+        {
+          "level": 3,
+          "title": "J3 — Reading the Photo",
+          "anchor": "j3-reading-the-photo"
+        },
+        {
+          "level": 3,
+          "title": "J4b - Result: Editorial Card Treatment",
+          "anchor": "j4b---result-editorial-card-treatment"
+        },
+        {
+          "level": 3,
+          "title": "J5 — Result: Person",
+          "anchor": "j5-result-person"
+        },
+        {
+          "level": 3,
+          "title": "J6 — Result: Neutral Photo",
+          "anchor": "j6-result-neutral-photo"
+        },
+        {
+          "level": 3,
+          "title": "J7 — Try Another",
+          "anchor": "j7-try-another"
+        },
+        {
+          "level": 3,
+          "title": "J8 — Share Preview",
+          "anchor": "j8-share-preview"
+        },
+        {
+          "level": 3,
+          "title": "J9 — Recovery States",
+          "anchor": "j9-recovery-states"
+        },
+        {
+          "level": 2,
+          "title": "6. Result Hierarchy",
+          "anchor": "6-result-hierarchy"
+        },
+        {
+          "level": 2,
+          "title": "7. Share Card",
+          "anchor": "7-share-card"
+        },
+        {
+          "level": 3,
+          "title": "Required content",
+          "anchor": "required-content"
+        },
+        {
+          "level": 3,
+          "title": "Composition guidance",
+          "anchor": "composition-guidance"
+        },
+        {
+          "level": 2,
+          "title": "8. Copy Deck",
+          "anchor": "8-copy-deck"
+        },
+        {
+          "level": 2,
+          "title": "9. Interaction and Prototype Connections",
+          "anchor": "9-interaction-and-prototype-connections"
+        },
+        {
+          "level": 2,
+          "title": "10. Responsive and Accessibility Notes",
+          "anchor": "10-responsive-and-accessibility-notes"
+        },
+        {
+          "level": 2,
+          "title": "11. Figma Deliverables",
+          "anchor": "11-figma-deliverables"
+        },
+        {
+          "level": 3,
+          "title": "Design-review checklist",
+          "anchor": "design-review-checklist"
+        }
+      ]
+    },
+    {
+      "id": "archive-dinner-intelligence-prd",
+      "path": "prd/archive/PRD - Dinner Recommendation Intelligence (Data Science).md",
+      "title": "PRD — Dinner Recommendation Intelligence (Data Science)",
+      "authority": "archived",
+      "status": "superseded",
+      "answers": "Historical dinner-intelligence framing",
+      "directAnswer": "History only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "PRD — Dinner Recommendation Intelligence (Data Science)",
+          "anchor": "prd-dinner-recommendation-intelligence-data-science"
+        },
+        {
+          "level": 2,
+          "title": "1. Purpose",
+          "anchor": "1-purpose"
+        },
+        {
+          "level": 2,
+          "title": "2. Terminology",
+          "anchor": "2-terminology"
+        },
+        {
+          "level": 3,
+          "title": "2.1 Data Science Flavor Profile",
+          "anchor": "21-data-science-flavor-profile"
+        },
+        {
+          "level": 3,
+          "title": "2.2 User Recommendation Preferences",
+          "anchor": "22-user-recommendation-preferences"
+        },
+        {
+          "level": 3,
+          "title": "2.3 Inferred Ingredient Availability",
+          "anchor": "23-inferred-ingredient-availability"
+        },
+        {
+          "level": 3,
+          "title": "2.4 Explicit Ingredients",
+          "anchor": "24-explicit-ingredients"
+        },
+        {
+          "level": 3,
+          "title": "2.5 Makability",
+          "anchor": "25-makability"
+        },
+        {
+          "level": 2,
+          "title": "3. Problem Alignment",
+          "anchor": "3-problem-alignment"
+        },
+        {
+          "level": 3,
+          "title": "3.1 Problem",
+          "anchor": "31-problem"
+        },
+        {
+          "level": 3,
+          "title": "3.2 Opportunity",
+          "anchor": "32-opportunity"
+        },
+        {
+          "level": 3,
+          "title": "3.3 User Job",
+          "anchor": "33-user-job"
+        },
+        {
+          "level": 3,
+          "title": "3.4 Product Promise",
+          "anchor": "34-product-promise"
+        },
+        {
+          "level": 2,
+          "title": "4. What the Team Has to Work With",
+          "anchor": "4-what-the-team-has-to-work-with"
+        },
+        {
+          "level": 3,
+          "title": "Taste and preference signals",
+          "anchor": "taste-and-preference-signals"
+        },
+        {
+          "level": 3,
+          "title": "Ingredient availability",
+          "anchor": "ingredient-availability"
+        },
+        {
+          "level": 3,
+          "title": "Recipe intelligence",
+          "anchor": "recipe-intelligence"
+        },
+        {
+          "level": 3,
+          "title": "Signals we do not have yet",
+          "anchor": "signals-we-do-not-have-yet"
+        },
+        {
+          "level": 2,
+          "title": "5. What the Recommendation Must Accomplish",
+          "anchor": "5-what-the-recommendation-must-accomplish"
+        },
+        {
+          "level": 2,
+          "title": "6. How We Will Know It Works",
+          "anchor": "6-how-we-will-know-it-works"
+        },
+        {
+          "level": 2,
+          "title": "7. The Ask of Data Science",
+          "anchor": "7-the-ask-of-data-science"
+        }
+      ]
+    },
+    {
+      "id": "archive-dinner-intelligence-brief",
+      "path": "prd/archive/Brief - Dinner Recommendation Intelligence Working Session.md",
+      "title": "Brief — Dinner Recommendation Intelligence (Working Session)",
+      "authority": "archived",
+      "status": "superseded",
+      "answers": "Historical working-session brief",
+      "directAnswer": "History only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Brief — Dinner Recommendation Intelligence (Working Session)",
+          "anchor": "brief-dinner-recommendation-intelligence-working-session"
+        },
+        {
+          "level": 2,
+          "title": "The problem in one paragraph",
+          "anchor": "the-problem-in-one-paragraph"
+        },
+        {
+          "level": 2,
+          "title": "What we're fixing, and why these are product calls",
+          "anchor": "what-were-fixing-and-why-these-are-product-calls"
+        },
+        {
+          "level": 2,
+          "title": "What's yours",
+          "anchor": "whats-yours"
+        },
+        {
+          "level": 2,
+          "title": "Three things worth saying out loud",
+          "anchor": "three-things-worth-saying-out-loud"
+        },
+        {
+          "level": 3,
+          "title": "1. We're probably asking the wrong question about pantry",
+          "anchor": "1-were-probably-asking-the-wrong-question-about-pantry"
+        },
+        {
+          "level": 3,
+          "title": "2. Makability is a burden question, not an inventory question",
+          "anchor": "2-makability-is-a-burden-question-not-an-inventory-question"
+        },
+        {
+          "level": 3,
+          "title": "3. Saves are aspirational, and that's a real limit on the current profile",
+          "anchor": "3-saves-are-aspirational-and-thats-a-real-limit-on-the-current-profile"
+        },
+        {
+          "level": 2,
+          "title": "The evidence contract",
+          "anchor": "the-evidence-contract"
+        },
+        {
+          "level": 2,
+          "title": "What we're committing to on our side",
+          "anchor": "what-were-committing-to-on-our-side"
+        },
+        {
+          "level": 2,
+          "title": "What I'd like from you",
+          "anchor": "what-id-like-from-you"
+        }
+      ]
+    },
+    {
+      "id": "experiment-multi-recipe-guidance",
+      "path": "prd/experiments/Feature Overview - Multi-Recipe Cooking Guidance.md",
+      "title": "Feature Overview — Multi-Recipe Cooking Guidance",
+      "authority": "archived",
+      "status": "experiment",
+      "answers": "Internal LLM experiment",
+      "directAnswer": "Experiment questions only",
+      "exists": true,
+      "owner": null,
+      "lastReviewed": null,
+      "appliesTo": [],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Feature Overview — Multi-Recipe Cooking Guidance",
+          "anchor": "feature-overview-multi-recipe-cooking-guidance"
+        },
+        {
+          "level": 2,
+          "title": "Overview",
+          "anchor": "overview"
+        },
+        {
+          "level": 2,
+          "title": "The experiment",
+          "anchor": "the-experiment"
+        },
+        {
+          "level": 2,
+          "title": "Guardrails",
+          "anchor": "guardrails"
+        },
+        {
+          "level": 2,
+          "title": "What we need to learn",
+          "anchor": "what-we-need-to-learn"
+        },
+        {
+          "level": 2,
+          "title": "Not part of this experiment",
+          "anchor": "not-part-of-this-experiment"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base-entry-point",
+      "path": "knowledge-base/README.md",
+      "title": "MyRecipes Assistant Knowledge Base",
+      "authority": "canonical",
+      "status": "active",
+      "answers": "How to use the knowledge base",
+      "directAnswer": "Yes, for governance",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "knowledge-base/SOURCE_MANIFEST.md",
+        "knowledge-base/UPDATE_POLICY.md",
+        "knowledge-base/DECISION_LOG.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "MyRecipes Assistant Knowledge Base",
+          "anchor": "myrecipes-assistant-knowledge-base"
+        },
+        {
+          "level": 2,
+          "title": "Start here",
+          "anchor": "start-here"
+        },
+        {
+          "level": 2,
+          "title": "Authority order",
+          "anchor": "authority-order"
+        },
+        {
+          "level": 2,
+          "title": "Answer contract",
+          "anchor": "answer-contract"
+        },
+        {
+          "level": 2,
+          "title": "Current scope",
+          "anchor": "current-scope"
+        },
+        {
+          "level": 2,
+          "title": "Making a change",
+          "anchor": "making-a-change"
+        },
+        {
+          "level": 2,
+          "title": "Generated audits",
+          "anchor": "generated-audits"
+        }
+      ]
+    },
+    {
+      "id": "source-manifest",
+      "path": "knowledge-base/SOURCE_MANIFEST.md",
+      "title": "MyRecipes Assistant Source Manifest",
+      "authority": "canonical",
+      "status": "active",
+      "answers": "Source authority, applicability, and precedence",
+      "directAnswer": "Yes, for governance",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "knowledge-base/README.md",
+        "knowledge-base/UPDATE_POLICY.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Source Manifest",
+          "anchor": "source-manifest"
+        },
+        {
+          "level": 2,
+          "title": "Production and release sources",
+          "anchor": "production-and-release-sources"
+        },
+        {
+          "level": 2,
+          "title": "Prototype references",
+          "anchor": "prototype-references"
+        },
+        {
+          "level": 2,
+          "title": "Historical and experimental material",
+          "anchor": "historical-and-experimental-material"
+        },
+        {
+          "level": 2,
+          "title": "Governance and delivery material",
+          "anchor": "governance-and-delivery-material"
+        },
+        {
+          "level": 2,
+          "title": "Sources outside the initial answer corpus",
+          "anchor": "sources-outside-the-initial-answer-corpus"
+        },
+        {
+          "level": 2,
+          "title": "Known boundaries and conflicts",
+          "anchor": "known-boundaries-and-conflicts"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base-update-policy",
+      "path": "knowledge-base/UPDATE_POLICY.md",
+      "title": "Living PRD Update Policy",
+      "authority": "canonical",
+      "status": "active",
+      "answers": "Documentation update and approval workflow",
+      "directAnswer": "Yes, for governance",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "knowledge-base/SOURCE_MANIFEST.md",
+        "knowledge-base/DECISION_LOG.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Living PRD Update Policy",
+          "anchor": "living-prd-update-policy"
+        },
+        {
+          "level": 2,
+          "title": "Purpose",
+          "anchor": "purpose"
+        },
+        {
+          "level": 2,
+          "title": "Roles",
+          "anchor": "roles"
+        },
+        {
+          "level": 2,
+          "title": "When documentation review is required",
+          "anchor": "when-documentation-review-is-required"
+        },
+        {
+          "level": 2,
+          "title": "Change workflow",
+          "anchor": "change-workflow"
+        },
+        {
+          "level": 2,
+          "title": "What automation may do without approval",
+          "anchor": "what-automation-may-do-without-approval"
+        },
+        {
+          "level": 2,
+          "title": "What always requires approval",
+          "anchor": "what-always-requires-approval"
+        },
+        {
+          "level": 2,
+          "title": "Source-specific rules",
+          "anchor": "source-specific-rules"
+        },
+        {
+          "level": 2,
+          "title": "Review cadence",
+          "anchor": "review-cadence"
+        },
+        {
+          "level": 2,
+          "title": "Research and sensitive material",
+          "anchor": "research-and-sensitive-material"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base-decision-log",
+      "path": "knowledge-base/DECISION_LOG.md",
+      "title": "MyRecipes Assistant Decision Log",
+      "authority": "canonical",
+      "status": "active",
+      "answers": "Approved and open governance decisions",
+      "directAnswer": "Yes, for governance",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "knowledge-base/README.md",
+        "knowledge-base/UPDATE_POLICY.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Decision Log",
+          "anchor": "decision-log"
+        },
+        {
+          "level": 2,
+          "title": "Index",
+          "anchor": "index"
+        },
+        {
+          "level": 2,
+          "title": "KB-001 — Dedicated private repository",
+          "anchor": "kb-001-dedicated-private-repository"
+        },
+        {
+          "level": 2,
+          "title": "KB-002 — Approval ownership",
+          "anchor": "kb-002-approval-ownership"
+        },
+        {
+          "level": 2,
+          "title": "KB-003 — One editable source",
+          "anchor": "kb-003-one-editable-source"
+        },
+        {
+          "level": 2,
+          "title": "KB-004 — Automation boundary",
+          "anchor": "kb-004-automation-boundary"
+        },
+        {
+          "level": 2,
+          "title": "KB-005 — Research access gate",
+          "anchor": "kb-005-research-access-gate"
+        },
+        {
+          "level": 2,
+          "title": "PROD-OPEN-001 — Cross-surface continuity",
+          "anchor": "prod-open-001-cross-surface-continuity"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base-glossary",
+      "path": "knowledge-base/GLOSSARY.md",
+      "title": "MyRecipes Assistant Glossary",
+      "authority": "canonical",
+      "status": "active",
+      "answers": "Shared terms",
+      "directAnswer": "Yes, for definitions",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "production",
+        "demo",
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "prd/Assistant Conversation and Interaction Behavior.md",
+        "prd/Assistant Semantic Retrieval - Elasticsearch Execution Spec.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Glossary",
+          "anchor": "glossary"
+        }
+      ]
+    },
+    {
+      "id": "living-prd-build-plan",
+      "path": "knowledge-base/Build Plan - Living PRD Knowledge Base.md",
+      "title": "Build Plan for the Living PRD Knowledge Base",
+      "authority": "supporting",
+      "status": "ready for execution",
+      "answers": "Delivery plan for this system",
+      "directAnswer": "No product authority",
+      "exists": true,
+      "owner": "Andrew Alburn",
+      "lastReviewed": "2026-09-30",
+      "appliesTo": [
+        "knowledge-governance"
+      ],
+      "supersedes": [],
+      "supersededBy": null,
+      "relatedDocs": [
+        "knowledge-base/README.md",
+        "knowledge-base/SOURCE_MANIFEST.md",
+        "knowledge-base/UPDATE_POLICY.md",
+        "knowledge-base/DECISION_LOG.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "title": "Build Plan for the Living PRD Knowledge Base",
+          "anchor": "build-plan-for-the-living-prd-knowledge-base"
+        },
+        {
+          "level": 2,
+          "title": "Execution status",
+          "anchor": "execution-status"
+        },
+        {
+          "level": 2,
+          "title": "1. Outcomes",
+          "anchor": "1-outcomes"
+        },
+        {
+          "level": 2,
+          "title": "2. Decisions established by this plan",
+          "anchor": "2-decisions-established-by-this-plan"
+        },
+        {
+          "level": 3,
+          "title": "Source organization",
+          "anchor": "source-organization"
+        },
+        {
+          "level": 3,
+          "title": "Authority",
+          "anchor": "authority"
+        },
+        {
+          "level": 3,
+          "title": "Updates",
+          "anchor": "updates"
+        },
+        {
+          "level": 3,
+          "title": "Answers",
+          "anchor": "answers"
+        },
+        {
+          "level": 2,
+          "title": "3. Scope",
+          "anchor": "3-scope"
+        },
+        {
+          "level": 3,
+          "title": "Included",
+          "anchor": "included"
+        },
+        {
+          "level": 3,
+          "title": "Not included in the first milestone",
+          "anchor": "not-included-in-the-first-milestone"
+        },
+        {
+          "level": 2,
+          "title": "4. Target structure",
+          "anchor": "4-target-structure"
+        },
+        {
+          "level": 2,
+          "title": "5. Metadata contract",
+          "anchor": "5-metadata-contract"
+        },
+        {
+          "level": 3,
+          "title": "Authority values",
+          "anchor": "authority-values"
+        },
+        {
+          "level": 3,
+          "title": "Required validation",
+          "anchor": "required-validation"
+        },
+        {
+          "level": 2,
+          "title": "6. Update model",
+          "anchor": "6-update-model"
+        },
+        {
+          "level": 3,
+          "title": "Automatically permitted",
+          "anchor": "automatically-permitted"
+        },
+        {
+          "level": 3,
+          "title": "Approval required",
+          "anchor": "approval-required"
+        },
+        {
+          "level": 3,
+          "title": "Change detection",
+          "anchor": "change-detection"
+        },
+        {
+          "level": 2,
+          "title": "7. Execution phases",
+          "anchor": "7-execution-phases"
+        },
+        {
+          "level": 3,
+          "title": "Phase 0 Establish access and versioning",
+          "anchor": "phase-0-establish-access-and-versioning"
+        },
+        {
+          "level": 3,
+          "title": "Phase 1 Create knowledge-base governance",
+          "anchor": "phase-1-create-knowledge-base-governance"
+        },
+        {
+          "level": 3,
+          "title": "Phase 2 Normalize the authoritative core",
+          "anchor": "phase-2-normalize-the-authoritative-core"
+        },
+        {
+          "level": 3,
+          "title": "Phase 3 Connect app changes to documentation",
+          "anchor": "phase-3-connect-app-changes-to-documentation"
+        },
+        {
+          "level": 3,
+          "title": "Phase 4 Build drift detection and generated reports",
+          "anchor": "phase-4-build-drift-detection-and-generated-reports"
+        },
+        {
+          "level": 3,
+          "title": "Phase 5 Create the benchmark question set",
+          "anchor": "phase-5-create-the-benchmark-question-set"
+        },
+        {
+          "level": 3,
+          "title": "Phase 6 Build retrieval and citation",
+          "anchor": "phase-6-build-retrieval-and-citation"
+        },
+        {
+          "level": 3,
+          "title": "Phase 7 Build the answer layer",
+          "anchor": "phase-7-build-the-answer-layer"
+        },
+        {
+          "level": 3,
+          "title": "Phase 8 Operationalize the living workflow",
+          "anchor": "phase-8-operationalize-the-living-workflow"
+        },
+        {
+          "level": 2,
+          "title": "8. Work packages for coding agents",
+          "anchor": "8-work-packages-for-coding-agents"
+        },
+        {
+          "level": 2,
+          "title": "9. Verification strategy",
+          "anchor": "9-verification-strategy"
+        },
+        {
+          "level": 3,
+          "title": "Static validation",
+          "anchor": "static-validation"
+        },
+        {
+          "level": 3,
+          "title": "Drift fixtures",
+          "anchor": "drift-fixtures"
+        },
+        {
+          "level": 3,
+          "title": "Retrieval evaluation",
+          "anchor": "retrieval-evaluation"
+        },
+        {
+          "level": 3,
+          "title": "Answer evaluation",
+          "anchor": "answer-evaluation"
+        },
+        {
+          "level": 2,
+          "title": "10. Risks and mitigations",
+          "anchor": "10-risks-and-mitigations"
+        },
+        {
+          "level": 2,
+          "title": "11. Open decisions before implementation",
+          "anchor": "11-open-decisions-before-implementation"
+        },
+        {
+          "level": 2,
+          "title": "12. Recommended first execution slice",
+          "anchor": "12-recommended-first-execution-slice"
+        },
+        {
+          "level": 2,
+          "title": "13. Completion criteria",
+          "anchor": "13-completion-criteria"
+        }
+      ]
+    }
+  ]
+}
