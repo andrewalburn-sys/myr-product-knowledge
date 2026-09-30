@@ -43,9 +43,10 @@ The central safety rule is that automation may detect drift, generate reports, a
 As of September 30, 2026:
 
 - Phase 0 decisions are complete: the bounded project has a private GitHub repository, and Andrew Alburn is the canonical approver.
-- KB 1–KB 5 have an initial baseline: governance entry point, classified manifest, templates and validator, authoritative-core metadata, and decision log.
+- KB 1–KB 6 have an initial baseline: governance entry point, classified manifest, templates and validator, authoritative-core metadata, decision log, and the app path-to-document impact map.
 - `user-research/` remains local pending an access and indexing decision.
-- The next implementation package is KB 6, the app path-to-document map.
+- KB 6 is implemented in the app repository through `docs/assistant-documentation-map.json` and `scripts/documentation/checkImpact.mjs`, with fixture coverage for history, ingredient enforcement, visual-only changes, and unmapped capabilities.
+- The next implementation package is KB 7, aligning `AGENTS.md`, Cursor rules, and `HANDOFF.md` with the knowledge-base workflow.
 
 ---
 
