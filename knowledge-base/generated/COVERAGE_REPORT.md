@@ -3,7 +3,7 @@
 
 **Authority:** Generated diagnostic; not a product requirement.
 
-- **Knowledge source fingerprint:** `65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78`
+- **Knowledge source fingerprint:** `8651ff255febc950ab2163f6883c9305edc6f733fda2bfea69d3b8eff9e0fc5d`
 - **As of:** `2026-09-30`
 
 ## Source coverage
@@ -26,7 +26,7 @@
 - Mapping rules: **18**
 - Path patterns: **78**
 - Guarded assistant prefixes: **10**
-- Changed app files evaluated: **124**
+- Changed app files evaluated: **126**
 - Blocking unmapped assistant files: **0**
 - Mapped sources requiring review: **17**
 

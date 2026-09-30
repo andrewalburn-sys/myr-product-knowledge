@@ -3,7 +3,7 @@
   "authoritative": false,
   "schemaVersion": 1,
   "knowledgeRef": "HEAD",
-  "sourceFingerprint": "65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78",
+  "sourceFingerprint": "8651ff255febc950ab2163f6883c9305edc6f733fda2bfea69d3b8eff9e0fc5d",
   "sources": [
     {
       "id": "assistant-product-prd",
@@ -4210,6 +4210,11 @@
           "level": 2,
           "title": "KB-005 — Research access gate",
           "anchor": "kb-005-research-access-gate"
+        },
+        {
+          "level": 2,
+          "title": "KB-006 — Pause after documentation infrastructure",
+          "anchor": "kb-006-pause-after-documentation-infrastructure"
         },
         {
           "level": 2,
