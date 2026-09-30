@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  (function() {
+    const PASS = "myrecipes2026";
+    const SESSION_KEY = "myr_strategy_auth";
+    if (sessionStorage.getItem(SESSION_KEY) !== "1") {
+      document.addEventListener("DOMContentLoaded", function() {
+        document.body.style.display = "none";
+        const entered = prompt("Enter password to view this presentation:");
+        if (entered === PASS) {
+          sessionStorage.setItem(SESSION_KEY, "1");
+          document.body.style.display = "";
+        } else {
+          document.body.innerHTML = '<div style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;background:#0f0f11;color:#7a7a90;font-size:15px;">Access denied. Reload to try again.</div>';
+          document.body.style.display = "";
+        }
+      });
+    }
+  })();
+</script>
+<title>MyRecipes AI Strategy — Team Alignment</title>
+<style>
+  :root {
+    --bg: #0f0f11;
+    --surface: #17171a;
+    --surface2: #1e1e23;
+    --border: #2a2a32;
+    --accent: #e8643a;
+    --accent2: #f5a05a;
+    --green: #4caf7d;
+    --blue: #5b8def;
+    --purple: #9b72f5;
+    --red: #e05a5a;
+    --text: #f0f0f4;
+    --muted: #7a7a90;
+    --subtle: #3a3a46;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,15,17,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 52px;
+  }
+  .nav-brand { font-weight: 700; font-size: 14px; color: var(--accent); letter-spacing: 0.04em; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links button {
+    background: none; border: none; color: var(--muted);
+    font-size: 12px; font-weight: 500; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-links button:hover { background: var(--surface2); color: var(--text); }
+  .nav-links button.active { background: var(--surface2); color: var(--text); }
+
+  /* SECTIONS */
+  section {
+    min-height: 100vh; padding: 100px 0 80px;
+    display: none; flex-direction: column; align-items: center;
+  }
+  section.visible { display: flex; }
+  .container { width: 100%; max-width: 960px; padding: 0 32px; }
+  .wide { max-width: 1100px; }
+
+  /* HERO */
+  .hero-label {
+    display: inline-block;
+    background: rgba(232,100,58,0.15);
+    color: var(--accent2);
+    border: 1px solid rgba(232,100,58,0.3);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 18px; color: var(--muted); line-height: 1.7;
+    max-width: 620px; margin: 20px 0 40px;
+  }
+  .hero-rally {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 20px 28px; border-radius: 10px;
+    font-size: 20px; font-weight: 600; color: var(--text);
+    max-width: 580px; line-height: 1.4;
+  }
+  .hero-rally span { color: var(--accent2); }
+
+  /* SECTION HEADERS */
+  .section-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .section-sub { font-size: 16px; color: var(--muted); margin-bottom: 48px; max-width: 600px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px;
+  }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-green { border-left: 3px solid var(--green); }
+  .card-blue { border-left: 3px solid var(--blue); }
+  .card-purple { border-left: 3px solid var(--purple); }
+  .card-red { border-left: 3px solid var(--red); }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 6px; }
+  .card ul { margin-top: 8px; padding-left: 16px; }
+  .card ul li { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+  .card-number {
+    font-size: 13px; font-weight: 700;
+    background: rgba(232,100,58,0.15); color: var(--accent);
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  /* TIER BADGES */
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+  }
+  .badge-t1 { background: rgba(75,175,125,0.15); color: var(--green); }
+  .badge-t2 { background: rgba(91,141,239,0.15); color: var(--blue); }
+  .badge-t3 { background: rgba(155,114,245,0.15); color: var(--purple); }
+  .badge-gate { background: rgba(224,90,90,0.15); color: var(--red); }
+  .badge-unlock { background: rgba(245,160,90,0.15); color: var(--accent2); }
+
+  /* SCORING BADGES */
+  .badge-score { margin-bottom: 0; font-size: 9px; padding: 2px 6px; }
+  .badge-vh { background: rgba(224,90,90,0.18); color: var(--red); }
+  .badge-h  { background: rgba(232,100,58,0.18); color: var(--accent); }
+  .badge-m  { background: rgba(91,141,239,0.18); color: var(--blue); }
+  .badge-l  { background: rgba(75,175,125,0.18); color: var(--green); }
+  .badge-full { background: rgba(75,175,125,0.18); color: var(--green); }
+  .badge-grow { background: rgba(245,160,90,0.18); color: var(--accent2); }
+  .badge-lim  { background: rgba(224,90,90,0.18); color: var(--red); }
+
+  /* 2x2 MATRIX */
+  .matrix-wrap {
+    position: relative; width: 100%; padding-bottom: 56%;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface); overflow: hidden; margin: 24px 0;
+  }
+  .matrix-inner {
+    position: absolute; inset: 40px 60px 48px 60px;
+  }
+  .matrix-inner::before {
+    content: ''; position: absolute;
+    left: 50%; top: 0; bottom: 0; width: 1px;
+    background: var(--border); border-left: 1px dashed var(--border);
+  }
+  .matrix-inner::after {
+    content: ''; position: absolute;
+    top: 50%; left: 0; right: 0; height: 1px;
+    background: var(--border); border-top: 1px dashed var(--border);
+  }
+  .matrix-axis-x {
+    position: absolute; bottom: 12px; left: 60px; right: 60px;
+    display: flex; justify-content: space-between;
+    font-size: 10px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .matrix-axis-y {
+    position: absolute; left: 8px; top: 40px; bottom: 48px;
+    width: 20px;
+  }
+  .matrix-quadrant-label {
+    position: absolute; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5;
+  }
+  .matrix-chip {
+    position: absolute; transform: translate(-50%, 50%);
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 8px;
+    font-size: 11px; font-weight: 600; color: var(--text);
+    white-space: nowrap; z-index: 1;
+  }
+  .matrix-chip-red   { border-color: var(--red);    color: var(--red); }
+  .matrix-chip-blue  { border-color: var(--blue);   color: var(--blue); }
+  .matrix-chip-green { border-color: var(--green);  color: var(--green); }
+  .matrix-chip-accent{ border-color: var(--accent); color: var(--accent); }
+
+  /* TRUST SEQUENCE */
+  .trust-sequence {
+    display: flex; align-items: center; gap: 0;
+    margin: 32px 0; flex-wrap: wrap;
+  }
+  .trust-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    flex: 1; min-width: 160px;
+  }
+  .trust-step .step-num {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .trust-step h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .trust-step p { font-size: 12px; color: var(--muted); }
+  .trust-arrow {
+    font-size: 20px; color: var(--accent); padding: 0 10px;
+    flex-shrink: 0;
+  }
+
+  /* SPECTRUM */
+  .spectrum {
+    display: flex; gap: 0; margin: 28px 0; align-items: stretch;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  .spectrum-item {
+    flex: 1; padding: 20px 16px; background: var(--surface);
+    border-right: 1px solid var(--border); position: relative;
+  }
+  .spectrum-item:last-child { border-right: none; }
+  .spectrum-item .s-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+  .spectrum-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .spectrum-item p { font-size: 11.5px; color: var(--muted); }
+  .s-built { background: rgba(75,175,125,0.07); }
+  .s-next { background: rgba(91,141,239,0.07); }
+  .s-later { background: rgba(155,114,245,0.07); }
+  .s-target { background: rgba(232,100,58,0.07); }
+  .spectrum-arrow {
+    position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--accent); z-index: 1;
+  }
+
+  /* PHASE ROADMAP */
+  .phase-list { display: flex; flex-direction: column; gap: 16px; }
+  .phase {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .phase-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 22px; cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .phase-header:hover { background: var(--surface2); }
+  .phase-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; flex-shrink: 0;
+  }
+  .phase-num-1 { background: rgba(75,175,125,0.2); color: var(--green); }
+  .phase-num-2 { background: rgba(91,141,239,0.2); color: var(--blue); }
+  .phase-num-3 { background: rgba(155,114,245,0.2); color: var(--purple); }
+  .phase-num-4 { background: rgba(232,100,58,0.2); color: var(--accent); }
+  .phase-header-text { flex: 1; }
+  .phase-header-text h3 { font-size: 15px; margin-bottom: 2px; }
+  .phase-header-text span { font-size: 12px; color: var(--muted); }
+  .phase-chevron { color: var(--muted); font-size: 14px; transition: transform 0.2s; }
+  .phase.open .phase-chevron { transform: rotate(180deg); }
+  .phase-body {
+    display: none; padding: 0 22px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .phase.open .phase-body { display: block; }
+  .phase-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .phase-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .phase-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .phase-item p { font-size: 12px; color: var(--muted); }
+  .phase-gate {
+    margin-top: 14px; padding: 12px 16px;
+    background: rgba(224,90,90,0.08); border: 1px solid rgba(224,90,90,0.2);
+    border-radius: 8px; font-size: 12.5px; color: #e07070;
+  }
+  .phase-gate strong { color: var(--red); }
+
+  /* PRINCIPLES */
+  .principle-list { display: flex; flex-direction: column; gap: 10px; }
+  .principle {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+  .principle-num {
+    font-size: 11px; font-weight: 800; color: var(--accent);
+    background: rgba(232,100,58,0.12); border-radius: 4px;
+    padding: 2px 7px; flex-shrink: 0; margin-top: 2px;
+  }
+  .principle-text h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .principle-text p { font-size: 13px; color: var(--muted); }
+
+  /* LLM THREAT */
+  .threat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px;
+  }
+  .threat-side {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .threat-side h3 { margin-bottom: 12px; }
+  .threat-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .threat-row:last-child { border-bottom: none; }
+  .threat-row .dim { color: var(--muted); flex: 1; }
+  .threat-row .status { font-size: 12px; font-weight: 600; text-align: right; }
+  .threat-row .has { color: var(--green); }
+  .threat-row .lacks { color: var(--red); }
+  .threat-row .ours { color: var(--accent2); }
+  .urgency-bar {
+    background: rgba(232,100,58,0.1); border: 1px solid rgba(232,100,58,0.3);
+    border-radius: 10px; padding: 20px 24px; margin-top: 20px;
+    text-align: center;
+  }
+  .urgency-bar h3 { color: var(--accent); font-size: 18px; margin-bottom: 6px; }
+  .urgency-bar p { font-size: 14px; color: var(--muted); }
+
+  /* JOURNEY TABLE */
+  .journey-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+  .journey-table th {
+    text-align: left; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    padding: 4px 16px; padding-bottom: 10px;
+  }
+  .journey-table td {
+    padding: 12px 16px; font-size: 13.5px;
+    background: var(--surface); border: none;
+  }
+  .journey-table tr td:first-child { border-radius: 8px 0 0 8px; }
+  .journey-table tr td:last-child { border-radius: 0 8px 8px 0; }
+  .rank-num {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    background: var(--surface2); border-radius: 4px;
+    padding: 2px 6px; display: inline-block;
+  }
+  .ai-fit-bar {
+    height: 5px; border-radius: 3px; background: var(--subtle);
+    overflow: hidden; width: 80px; margin-top: 4px;
+  }
+  .ai-fit-fill { height: 100%; border-radius: 3px; }
+
+  /* DIVIDERS */
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  .callout {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 16px 20px; border-radius: 8px; margin: 24px 0;
+    font-size: 14px; line-height: 1.6; color: var(--muted);
+  }
+  .callout strong { color: var(--text); }
+
+  /* CTA */
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+  .btn {
+    padding: 11px 22px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    border: none; transition: all 0.15s;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #d4582f; }
+  .btn-secondary {
+    background: var(--surface2); color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: var(--subtle); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">MYR · AI Strategy</div>
+  <div class="nav-links">
+    <button onclick="show('answer')" id="nav-answer" class="active">The Answer</button>
+    <button onclick="show('competition')" id="nav-competition">Competition</button>
+    <button onclick="show('journey')" id="nav-journey">Journey &amp; Pain</button>
+    <button onclick="show('architecture')" id="nav-architecture">Architecture</button>
+    <button onclick="show('sequence')" id="nav-sequence">Build Sequence</button>
+    <button onclick="show('roadmap')" id="nav-roadmap">Tactical Roadmap</button>
+    <button onclick="show('principles')" id="nav-principles">Guardrails</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════ ANSWER ═══════════════════ -->
+<section id="answer" class="visible">
+  <div class="container">
+    <div class="hero-label">MyRecipes AI Strategy · Team Alignment</div>
+    <h1>Not a recipe app<br />with AI features.<br /><em>A cooking companion.</em></h1>
+    <p class="hero-sub">
+      One strategic direction. A clear build sequence. Guardrails that protect the investment.
+    </p>
+    <div class="hero-rally">
+      Internal rally point: <span>"From 'what should I cook?' to dinner happened."</span>
+    </div>
+    <div style="margin-top: 48px;">
+      <p class="section-eyebrow">The Core Strategic Answer</p>
+      <div class="grid-3" style="margin-top: 16px;">
+        <div class="card card-green">
+          <h3>One shared brain</h3>
+          <p>A single intelligence layer that learns about your taste, household, constraints, and history — across every touchpoint.</p>
+        </div>
+        <div class="card card-blue">
+          <h3>Multiple role-specific surfaces</h3>
+          <p>Different expressions of that intelligence depending on where you are in the journey — not a generic AI assistant slapped on top.</p>
+        </div>
+        <div class="card card-purple">
+          <h3>Three tiers of visibility</h3>
+          <p>Invisible by default. Ambient at key moments. Explicit companion only for users who opt in. Never decorative.</p>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <p class="section-eyebrow">The Three Things We Must Align On</p>
+    <div class="grid-3" style="margin-top: 16px;">
+      <div class="card card-accent">
+        <div class="card-number">1</div>
+        <h3>Trust before the shortcut</h3>
+        <p>We want to build an experience that tells you exactly what to make tonight — fast and confidently. But users won't act on that answer until they already trust what we surface. Building that trust layer comes first, and it reorders everything else.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-number">2</div>
+        <h3>Reliability is a product strategy</h3>
+        <p>Several of our best opportunities are only transformative <em>if</em> the answer is trustworthy. Shipping before that bar is met doesn't get us to value faster — it destroys trust we can't quickly rebuild.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-number">3</div>
+        <h3>12–18 month competitive window</h3>
+        <p>LLMs can already answer "what should I make tonight?" We have a window based on real recipe content, social proof, and personalization. It is closing.</p>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('competition')">Start: Competitive Landscape →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ JOURNEY ═══════════════════ -->
+<section id="journey">
+  <div class="container wide">
+    <div class="section-eyebrow">Framework 01 · Pain Density Map</div>
+    <h2>Where the pain actually lives</h2>
+    <p class="section-sub">Not all journey stages hurt the same way — and AI failure is not equally costly at each one.</p>
+
+    <table class="journey-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Stage</th>
+          <th>Core problem</th>
+          <th>Pain</th>
+          <th>Market solution</th>
+          <th>AI role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rank-num">#1</span></td>
+          <td><strong>Discover (active intent) + Decide</strong></td>
+          <td style="color:var(--muted);font-size:13px;">User has a need-state and needs to commit. Vague intent misunderstood, conviction absent, saved library fails to surface the right option — all block the decision.</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:70%;background:var(--accent);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-h">Poor → improving</span></td>
+          <td><span class="badge badge-t2">Curator → Confidence layer</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">#2</span></td>
+          <td><strong>Cook / Execute</strong></td>
+          <td style="color:var(--muted);font-size:13px;">Ambiguity, timing, uncertainty, no help available</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:93%;background:var(--red);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-vh">Poor</span></td>
+          <td><span class="badge badge-t2">Real-time guide</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">#3</span></td>
+          <td><strong>Plan</strong></td>
+          <td style="color:var(--muted);font-size:13px;">Multi-variable cognitive overload, front-loaded burden</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:68%;background:var(--accent);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-vh">Poor</span></td>
+          <td><span class="badge badge-t2">Planning partner</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">#4</span></td>
+          <td><strong>Recover</strong></td>
+          <td style="color:var(--muted);font-size:13px;">No recovery path exists — cook is stuck, plan breaks</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:78%;background:var(--red);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-vh">Poor</span></td>
+          <td><span class="badge badge-t3">Rescue system</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">#5</span></td>
+          <td><strong>Shop</strong></td>
+          <td style="color:var(--muted);font-size:13px;">List fragmentation, quantity errors, pantry mismatch</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:42%;background:var(--blue);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-full">Good</span></td>
+          <td><span class="badge badge-t1">Optimizer</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">#6</span></td>
+          <td><strong>Discover (passive inspiration)</strong></td>
+          <td style="color:var(--muted);font-size:13px;">User is not looking for dinner tonight. Appetite needs building. Pain is weak relevance and low save conversion, not commitment anxiety.</td>
+          <td><div style="width:80px;height:5px;background:var(--subtle);border-radius:3px;overflow:hidden;"><div style="height:100%;width:32%;background:var(--blue);border-radius:3px;"></div></div></td>
+          <td><span class="badge badge-score badge-full">Good</span></td>
+          <td><span class="badge badge-t1">Homepage curator</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>The trust tolerance finding:</strong> Users are forgiving during browsing and discovery. They require near-perfect reliability during cooking and recovery. We cannot hold all stages to the same performance standard — and the stages with the highest stakes are the ones we have the least surface access to today.
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Prioritization Matrix</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:4px;">User pain vs. how well the market solves it today — this shows where the real whitespace is.</p>
+
+    <div class="matrix-wrap">
+      <div class="matrix-axis-y">
+        <span style="position:absolute;top:6%;left:50%;transform:translateX(-50%) rotate(-90deg);white-space:nowrap;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Higher pain</span>
+        <span style="position:absolute;bottom:6%;left:50%;transform:translateX(-50%) rotate(-90deg);white-space:nowrap;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Lower pain</span>
+      </div>
+      <div class="matrix-axis-x">
+        <span>Poorly solved today</span>
+        <span>Well-solved today</span>
+      </div>
+      <div class="matrix-inner">
+        <!-- Quadrant labels -->
+        <span class="matrix-quadrant-label" style="top:4%;left:4%;color:var(--accent);">Whitespace — build here</span>
+        <span class="matrix-quadrant-label" style="top:4%;right:4%;color:var(--accent2);">Competitive pressure</span>
+        <span class="matrix-quadrant-label" style="bottom:4%;right:4%;color:var(--blue);">Not our fight</span>
+        <!-- x = solution quality (left=poorly solved, right=well-solved), y = pain (bottom=low, top=high) -->
+        <!-- Cook/Execute: very high pain, poorly solved → top-left -->
+        <span class="matrix-chip matrix-chip-red" style="left:14%;bottom:86%;">Cook / Execute</span>
+        <!-- Recover: high pain, poorly solved → upper-left -->
+        <span class="matrix-chip matrix-chip-red" style="left:20%;bottom:70%;">Recover</span>
+        <!-- Plan: high pain, poorly solved → upper-left area -->
+        <span class="matrix-chip matrix-chip-accent" style="left:30%;bottom:60%;">Plan</span>
+        <!-- Discover+Decide: high pain, poorly solved but LLMs improving → upper area, slightly right -->
+        <span class="matrix-chip matrix-chip-accent" style="left:40%;bottom:74%;">Discover + Decide</span>
+        <!-- Shop: medium pain, well-solved (Instacart Smart Shop, AnyList, deep grocery investment) → right-middle -->
+        <span class="matrix-chip matrix-chip-blue" style="left:70%;bottom:34%;">Shop</span>
+        <!-- Discover passive: low pain, very well-solved (TikTok/Pinterest/NYT Cooking all strong) → bottom far-right -->
+        <span class="matrix-chip matrix-chip-green" style="left:87%;bottom:18%;">Discover (passive)</span>
+      </div>
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Why the ranking looks this way</p>
+    <div class="grid-3" style="margin-top:16px;margin-bottom:32px;">
+      <div class="card card-accent">
+        <h3>Why Discover + Decide leads</h3>
+        <p>Most product investment today targets browsing and results quality — the top of Discover. But the pain concentrates at the commit end: evaluating fit, building conviction, choosing. Better browsing without better conviction signals doesn't close the gap. The whole zone needs to pull toward commitment.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent2);">
+        <h3>Why Cook/Execute is the biggest whitespace</h3>
+        <p>When a cook is mid-recipe and stuck — wrong ingredient, ambiguous step, timing collision — there is no product that solves this well. Users context-switch to Google, call someone, or improvise. No app is present in this moment in a useful way. That is the market gap. The voice companion (Phase 2 opt-in) is our first move into it.</p>
+      </div>
+      <div class="card card-blue">
+        <h3>Why passive inspiration ranks separately</h3>
+        <p>Different user state, different success metric. The user has no decision intent — they're building appetite, not committing to anything. The goal is generating high-quality saves and future signal. Treating it as the same problem as active-intent discovery leads to the wrong product investment.</p>
+      </div>
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Discover Has Three Distinct Modes</p>
+    <div class="grid-3" style="margin-top: 16px;">
+      <div class="card card-blue">
+        <h3>Active-intent discovery</h3>
+        <p>User has a query or mood. Problem: vague intent not understood, too many results, no conviction to click. Solution: semantic search, intent parsing, conviction signals.</p>
+      </div>
+      <div class="card card-green">
+        <h3>Passive-inspiration (homepage)</h3>
+        <p>User is not searching yet. Appetite needs building. Today: too generic, weak section packaging, not contextual. Strategic job: generate high-quality saves and future intent signal.</p>
+      </div>
+      <div class="card card-purple">
+        <h3>Saved-library rediscovery</h3>
+        <p>User wants the right saved recipe at the right moment. Library is too large, context is lost, right item never surfaces. <strong>Most actionable near-term loop investment.</strong></p>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('architecture')">Next: Architecture →</button>
+      <button class="btn btn-secondary" onclick="show('competition')">← Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ARCHITECTURE ═══════════════════ -->
+<section id="architecture">
+  <div class="container">
+    <div class="section-eyebrow">Framework 06 · Platform vs Feature Decision</div>
+    <h2>One brain.<br />Many surfaces.</h2>
+    <p class="section-sub">Not a horizontal AI assistant. Not isolated features per pillar. A shared intelligence layer expressed differently by context.</p>
+
+    <div class="grid-3">
+      <div class="card" style="border:1px solid var(--green);background:rgba(75,175,125,0.05);">
+        <span class="badge badge-t1">Tier 1 · Invisible</span>
+        <h3>The brain</h3>
+        <p>AI runs beneath the product entirely. Users experience a smarter platform — better relevance, better personalization — with no label and no chat prompt.</p>
+        <p style="margin-top:10px;"><strong>Primary audience:</strong> Established Home Cook (50% of users). Everyone benefits, but this is their whole experience.</p>
+      </div>
+      <div class="card" style="border:1px solid var(--blue);background:rgba(91,141,239,0.05);">
+        <span class="badge badge-t2">Tier 2 · Ambient</span>
+        <h3>Smart product moments</h3>
+        <p>AI surfaces as native product features — not labeled as AI. Constraint-first search, consolidated shopping lists, substitution suggestions. It just works.</p>
+        <p style="margin-top:10px;"><strong>Primary audience:</strong> Weeknight Reducer, System Thinker.</p>
+      </div>
+      <div class="card" style="border:1px solid var(--purple);background:rgba(155,114,245,0.05);">
+        <span class="badge badge-t3">Tier 3 · Explicit</span>
+        <h3>Voice companion — opt-in, alongside the recipe</h3>
+        <p>A companion the user activates while looking at a recipe — substitution help, technique clarification, real-time guidance. Never the default. Launches on brand pages via OpenAI Realtime API before native recipes exist; deepens as the platform evolves.</p>
+        <p style="margin-top:10px;"><strong>Primary audience:</strong> System Thinker, Enthusiast. POC already exists.</p>
+      </div>
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">What the Shared Brain Must Know</p>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card card-green">
+        <h3>Now — connect what exists</h3>
+        <ul>
+          <li>Recipe metadata (taste, technique, occasion, effort, similarity)</li>
+          <li>Behavioral signals: saves, revisits, ratings, time-on-page</li>
+          <li>Click-out and return behavior as execution proxies</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>Later — as native recipes unlock</h3>
+        <ul>
+          <li>Pantry and ingredient state</li>
+          <li>Weekly plan and schedule state</li>
+          <li>Step-level cooking progress and substitution requests</li>
+          <li>Trust history: what worked, what was modified, what failed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The design rule:</strong> AI should only surface when it creates a meaningful shift in confidence, speed, or resilience. If removing the AI label does not change the user experience, the label should be removed.
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('sequence')">Next: The Critical Sequence →</button>
+      <button class="btn btn-secondary" onclick="show('journey')">← Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEQUENCE ═══════════════════ -->
+<section id="sequence">
+  <div class="container">
+    <div class="section-eyebrow">Framework 07 · Moments of Truth + Framework 05 · 10x Test</div>
+    <h2>The sequence that everything depends on</h2>
+    <p class="section-sub">Two findings from the strategy work fundamentally reorder how we should build. Getting this sequence wrong costs trust we cannot quickly recover.</p>
+
+    <p class="section-eyebrow">Finding 1 · The Trust Sequence</p>
+    <div class="trust-sequence">
+      <div class="trust-step">
+        <div class="step-num">Step 1 · Phase 1</div>
+        <h4>Win "Is this worth making?"</h4>
+        <p>Strong conviction signals at the recipe card and modal level. Social proof, household fit, effort accuracy. Users must trust what we surface before they will trust us to decide for them.</p>
+      </div>
+      <div class="trust-arrow">→</div>
+      <div class="trust-step">
+        <div class="step-num">Step 2 · Phase 2</div>
+        <h4>Then we can confidently shortlist</h4>
+        <p>"Here are 2–3 dinners that fit your situation tonight." Not a forced single answer at launch — a confident shortlist is sufficient and achievable first. The conviction layer is what makes users willing to act on it.</p>
+      </div>
+      <div class="trust-arrow">→</div>
+      <div class="trust-step">
+        <div class="step-num">Step 3 · Phase 3+</div>
+        <h4>Execution and recovery zones</h4>
+        <p>Each zone earns its own trust. Phase 2 success gives us latitude in new zones, but it is not a free pass. Recovery has the highest reliability bar in the product.</p>
+      </div>
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Finding 2 · The Search-to-Decision-Collapse Spectrum</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">These are four distinct capabilities on a dependency chain — not one feature at different investment levels.</p>
+    <div class="spectrum">
+      <div class="spectrum-item s-built">
+        <div class="s-label" style="color:var(--green)">In progress</div>
+        <h4>Semantic metadata</h4>
+        <p>AI-assigned taste, technique, occasion, effort, family fit. The semantic foundation.</p>
+        <div style="margin-top:8px;"><span class="badge badge-t1">T1 Invisible</span> <span class="badge" style="background:rgba(75,175,125,0.1);color:var(--green)">2x</span></div>
+        <div class="spectrum-arrow">→</div>
+      </div>
+      <div class="spectrum-item s-next">
+        <div class="s-label" style="color:var(--blue)">Phase 2</div>
+        <h4>Intent parsing</h4>
+        <p>"Something cozy for tonight" → comfort food + low effort. Depends on metadata being complete.</p>
+        <div style="margin-top:8px;"><span class="badge badge-t1">T1/T2</span> <span class="badge" style="background:rgba(91,141,239,0.1);color:var(--blue)">2x prerequisite</span></div>
+        <div class="spectrum-arrow">→</div>
+      </div>
+      <div class="spectrum-item s-later">
+        <div class="s-label" style="color:var(--purple)">Phase 2</div>
+        <h4>Constraint-first search</h4>
+        <p>Accept multiple constraints simultaneously. No filter-setting required. High value for Weeknight Reducer.</p>
+        <div style="margin-top:8px;"><span class="badge badge-t2">T2 Ambient</span> <span class="badge badge-unlock">2–10x</span></div>
+        <div class="spectrum-arrow">→</div>
+      </div>
+      <div class="spectrum-item s-target">
+        <div class="s-label" style="color:var(--accent)">Phase 2 · After conviction</div>
+        <h4>Decision collapse</h4>
+        <p>"One dinner tonight" — synthesize constraints + preferences + context into 2–3 strong answers.</p>
+        <div style="margin-top:8px;"><span class="badge badge-t2">T2 Surface</span> <span class="badge badge-gate">Reliability-gated 10x</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The metadata work in progress is not a search quality improvement.</strong> It is the intelligence prerequisite for intent parsing, constraint-first search, decision collapse, and the conviction signals that make the decision engine trustworthy. Its strategic importance is higher than it appears as a line item.
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Finding 3 · The Reliability-Gated 10x Rule</p>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card card-gate" style="border-left:3px solid var(--red);">
+        <h3 style="color:var(--red)">Reliability-gated 10x</h3>
+        <p>These are 10x only if the AI answer is trustworthy. An untrustworthy version of the same feature is <strong>actively harmful</strong> — it fails at a high-stakes moment and damages trust we cannot quickly rebuild.</p>
+        <ul style="margin-top:10px;">
+          <li>"Tell me the one dinner tonight"</li>
+          <li>In-the-moment substitution rescue</li>
+          <li>Pantry-aware intelligence (also data-gated)</li>
+        </ul>
+        <div style="margin-top:12px;padding:10px 12px;background:rgba(224,90,90,0.08);border-radius:6px;font-size:12.5px;color:var(--red);">
+          <strong>Shipping rule:</strong> Do not ship until internal accuracy thresholds are confirmed. "We'll improve after launch" is not viable here.
+        </div>
+      </div>
+      <div class="card card-green">
+        <h3 style="color:var(--green)">Forgiving-threshold 10x</h3>
+        <p>Step-function improvements where partial accuracy still delivers the value — imperfection doesn't cause active harm and can be corrected. Still requires meaningful quality; just a looser bar than reliability-gated.</p>
+        <ul style="margin-top:10px;">
+          <li>Constraint-adaptive full week plan generation — an imperfect meal in a plan is adjustable; no plan at all is not</li>
+          <li>Plan recovery engine (narrower audience — System Thinker + Weeknight Reducer)</li>
+        </ul>
+        <div style="margin-top:12px;padding:10px 12px;background:rgba(75,175,125,0.08);border-radius:6px;font-size:12.5px;color:var(--green);">
+          <strong>Shipping rule:</strong> Ship when the output is coherent and constraint-aware. Value survives imperfection — but zero constraint awareness is not 10x.
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('roadmap')">Next: Tactical Roadmap →</button>
+      <button class="btn btn-secondary" onclick="show('architecture')">← Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ROADMAP ═══════════════════ -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-eyebrow">The Build Sequence</div>
+    <h2>Four phases.<br />Clear gates.</h2>
+    <p class="section-sub">Each phase has an entry condition and an exit condition. Nothing in Phase 2 ships until Phase 1 gates are cleared.</p>
+
+    <div class="phase-list">
+
+      <div class="phase open" id="phase1">
+        <div class="phase-header" onclick="togglePhase('phase1')">
+          <div class="phase-num phase-num-1">1</div>
+          <div class="phase-header-text">
+            <h3>Shared Intelligence Foundation</h3>
+            <span>Enables everything that follows. Nothing 10x works without this.</span>
+          </div>
+          <div class="phase-chevron">▼</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-items">
+            <div class="phase-item">
+              <span class="badge badge-t1">T1 Invisible</span>
+              <h4>Recipe metadata structuring</h4>
+              <p>Complete AI-assigned attributes: taste, technique, effort, occasion, family fit, flavor profile, similarity. This is the semantic layer that makes intent parsing, constraint search, and conviction signals possible.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t1">T1 Invisible</span>
+              <h4>Persistent preference model</h4>
+              <p>Connect existing behavioral signals — saves, revisits, ratings, time-on-page — into a model that persists across sessions and improves recommendations over time.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 Ambient</span>
+              <h4>Conviction signal surfacing</h4>
+              <p>Social proof badges, fit signals, and trust indicators at recipe card and modal level. Must be performing before the decision engine is promoted. <strong>Trust sequence step 1.</strong></p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 Ambient</span>
+              <h4>Saved-library rediscovery engine</h4>
+              <p>Contextual, timing-aware surfacing of the right saved recipe. Addressable now — does not require native recipes. Most actionable near-term loop fix.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t1">T1 Invisible</span>
+              <h4>Building the learning loop</h4>
+              <p>The product needs to observe what happens after each session — what got cooked, what got skipped, what was returned to — so the shared brain gets smarter without asking users to rate or review anything. This is the infrastructure that makes personalization compound over time.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 Ambient</span>
+              <h4>Homepage passive discovery</h4>
+              <p>Strengthen curated + personalized homepage sections: better relevance, stronger conviction content, improved module packaging. Strategic job: more high-quality saves and better future signal.</p>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:16px;margin-bottom:0;border-left:3px solid var(--green);">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:8px;">Consumer-facing releases within Phase 1</p>
+            <p style="margin-bottom:8px;">Phase 1 is not invisible to users. These features ship incrementally as they're ready — they do not wait for the full phase to complete.</p>
+            <ul style="margin-left:18px;margin-top:6px;display:flex;flex-direction:column;gap:6px;">
+              <li><strong>Conviction signals at the recipe card</strong> — fit indicators, social proof, and trust badges that help users commit instead of keep scrolling</li>
+              <li><strong>Saved-library rediscovery</strong> — the right saved recipe, surfaced at the right moment. Your library works for you, not against you.</li>
+              <li><strong>Smarter homepage</strong> — personalized, contextual, stronger module packaging that improves with every session</li>
+            </ul>
+          </div>
+          <div class="phase-gate" style="margin-top:12px;">
+            <strong>Phase 2 gate:</strong> Conviction signals are performing — users are committing to recipes with measurable reduction in external validation behavior. Internal accuracy thresholds for shortlisting are confirmed.
+          </div>
+        </div>
+      </div>
+
+      <div class="phase" id="phase2">
+        <div class="phase-header" onclick="togglePhase('phase2')">
+          <div class="phase-num phase-num-2">2</div>
+          <div class="phase-header-text">
+            <h3>Lead Magical Moment + First 10x Release</h3>
+            <span>After conviction signals are established and internal accuracy thresholds are confirmed.</span>
+          </div>
+          <div class="phase-chevron">▼</div>
+        </div>
+        <div class="phase-body">
+          <div class="callout" style="margin-top:0;margin-bottom:16px;">
+            <strong>Trust sequence rule:</strong> The decision engine should not be promoted as the primary product experience until conviction signals are performing. Conviction first, then decision collapse.
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">
+              <span class="badge badge-gate">Reliability-gated 10x</span>
+              <h4>"One dinner tonight" — 2–3 options at launch</h4>
+              <p>Not a forced single answer. A confident shortlist is sufficient at launch and achievable at a lower reliability bar. This is the lead magical moment and the earliest proof that the shared brain works.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-unlock">Forgiving-threshold 10x</span>
+              <h4>Constraint-adaptive week plan generation</h4>
+              <p>Eliminates multi-variable manual planning entirely. For System Thinker and Weeknight Reducer. An imperfect meal in a plan is adjustable — the value survives imperfection, it just can't ignore constraints.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 Ambient</span>
+              <h4>Natural language / constraint-first search</h4>
+              <p>The user-facing input surface for the intelligence chain. Powered by the semantic metadata layer. Not a visible AI assistant — a smarter search experience.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 Ambient</span>
+              <h4>Plan-consolidated shopping list</h4>
+              <p>2x quality-of-life feature directly attached to the week plan. Resolves overlap, right-sizes quantities, reduces admin.</p>
+            </div>
+            <div class="phase-item" style="border-left:3px solid var(--purple);">
+              <span class="badge badge-t3">T3 · Opt-in · Early access</span>
+              <h4>Voice companion alongside the recipe</h4>
+              <p>A companion surface that launches alongside the recipe — not a standalone app, not the default experience. The user is looking at the recipe and activates the companion to ask questions, get substitutions, or talk through a step. Powered by OpenAI Realtime API. <strong>Can launch on brand pages today</strong> before native recipes exist. Becomes tighter once recipes are native. POC already exists — Phase 2 opt-in, not Phase 4.</p>
+            </div>
+          </div>
+          <div class="phase-gate">
+            <strong>Phase 3 gate:</strong> Phase 2 features are performing reliably. Decision engine trust is established. Execution zone trust must be earned independently — Phase 2 success is not a free pass.
+          </div>
+        </div>
+      </div>
+
+      <div class="phase" id="phase3">
+        <div class="phase-header" onclick="togglePhase('phase3')">
+          <div class="phase-num phase-num-3">3</div>
+          <div class="phase-header-text">
+            <h3>High-Trust Execution and Recovery Zones</h3>
+            <span>After Phase 2 trust is established and the shared brain is proven.</span>
+          </div>
+          <div class="phase-chevron">▼</div>
+        </div>
+        <div class="phase-body">
+          <div class="callout" style="margin-top:0;margin-bottom:16px;">
+            <strong>Voice companion shortcut:</strong> Substitution rescue and technique guidance do not require native recipes if delivered through the voice companion surface. The companion, already launched in Phase 2 alongside brand pages, can handle these queries via the OpenAI Realtime API. The Phase 3 gate applies to the full integrated native-recipe surface — not to the companion path.
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">
+              <span class="badge badge-gate">Reliability-gated 10x</span>
+              <h4>In-the-moment substitution rescue</h4>
+              <p>Cook is mid-recipe and stuck. Must provide a specific, immediately actionable answer — not route the user to search elsewhere. Deliverable through voice companion in Phase 2 (opt-in); native integrated surface ships here in Phase 3.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-gate">Data-capture-gated 10x</span>
+              <h4>Pantry-aware intelligence</h4>
+              <p>Proactive "cook this with what you have." 10x only if pantry data is accurate. The ceiling rises to 10x only when the data capture mechanism is solved.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t2">T2 · 2x</span>
+              <h4>Contextual technique guidance</h4>
+              <p>"What does fold in mean at this step?" Removes context-switching. Deliverable through voice companion in Phase 2 (opt-in); fully native here. 2x only when specific to the recipe and step — generic tips are undifferentiated.</p>
+            </div>
+            <div class="phase-item" style="opacity:0.6;">
+              <span class="badge" style="background:rgba(122,122,144,0.15);color:var(--muted);">Validate first</span>
+              <h4>Repertoire-aware novelty scoring</h4>
+              <p>Interesting concept. Primary over-investment risk. Needs a measurable behavioral success metric before investment scales. Not a strategic bet until that metric exists.</p>
+            </div>
+          </div>
+          <div class="phase-gate">
+            <strong>Phase 4 gate:</strong> Full execution zone trust is established on the native surface. Reliability track record in phases 1–3 is strong.
+          </div>
+        </div>
+      </div>
+
+      <div class="phase" id="phase4">
+        <div class="phase-header" onclick="togglePhase('phase4')">
+          <div class="phase-num phase-num-4">4</div>
+          <div class="phase-header-text">
+            <h3>Plan Recovery + Advanced Companion Depth</h3>
+            <span>After full execution trust is established. Narrow persona targets.</span>
+          </div>
+          <div class="phase-chevron">▼</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-items">
+            <div class="phase-item">
+              <span class="badge badge-unlock">Forgiving-threshold 10x · Narrow</span>
+              <h4>Plan recovery engine</h4>
+              <p>When the week breaks, the system rebalances the live plan automatically. Nothing on the market does this. 10x for System Thinker and Weeknight Reducer — do not overbuild for the full audience.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t3">T3 · Advanced mode only</span>
+              <h4>Multi-dish pacing</h4>
+              <p>Coordinating timing across multiple dishes. Genuinely useful for Enthusiast. Requires the voice companion surface established in Phase 2 and native recipe integration from Phase 3.</p>
+            </div>
+            <div class="phase-item">
+              <span class="badge badge-t3">T3 · Advanced mode only</span>
+              <h4>Full contextual cooking history</h4>
+              <p>The companion knows what you've made, how it went, what you modified, and what failed — across sessions, not just the current one. The depth layer that makes the companion feel like a sous chef rather than a search box.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('principles')">Next: Operating Guardrails →</button>
+      <button class="btn btn-secondary" onclick="show('sequence')">← Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COMPETITION ═══════════════════ -->
+<section id="competition">
+  <div class="container wide">
+    <div class="section-eyebrow">Competitive Landscape · Research-Based</div>
+    <h2>Two categories.<br />One is owned. One is open.</h2>
+    <p class="section-sub">The cooking app market has split into Recipe Destinations and Cooking Companions. Destinations are mature and claimed. The Companion category has been attempted by six players — and not won by any of them.</p>
+
+    <div class="grid-2" style="margin-top:24px;">
+
+      <div class="card" style="border-left:3px solid var(--muted);">
+        <p class="section-eyebrow" style="color:var(--muted);margin-bottom:10px;">Recipe Destinations</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Compete on editorial depth, passive discovery, and content trust. Stop at the moment you close the app to go cook.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">NYT Cooking</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Pinterest</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">TikTok / Instagram</span>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;"><strong style="color:var(--text);">Posture: complementary.</strong> These own browsing and passive inspiration. MyRecipes captures the save and owns everything after it.</p>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--accent);">
+        <p class="section-eyebrow" style="color:var(--accent);margin-bottom:10px;">Cooking Companions — Early Stage</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Same category we're entering. Voice and execution attempted. Intelligence not yet cracked — even purpose-built voice apps consistently fail on real substitution reasoning.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Sprig</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Sous</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Foodie</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Tamarin</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">SideChef</span>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;"><strong style="color:var(--text);">Posture: the space to win.</strong> None connect to a personal recipe library. Having a voice button is table stakes. The moat is what it can actually reason about.</p>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--red);">
+        <p class="section-eyebrow" style="color:var(--red);margin-bottom:10px;">Large Language Models</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Fast improvement. No persistent memory. No personal library. Hallucination still real — especially for cooking.</p>
+        <div style="display:flex;flex-direction:column;gap:0;margin-bottom:12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:7px 12px;border-bottom:1px solid var(--border);">
+            <span style="color:var(--muted);">Gemini</span><span style="color:var(--red);font-weight:700;">38% hallucination rate</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:7px 12px;border-bottom:1px solid var(--border);">
+            <span style="color:var(--muted);">Claude</span><span style="color:var(--accent2);font-weight:700;">~15% · interactive recipe cards Mar 2026</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:7px 12px;border-bottom:1px solid var(--border);">
+            <span style="color:var(--muted);">ChatGPT</span><span style="color:var(--accent2);font-weight:700;">~12% · MCP integration 2026</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:7px 12px;">
+            <span style="color:var(--muted);">Perplexity</span><span style="color:var(--green);font-weight:700;">9% · retrieval-based, not generative</span>
+          </div>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;"><strong style="color:var(--text);">Posture: 12–18 month window.</strong> MCP integration is the structural threat — it closes the personalization gap. Build conviction + personalization now.</p>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--blue);">
+        <p class="section-eyebrow" style="color:var(--blue);margin-bottom:10px;">Planning &amp; Utility Apps</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Solve specific stages well. None plan from a user's personal recipe library — the universal gap.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Mealime <span style="color:var(--muted);font-weight:400;font-size:11px;">7M users</span></span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Kitchendary <span style="color:var(--muted);font-weight:400;font-size:11px;">60s plan</span></span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">AnyList</span>
+          <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;">Instacart Smart Shop</span>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;"><strong style="color:var(--text);">Posture: partners and benchmarks.</strong> Instacart is the shopping partner. Every competitor plans from a catalog of ~1,000 recipes. Ours has 250,000 — informed by your complete save history as a taste signal.</p>
+      </div>
+
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">Three Findings That Sharpen Strategy</p>
+    <div class="grid-3" style="margin-top:16px;margin-bottom:8px;">
+      <div class="card" style="border-left:3px solid var(--red);">
+        <h3>No one owns execution</h3>
+        <p>Cook/Execute and Recover have zero "Strong" competitor ratings across 16 players researched. Even purpose-built voice apps consistently return generic swaps or ignore downstream cooking consequences. The whitespace is confirmed, not assumed.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--muted);">
+        <h3>NYT Cooking is the ceiling</h3>
+        <p>12.3M subscribers. 25,000+ editor-tested recipes. AI scaling launched January 2026. Zero execution layer — no planning, no voice, no substitution help. A developer built an unofficial "NYT Sous Chef" on Devpost. Destination is a ceiling, not a direction.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent2);">
+        <h3>250,000 recipes vs. ~1,000 — a categorically different plan</h3>
+        <p>Every competitor's plan generator is catalog-constrained — so is ours. But Mealime plans from ~1,000 recipes. Kitchendary from its own catalog. Ours draws from 250,000, informed by your full save history — including external saves — as a taste signal. The plan reflects what you actually cook, not a generic rotation.</p>
+      </div>
+    </div>
+
+    <hr />
+    <p class="section-eyebrow">The LLM Threat — Detail View</p>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:24px;max-width:600px;">LLMs are already answering "what should I make tonight?" directly, naturally, and fast. Once that habit forms, it is the hardest firing behavior to reverse.</p>
+
+    <div class="threat-grid">
+      <div class="threat-side">
+        <h3 style="color:var(--red);margin-bottom:16px;">LLM weaknesses today</h3>
+        <div class="threat-row">
+          <span class="dim">Real, tested recipe content</span>
+          <span class="status lacks">Limited / fabrication risk</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Social proof and trust signals</span>
+          <span class="status lacks">None</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Persistent personalization</span>
+          <span class="status lacks">Session-only today</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Dedicated cooking UI</span>
+          <span class="status lacks">Recipe view only — rest of journey unoptimized</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Execution guidance surface</span>
+          <span class="status lacks">Possible but unoptimized</span>
+        </div>
+      </div>
+      <div class="threat-side">
+        <h3 style="color:var(--green);margin-bottom:16px;">Our defensible advantage</h3>
+        <div class="threat-row">
+          <span class="dim">Real, tested recipe content</span>
+          <span class="status ours">Deep tested library</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Social proof and trust signals</span>
+          <span class="status ours">Ratings, reviews, UGC, editorial</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Persistent personalization</span>
+          <span class="status ours">Can build across sessions</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Dedicated cooking UI</span>
+          <span class="status ours">Optimized for the journey</span>
+        </div>
+        <div class="threat-row">
+          <span class="dim">Execution guidance surface</span>
+          <span class="status ours">Buildable once native recipes exist</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="urgency-bar">
+      <h3>12–18 Month Window</h3>
+      <p>As LLMs gain access to real recipe databases, the trust gap narrows. The defensible moat is <strong>conviction + personalization + execution</strong>. Any one alone is replicable. All three combined — a product that knows you, surfaces things you can trust, and helps you cook them — is structurally harder to replicate.</p>
+      <p style="margin-top:10px;font-weight:600;color:var(--accent2);">The Phase 1 conviction and personalization work is both the right product investment and the right competitive investment. Build it faster.</p>
+    </div>
+
+    <div class="callout" style="margin-top:20px;">
+      <strong>The firing pattern we must prevent:</strong> When users consistently cannot find what to make, they route the decision to Google, TikTok, memory, or LLMs. When that habit forms, they don't use MyRecipes as a reference tool — they stop opening it entirely. They may land on a brand recipe page via Google search, but MyRecipes is bypassed completely in that flow. The decision relationship, once lost to another habit, is the hardest to reclaim.
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('journey')">Next: Journey &amp; Pain →</button>
+      <button class="btn btn-secondary" onclick="show('answer')">← The Answer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PRINCIPLES ═══════════════════ -->
+<section id="principles">
+  <div class="container">
+    <div class="section-eyebrow">Operating Principles</div>
+    <h2>The guardrails that<br />protect the investment.</h2>
+    <p class="section-sub">These are the rules that every product and roadmap decision should be tested against.</p>
+
+    <div class="principle-list">
+      <div class="principle">
+        <span class="principle-num">1</span>
+        <div class="principle-text">
+          <h4>Build around answers, not options.</h4>
+          <p>The product should collapse decisions, not multiply them. The standard is not "more relevant results." It is "the user committed to something."</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">2</span>
+        <div class="principle-text">
+          <h4>Reliability is a strategy.</h4>
+          <p>For reliability-gated 10x features, shipping before the accuracy threshold is met is a path to trust damage, not a faster path to value. Trust recovery is slow — measured in weeks and months, not sessions.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">3</span>
+        <div class="principle-text">
+          <h4>Keep AI invisible until visibility improves the outcome.</h4>
+          <p>If removing the AI label does not change the user experience, remove it. No AI theater. No visible effort with no emotional impact.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">4</span>
+        <div class="principle-text">
+          <h4>The Established Home Cook is the constraint on default visibility.</h4>
+          <p>50% of users. Most skeptical of explicit AI. If a feature would feel intrusive or performative to this segment, it is invisible by default and opt-in only. When in doubt, default to invisible.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">5</span>
+        <div class="principle-text">
+          <h4>The intelligence layer comes before the surface.</h4>
+          <p>Build the semantic foundation before the features that depend on it. The interface is not the product. What the system understands is the product.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">6</span>
+        <div class="principle-text">
+          <h4>Treat recovery as a first-class feature, not an exception state.</h4>
+          <p>In-the-moment rescue and plan recovery are where trust is won or permanently lost. They need the same investment attention as the core decision engine.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">7</span>
+        <div class="principle-text">
+          <h4>One intelligence system with multiple UX roles.</h4>
+          <p>Context-specific surfaces are acceptable — and necessary. A fragmented intelligence stack is not. Every surface reads from and writes back to the shared brain.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">8</span>
+        <div class="principle-text">
+          <h4>Judge new ideas by whether they strengthen the core loops.</h4>
+          <p>Two loops, one brain: <strong>Daily</strong> (Discover → Commit → Cook → Signal → Better discovery) and <strong>Weekly</strong> (Plan → Execute → Adapt → Smarter plan). Ideas outside both loops are not compounding the product.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-num">9</span>
+        <div class="principle-text">
+          <h4>Ship incremental features that matter. Don't wait for the complete picture.</h4>
+          <p>The phase gates protect reliability-gated features — they do not mean nothing ships until an entire phase is done. Consumer-facing improvements within each phase should ship continuously. Visible progress is part of the product strategy, not separate from it.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <div class="card" style="background:rgba(232,100,58,0.06);border:1px solid rgba(232,100,58,0.2);text-align:center;padding:32px;">
+      <h3 style="font-size:22px;margin-bottom:12px;">The standard is not "AI-powered features."</h3>
+      <p style="font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;">The standard is: <strong style="color:var(--text);">did dinner happen?</strong></p>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="show('answer')">↑ Back to Top</button>
+      <button class="btn btn-secondary" onclick="show('roadmap')">← Back</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+    document.getElementById(id).classList.add('visible');
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+    document.getElementById('nav-' + id)?.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function togglePhase(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

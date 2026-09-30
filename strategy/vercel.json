@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/MYR_AI_Team_Alignment_Presentation_v2.html"
+    }
+  ]
+}

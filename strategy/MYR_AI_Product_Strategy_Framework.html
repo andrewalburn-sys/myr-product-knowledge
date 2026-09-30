@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyRecipes AI — Product Strategy Framework</title>
+  <style>
+    :root {
+      --myr-red: #C0392B;
+      --myr-red-light: #E74C3C;
+      --myr-red-pale: #FDEDEC;
+      --slate: #1C2B3A;
+      --slate-mid: #2D4156;
+      --slate-light: #4A6274;
+      --slate-pale: #EEF2F5;
+      --cream: #FAFAF8;
+      --accent-gold: #D4A017;
+      --accent-gold-light: #F6E9C2;
+      --accent-teal: #1A7A7A;
+      --accent-teal-light: #E0F2F2;
+      --accent-purple: #5A3E8C;
+      --accent-purple-light: #EDE8F8;
+      --border: #E2E8EE;
+      --text: #1C2B3A;
+      --text-mid: #4A6274;
+      --text-light: #8CA0AE;
+      --weeknight: #E67E22;
+      --weeknight-light: #FDF3E8;
+      --enthusiast: #8E44AD;
+      --enthusiast-light: #F5EEF8;
+      --system: #1A7A7A;
+      --system-light: #E8F5F5;
+      --established: #2C7A3B;
+      --established-light: #EBF5EC;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    nav .brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 16px 0;
+      margin-right: 32px;
+      white-space: nowrap;
+    }
+    nav .brand span { color: var(--myr-red-light); }
+    nav button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 18px 16px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    nav button:hover { color: rgba(255,255,255,0.9); }
+    nav button.active { color: white; border-bottom-color: var(--myr-red-light); }
+
+    /* ── SECTIONS ── */
+    .section { display: none; padding: 40px 32px 80px; max-width: 1100px; margin: 0 auto; }
+    .section.visible { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--slate);
+      color: white;
+      padding: 56px 32px 48px;
+      margin: 0;
+      max-width: none;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--myr-red-light);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 34px; font-weight: 800; line-height: 1.15;
+      margin-bottom: 16px; max-width: 680px;
+    }
+    .hero h1 em { color: var(--myr-red-light); font-style: normal; }
+    .hero p {
+      font-size: 16px; color: rgba(255,255,255,0.72);
+      max-width: 640px; line-height: 1.6; margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 10px 16px;
+      font-size: 12px; color: rgba(255,255,255,0.65);
+    }
+    .hero-meta-item strong { color: white; display: block; font-size: 14px; margin-bottom: 1px; }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { margin-bottom: 32px; }
+    .section-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--myr-red);
+      margin-bottom: 8px;
+    }
+    .section-header h2 { font-size: 26px; font-weight: 800; color: var(--slate); margin-bottom: 8px; }
+    .section-header p { font-size: 15px; color: var(--text-mid); max-width: 680px; line-height: 1.6; }
+
+    /* ── CARDS ── */
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .card-title { font-size: 14px; font-weight: 700; color: var(--slate); margin-bottom: 6px; }
+    .card-subtitle { font-size: 12px; color: var(--text-light); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.07em; }
+    .card p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--myr-red-pale);
+      border: 1px solid rgba(192,57,43,0.18);
+      border-left: 4px solid var(--myr-red);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .callout p { font-size: 15px; color: var(--slate); line-height: 1.65; }
+    .callout strong { color: var(--myr-red); }
+
+    .callout-gold {
+      background: var(--accent-gold-light);
+      border: 1px solid rgba(212,160,23,0.25);
+      border-left: 4px solid var(--accent-gold);
+    }
+    .callout-gold p { color: #5A4000; }
+    .callout-gold strong { color: #7A5500; }
+
+    /* ── ANSWER SECTION ── */
+    .answer-box {
+      background: var(--slate);
+      color: white;
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 28px;
+    }
+    .answer-box h3 { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .answer-box h3 em { color: var(--myr-red-light); font-style: normal; }
+    .answer-box p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+
+    /* ── LAYER DIAGRAM ── */
+    .layer-stack { display: flex; flex-direction: column; gap: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 28px; }
+    .layer {
+      padding: 24px 28px;
+      display: flex; align-items: flex-start; gap: 20px;
+    }
+    .layer-icon {
+      font-size: 24px;
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .layer-body { flex: 1; }
+    .layer-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 4px; opacity: 0.7;
+    }
+    .layer-name { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .layer-desc { font-size: 14px; opacity: 0.85; line-height: 1.55; }
+    .layer-personas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .layer-pill {
+      font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.18);
+      border-radius: 20px; padding: 3px 10px;
+    }
+
+    .layer-l1 { background: #1C2B3A; color: white; }
+    .layer-l2 { background: #2D4156; color: white; }
+    .layer-l3 { background: #3D5A72; color: white; }
+
+    /* ── JOURNEY MAP ── */
+    .journey-container { overflow-x: auto; }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 160px repeat(4, 1fr);
+      gap: 0;
+      min-width: 750px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+    }
+    .jg-header {
+      background: var(--slate);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      display: flex; align-items: center;
+    }
+    .jg-stage {
+      background: var(--slate-mid);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .jg-row-label {
+      padding: 16px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      background: var(--slate-pale);
+    }
+    .jg-cell {
+      padding: 14px;
+      font-size: 12px;
+      color: var(--text-mid);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .jg-cell:last-child { border-right: none; }
+    .jg-cell.high { background: #FFF8F8; }
+    .jg-cell.medium { background: #FFFCF5; }
+    .jg-cell.low { background: #F8FBF8; }
+    .intensity {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; padding: 2px 6px;
+      border-radius: 4px; display: inline-block; margin-bottom: 4px;
+    }
+    .intensity.high { background: #FDDEDE; color: var(--myr-red); }
+    .intensity.medium { background: var(--accent-gold-light); color: #7A5500; }
+    .intensity.low { background: #DFF3E0; color: #2C7A3B; }
+
+    /* ── PERSONA BANDS ── */
+    .persona-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .persona-card {
+      border-radius: 12px; padding: 20px;
+      border: 1px solid transparent;
+    }
+    .persona-card.weeknight { background: var(--weeknight-light); border-color: rgba(230,126,34,0.2); }
+    .persona-card.enthusiast { background: var(--enthusiast-light); border-color: rgba(142,68,173,0.2); }
+    .persona-card.system { background: var(--system-light); border-color: rgba(26,122,122,0.2); }
+    .persona-card.established { background: var(--established-light); border-color: rgba(44,122,59,0.2); }
+    .persona-name { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .persona-card.weeknight .persona-name { color: var(--weeknight); }
+    .persona-card.enthusiast .persona-name { color: var(--enthusiast); }
+    .persona-card.system .persona-name { color: var(--system); }
+    .persona-card.established .persona-name { color: var(--established); }
+    .persona-share { font-size: 11px; font-weight: 600; margin-bottom: 10px; color: var(--text-light); }
+    .persona-ai-mode { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--slate); }
+    .persona-ai-desc { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ── PHASE TABLE ── */
+    .phase-container { display: flex; flex-direction: column; gap: 0; }
+    .phase {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: white;
+      overflow: hidden;
+    }
+    .phase:first-child { border-radius: 12px 12px 0 0; }
+    .phase:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 12px 12px; }
+    .phase-label {
+      background: var(--slate);
+      color: white;
+      padding: 20px 20px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .phase-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--myr-red-light); margin-bottom: 4px; }
+    .phase-name { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+    .phase-period { font-size: 11px; color: rgba(255,255,255,0.55); }
+    .phase-col { padding: 18px 20px; border-left: 1px solid var(--border); }
+    .phase-col-header { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
+    .feat-list { list-style: none; }
+    .feat-list li { font-size: 13px; color: var(--text-mid); padding: 4px 0; padding-left: 16px; position: relative; line-height: 1.5; }
+    .feat-list li::before { content: '→'; position: absolute; left: 0; color: var(--myr-red); font-weight: 700; }
+    .persona-chip {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .chip-w { background: var(--weeknight-light); color: var(--weeknight); }
+    .chip-e { background: var(--enthusiast-light); color: var(--enthusiast); }
+    .chip-s { background: var(--system-light); color: var(--system); }
+    .chip-h { background: var(--established-light); color: var(--established); }
+
+    /* ── DECISION MATRIX ── */
+    .decision-row {
+      display: grid; grid-template-columns: 200px 1fr 1fr;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: white;
+      overflow: hidden;
+    }
+    .decision-row:first-child { border-radius: 12px 12px 0 0; }
+    .decision-row:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 12px 12px; }
+    .decision-row-header { background: var(--slate-pale); }
+    .decision-cell { padding: 16px 18px; border-left: 1px solid var(--border); font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+    .decision-cell:first-child { border-left: none; }
+    .decision-header-cell { padding: 12px 18px; border-left: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); }
+    .decision-header-cell:first-child { border-left: none; }
+    .decision-question { font-size: 13px; font-weight: 700; color: var(--slate); }
+
+    .check { color: #2C7A3B; font-weight: 700; }
+    .cross { color: var(--myr-red); font-weight: 700; }
+
+    /* ── NORTH STAR ── */
+    .north-star {
+      background: linear-gradient(135deg, var(--myr-red) 0%, #8B1A1A 100%);
+      color: white;
+      border-radius: 14px;
+      padding: 36px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .north-star .ns-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 12px; }
+    .north-star h3 { font-size: 22px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
+    .north-star p { font-size: 15px; opacity: 0.85; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── PRINCIPLES ── */
+    .principles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .principle {
+      background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px;
+      border-top: 3px solid var(--myr-red);
+    }
+    .principle-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--myr-red); text-transform: uppercase; margin-bottom: 6px; }
+    .principle h4 { font-size: 15px; font-weight: 800; color: var(--slate); margin-bottom: 8px; }
+    .principle p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    /* ── RISKS ── */
+    .risk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .risk { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; border-left: 4px solid var(--accent-gold); }
+    .risk h4 { font-size: 14px; font-weight: 700; color: var(--slate); margin-bottom: 6px; }
+    .risk p { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+    .risk .mitigation { margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--accent-teal); }
+
+    /* ── TABS (inner) ── */
+    .inner-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+    .inner-tab { background: none; border: none; font-size: 13px; font-weight: 600; color: var(--text-mid); padding: 10px 18px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+    .inner-tab:hover { color: var(--slate); }
+    .inner-tab.active { color: var(--myr-red); border-bottom-color: var(--myr-red); }
+    .inner-panel { display: none; }
+    .inner-panel.active { display: block; }
+
+    /* ── MISC ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .spacer { height: 20px; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--myr-red-pale); color: var(--myr-red); padding: 3px 8px; border-radius: 5px; margin-left: 6px; vertical-align: middle; }
+    .badge-teal { background: var(--accent-teal-light); color: var(--accent-teal); }
+    .badge-gold { background: var(--accent-gold-light); color: #7A5500; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="brand">MyRecipes <span>AI</span></div>
+  <button class="active" onclick="show('answer')">The Answer</button>
+  <button onclick="show('journey')">Journey × Persona</button>
+  <button onclick="show('layers')">AI Architecture</button>
+  <button onclick="show('phases')">Phasing</button>
+  <button onclick="show('principles')">Principles & Risks</button>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Product Strategy · March 2026</div>
+    <h1>How We Layer AI Into<br><em>The Complete Cooking Journey</em></h1>
+    <p>We have four distinct personas, five journey stages, and a span of pain from the first scroll to the last bite. The question isn't whether to add AI — it's how to layer it so it feels native, not bolted on.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>4</strong> Persona Types</div>
+      <div class="hero-meta-item"><strong>5</strong> Journey Stages</div>
+      <div class="hero-meta-item"><strong>3</strong> AI Layers</div>
+      <div class="hero-meta-item"><strong>3</strong> Build Phases</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SECTION: THE ANSWER ════════════ -->
+<section id="answer" class="section visible" style="padding-top: 40px;">
+
+  <div class="section-header">
+    <div class="section-tag">The Core Strategic Question</div>
+    <h2>One AI or Many? Neither. A Layered Architecture.</h2>
+    <p>The binary framing — persistent AI overlay vs. isolated point solutions — misses the real answer. The right model is a <strong>unified AI layer underneath the experience</strong> that surfaces differently depending on who's asking, where they are, and what mode they're in.</p>
+  </div>
+
+  <!-- Decision matrix: why not the binary options -->
+  <div style="margin-bottom: 32px;">
+    <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 12px;">Why not the simple binary options</div>
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      <div class="decision-row decision-row-header">
+        <div class="decision-header-cell">Approach</div>
+        <div class="decision-header-cell">Why it seems right</div>
+        <div class="decision-header-cell">Why it breaks down</div>
+      </div>
+      <div class="decision-row">
+        <div class="decision-cell"><span class="decision-question">Persistent AI Overlay<br><em style="font-weight:400; font-size:12px;">(chatbot/co-pilot across all stages)</em></span></div>
+        <div class="decision-cell">Feels coherent. The AI "knows" you across the whole journey. Creates a single entry point.</div>
+        <div class="decision-cell"><span class="cross">✗</span> Alienates the Established Home Cook (50% of audience) who explicitly does not want a chatbot. <span class="cross">✗</span> Adds friction for the Weeknight Reducer who has zero tolerance for setup. <span class="cross">✗</span> One surface can't serve four fundamentally different modes.</div>
+      </div>
+      <div class="decision-row">
+        <div class="decision-cell"><span class="decision-question">Isolated Point Solutions<br><em style="font-weight:400; font-size:12px;">(different AI per pain point, siloed)</em></span></div>
+        <div class="decision-cell">Lets each team move fast. Each feature is optimized for one pain point. Easier to ship.</div>
+        <div class="decision-cell"><span class="cross">✗</span> The System Thinker needs a planning partner that thinks across the whole week — siloed features can't do that. <span class="cross">✗</span> Data doesn't travel, so personalization never accumulates. <span class="cross">✗</span> Recovery (midweek disruption) is impossible without cross-feature state.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- North Star -->
+  <div class="north-star">
+    <div class="ns-label">The Strategic Answer</div>
+    <h3>AI as Infrastructure, Surfaced as Context</h3>
+    <p>One connected AI layer runs beneath the entire experience — learning preferences, tracking state, managing constraints. The surface treatment adapts to persona mode and journey stage. Every user gets AI; most never see it.</p>
+  </div>
+
+  <!-- Four experience modes -->
+  <div class="section-header" style="margin-top: 20px;">
+    <div class="section-tag">What this looks like per persona</div>
+    <h2>Four Personas, Four AI Experiences — One Engine</h2>
+    <p>The AI is the same system underneath. But how it presents to each persona is radically different — because the right AI experience for each user is not the same interaction model.</p>
+  </div>
+
+  <div class="persona-grid">
+    <div class="persona-card established">
+      <div class="persona-share">~50% of audience</div>
+      <div class="persona-name">Established Home Cook</div>
+      <div class="persona-ai-mode">AI Mode: Invisible Personalization</div>
+      <div class="persona-ai-desc">AI works entirely beneath the surface. The experience just feels like "the platform finally knows me" — no AI labels, no chatbot, no behavior change required. Surfaced only when trusted social signals are ready to show.</div>
+    </div>
+    <div class="persona-card weeknight">
+      <div class="persona-share">~25% of audience</div>
+      <div class="persona-name">Weeknight Reducer</div>
+      <div class="persona-ai-mode">AI Mode: One Confident Answer</div>
+      <div class="persona-ai-desc">AI collapses constraint resolution into a single recommendation. No conversation, no filtered list — one dinner, explained. Recovery during execution is instant, requires no decisions, and never asks the user to restart.</div>
+    </div>
+    <div class="persona-card system">
+      <div class="persona-share">~15% of audience</div>
+      <div class="persona-name">System Thinker</div>
+      <div class="persona-ai-mode">AI Mode: Active Planning Partner</div>
+      <div class="persona-ai-desc">AI accepts household parameters and thinks in weeks, not meals. It builds a coherent plan, consolidates shopping, and rebalances intelligently when disruption hits. This persona gives data willingly if the tool actually delivers on it.</div>
+    </div>
+    <div class="persona-card enthusiast">
+      <div class="persona-share">~10% of audience</div>
+      <div class="persona-name">Enthusiast</div>
+      <div class="persona-ai-mode">AI Mode: Knowledgeable Curator</div>
+      <div class="persona-ai-desc">AI surfaces dishes genuinely outside their repertoire with the conviction context needed to commit: provenance, technique depth, and smart alternatives that preserve the spirit of the dish. Generic suggestions are worse than nothing.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold">
+    <p><strong>The key insight:</strong> The Established Home Cook — your largest and most AI-skeptical persona — becomes your proof of concept for invisible AI. If you can deliver meaningful personalization without ever surfacing an AI label, you've built the infrastructure that makes every other persona experience possible. Start with what's least visible, build the most trust.</p>
+  </div>
+
+</section>
+
+<!-- ════════════ SECTION: JOURNEY × PERSONA ════════════ -->
+<section id="journey" class="section">
+
+  <div class="section-header">
+    <div class="section-tag">Pain Point Mapping</div>
+    <h2>Where Does It Hurt, and For Whom?</h2>
+    <p>Not all pain points are equal weight. This map shows the intensity of each persona's pain across the journey — which determines where AI should do the most work.</p>
+  </div>
+
+  <div class="journey-container">
+    <div class="journey-grid">
+      <!-- Header row -->
+      <div class="jg-header">Persona</div>
+      <div class="jg-stage">Discover / Decide</div>
+      <div class="jg-stage">Plan</div>
+      <div class="jg-stage">Shop</div>
+      <div class="jg-stage">Execute / Recover</div>
+
+      <!-- Established Home Cook -->
+      <div class="jg-row-label" style="color: var(--established);">Established Home Cook<br><span style="font-size:10px; font-weight:500; color: var(--text-light);">~50% • Low AI affinity</span></div>
+      <div class="jg-cell high">
+        <span class="intensity high">High</span><br>
+        Wants meaningful novelty — not more options. Needs repertoire-aware variation that feels familiar in tone.
+      </div>
+      <div class="jg-cell low">
+        <span class="intensity low">Low</span><br>
+        Plans by habit. Pain only at the margins: portion sizing, health adaptations.
+      </div>
+      <div class="jg-cell medium">
+        <span class="intensity medium">Medium</span><br>
+        Needs familiar, right-sized quantities. Recipes for four don't scale automatically.
+      </div>
+      <div class="jg-cell low">
+        <span class="intensity low">Low</span><br>
+        Self-sufficient. Friction only at edge cases: health swaps, scaling. Wants trusted fallbacks, not experiments.
+      </div>
+
+      <!-- Weeknight Reducer -->
+      <div class="jg-row-label" style="color: var(--weeknight);">Weeknight Reducer<br><span style="font-size:10px; font-weight:500; color: var(--text-light);">~25% • Moderate AI affinity</span></div>
+      <div class="jg-cell medium">
+        <span class="intensity medium">Medium</span><br>
+        Not browsing for inspiration. Needs one confident answer fast, with household constraints already collapsed.
+      </div>
+      <div class="jg-cell high">
+        <span class="intensity high">High</span><br>
+        Weekly planning is exhausting admin work. Constraints (time, household, fridge) make it feel like a second job.
+      </div>
+      <div class="jg-cell medium">
+        <span class="intensity medium">Medium</span><br>
+        Feasibility confidence: "Can I pull this off with what I have or one quick trip?"
+      </div>
+      <div class="jg-cell high">
+        <span class="intensity high">High</span><br>
+        Most fragile moment. One missing ingredient, one kid rejection = dinner collapse. Recovery must be instant, zero decisions.
+      </div>
+
+      <!-- System Thinker -->
+      <div class="jg-row-label" style="color: var(--system);">System Thinker<br><span style="font-size:10px; font-weight:500; color: var(--text-light);">~15% • Highest AI affinity</span></div>
+      <div class="jg-cell low">
+        <span class="intensity low">Low</span><br>
+        Discovery is secondary. Finds recipes that serve the plan, not for exploration.
+      </div>
+      <div class="jg-cell high">
+        <span class="intensity high">High</span><br>
+        Balancing nutrition, budget, preferences, ingredient overlap — manually — across a full week. The highest-friction work in the journey.
+      </div>
+      <div class="jg-cell high">
+        <span class="intensity high">High</span><br>
+        Where planning quality gets exposed. Fragmented lists, poor overlap, and inventory reality gaps can collapse a week's work.
+      </div>
+      <div class="jg-cell medium">
+        <span class="intensity medium">Medium</span><br>
+        Cooking is fine when the plan holds. Critical pain: midweek disruption breaks everything, with no intelligent recovery path.
+      </div>
+
+      <!-- Enthusiast -->
+      <div class="jg-row-label" style="color: var(--enthusiast); border-bottom: none;">Enthusiast<br><span style="font-size:10px; font-weight:500; color: var(--text-light);">~10% • High AI affinity</span></div>
+      <div class="jg-cell high" style="border-bottom:none;">
+        <span class="intensity high">High</span><br>
+        Abundance without conviction. Can find anything — can't find proof it's worth committing a Saturday to.
+      </div>
+      <div class="jg-cell low" style="border-bottom:none;">
+        <span class="intensity low">Low</span><br>
+        Plans loosely. Curation backlog grows faster than they cook.
+      </div>
+      <div class="jg-cell medium" style="border-bottom:none;">
+        <span class="intensity medium">Medium</span><br>
+        Specialty ingredients = high commitment risk. Discovering something is unavailable post-planning kills the dish.
+      </div>
+      <div class="jg-cell low" style="border-bottom:none;">
+        <span class="intensity low">Low</span><br>
+        Generally capable. Wants technique depth on demand and smart swaps that honor the original — not simplification.
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="callout">
+    <p><strong>What this map reveals:</strong> Pain doesn't cluster in one stage — it spans the entire journey, but differently for each persona. The Weeknight Reducer needs crisis management at execution. The System Thinker needs optimization at planning. The Enthusiast needs conviction at discovery. The Established Home Cook needs invisible curation everywhere. A single AI surface can't serve all of these — they need different interaction models at different stages.</p>
+  </div>
+
+</section>
+
+<!-- ════════════ SECTION: AI ARCHITECTURE ════════════ -->
+<section id="layers" class="section">
+
+  <div class="section-header">
+    <div class="section-tag">The Architecture</div>
+    <h2>Three Layers of AI, One Connected System</h2>
+    <p>Rather than a chatbot overlay or isolated features, the architecture runs three distinct layers. Each layer is always on, but users only interact with the surface appropriate to their mode and persona.</p>
+  </div>
+
+  <div class="layer-stack">
+    <div class="layer layer-l1">
+      <div class="layer-icon">⚙️</div>
+      <div class="layer-body">
+        <div class="layer-label">Layer 1 · Always On · Never Visible</div>
+        <div class="layer-name">The Intelligence Foundation</div>
+        <div class="layer-desc">LLM-extracted recipe metadata (taste, technique, occasion, similarity), persistent preference memory, and behavioral signal accumulation. This runs silently, invisibly, and continuously. It is the prerequisite for every other capability — and it's the primary AI experience for the Established Home Cook.</div>
+        <div class="layer-personas">
+          <span class="layer-pill">✓ All personas benefit</span>
+          <span class="layer-pill">Primary: Established Home Cook</span>
+          <span class="layer-pill">No UI surface required</span>
+        </div>
+      </div>
+    </div>
+    <div class="layer layer-l2">
+      <div class="layer-icon">🧭</div>
+      <div class="layer-body">
+        <div class="layer-label">Layer 2 · Context-Triggered · Ambient</div>
+        <div class="layer-name">Contextual AI Assistance</div>
+        <div class="layer-desc">AI surfaces when the user signals a constraint, intent, or context — but never as a chatbot. Constraint-first search (Weeknight Reducer), pantry-aware discovery (Weeknight + System Thinker), plan-aware filtering, and UGC conviction signals (Enthusiast). Appears as native UI, not an AI overlay. The user experiences it as the platform being smart, not as talking to a bot.</div>
+        <div class="layer-personas">
+          <span class="layer-pill">Weeknight Reducer</span>
+          <span class="layer-pill">System Thinker</span>
+          <span class="layer-pill">Enthusiast</span>
+        </div>
+      </div>
+    </div>
+    <div class="layer layer-l3">
+      <div class="layer-icon">🤝</div>
+      <div class="layer-body">
+        <div class="layer-label">Layer 3 · Explicit · Opt-in</div>
+        <div class="layer-name">Active AI Partnership</div>
+        <div class="layer-desc">The AI as a named, explicit collaborator — available only to users who want it and opt in. Includes the week-building planning partner (System Thinker), the kitchen companion for voice-guided execution (Enthusiast + Weeknight Reducer), and the plan recovery engine for midweek disruption. This layer never surfaces to users who haven't signaled they want it — protecting the Established Home Cook experience entirely.</div>
+        <div class="layer-personas">
+          <span class="layer-pill">System Thinker</span>
+          <span class="layer-pill">Enthusiast</span>
+          <span class="layer-pill">Weeknight Reducer (recovery)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="two-col">
+    <div class="callout">
+      <p><strong>Why layer 1 must come first:</strong> Without the intelligence foundation, layers 2 and 3 are just UI. Metadata extraction and preference memory are the data flywheel — they get smarter with every interaction, and they power personalization across every other feature. Ship this first, even if users can't see it.</p>
+    </div>
+    <div class="callout callout-gold">
+      <p><strong>On AI labeling:</strong> The Established Home Cook will disengage the moment she sees "AI Generated." The architecture solves this: Layer 1 never labels itself. Layer 2 looks like smart product design. Layer 3 is opt-in only. <strong>Most users never interact with named AI at all.</strong></p>
+    </div>
+  </div>
+
+  <!-- Opportunity → Layer mapping -->
+  <div class="section-header" style="margin-top: 16px;">
+    <div class="section-tag">Opportunity Mapping</div>
+    <h2>Where Each Opportunity Sits in the Architecture</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+    <div class="card">
+      <div class="card-subtitle">Layer 1 · Foundation</div>
+      <div class="card-title">Intelligence Foundation</div>
+      <ul class="feat-list" style="margin-top: 8px;">
+        <li>LLM-extracted recipe metadata</li>
+        <li>Persistent preference memory</li>
+        <li>Behavioral signal accumulation</li>
+        <li>Repertoire-aware novelty scoring</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-subtitle">Layer 2 · Contextual</div>
+      <div class="card-title">Discover & Decide</div>
+      <ul class="feat-list" style="margin-top: 8px;">
+        <li>Constraint-first search</li>
+        <li>Lean-back inspiration feed</li>
+        <li>Pantry-aware discovery</li>
+        <li>Attribute-driven exploration</li>
+        <li>UGC conviction signals</li>
+        <li>Plan-aware filtering</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-subtitle">Layer 2 + 3 · Contextual → Explicit</div>
+      <div class="card-title">Plan & Shop</div>
+      <ul class="feat-list" style="margin-top: 8px;">
+        <li>Constraint-adaptive plan generation <span class="badge">L3</span></li>
+        <li>Plan-consolidated shopping <span class="badge badge-teal">L2</span></li>
+        <li>Pantry inventory sync <span class="badge badge-teal">L2</span></li>
+        <li>One-tap cart fulfillment <span class="badge badge-teal">L2</span></li>
+        <li>Adaptive recipe saving <span class="badge badge-teal">L2</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-subtitle">Layer 3 · Explicit Partnership</div>
+      <div class="card-title">Execute & Recover</div>
+      <ul class="feat-list" style="margin-top: 8px;">
+        <li>AI kitchen companion (voice)</li>
+        <li>Substitution engine</li>
+        <li>Step-aware hands-free guide</li>
+        <li>Plan recovery engine</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════ SECTION: PHASING ════════════ -->
+<section id="phases" class="section">
+
+  <div class="section-header">
+    <div class="section-tag">Build Sequencing</div>
+    <h2>Three Phases — Infrastructure Before Interface</h2>
+    <p>The phases are sequenced by dependency, not by user visibility. The most important work is what users don't see — but what everything else depends on.</p>
+  </div>
+
+  <div class="phase-container" style="margin-bottom: 28px;">
+
+    <div class="phase">
+      <div class="phase-label">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-name">The Invisible Foundation</div>
+        <div class="phase-period">Build first · 0–6 months</div>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">What we build</div>
+        <ul class="feat-list">
+          <li>LLM recipe metadata extraction at scale</li>
+          <li>Persistent preference memory / behavioral signals</li>
+          <li>Repertoire-aware novelty scoring</li>
+          <li>UGC extraction and surface layer (conviction signals)</li>
+          <li>Adaptive recipe saving (save as your version)</li>
+        </ul>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">Who benefits + what they experience</div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-h">Established Home Cook</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Platform "finally knows me" — discovery feels curated, not random</li>
+          </div>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-e">Enthusiast</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Real cook signals (UGC) at point of decision; conviction context before committing</li>
+          </div>
+        </div>
+        <div style="font-size:12px; color: var(--text-light); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);">
+          Invisible to most users. Sets the data flywheel in motion. Every subsequent feature gets smarter because of this phase.
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-name">Contextual Intelligence</div>
+        <div class="phase-period">6–12 months</div>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">What we build</div>
+        <ul class="feat-list">
+          <li>Constraint-first search (one confident answer)</li>
+          <li>Pantry-aware discovery + inventory sync</li>
+          <li>Plan-aware filtering (week-level, not per recipe)</li>
+          <li>Plan-consolidated shopping list</li>
+          <li>One-tap cart fulfillment</li>
+          <li>Substitution engine (ingredient-level)</li>
+        </ul>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">Who benefits + what they experience</div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-w">Weeknight Reducer</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Constraints collapsed into one answer. Shopping feasibility confirmed before committing.</li>
+          </div>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-s">System Thinker</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Plan-level filtering and shopping consolidation — the hardest part of their current workflow, handled.</li>
+          </div>
+        </div>
+        <div style="font-size:12px; color: var(--text-light); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);">
+          AI surfaces as smart product design, not named AI. Highest-volume user segments start getting tangible value.
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">
+        <div class="phase-num">Phase 3</div>
+        <div class="phase-name">Active AI Partnership</div>
+        <div class="phase-period">12–18 months</div>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">What we build</div>
+        <ul class="feat-list">
+          <li>Constraint-adaptive week-building engine</li>
+          <li>Plan recovery engine (midweek disruption rebalancing)</li>
+          <li>AI kitchen companion (voice, step-aware)</li>
+          <li>Hands-free cooking guide with real-time adaptation</li>
+          <li>Lean-back inspiration feed (video-driven)</li>
+          <li>Attribute-driven exploration mode</li>
+        </ul>
+      </div>
+      <div class="phase-col">
+        <div class="phase-col-header">Who benefits + what they experience</div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-s">System Thinker</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Full week built from household parameters. Midweek disruption auto-rebalanced. The planning partner they've never had.</li>
+          </div>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-e">Enthusiast</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Kitchen companion as knowledgeable co-cook. Technique depth on demand. Smart swaps that honor the dish.</li>
+          </div>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <span class="persona-chip chip-w">Weeknight Reducer</span>
+          <div class="feat-list" style="margin-top: 4px;">
+            <li style="font-size:12px;">Recovery from execution failure is instant, no decisions needed.</li>
+          </div>
+        </div>
+        <div style="font-size:12px; color: var(--text-light); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);">
+          Explicit AI, opt-in only. Never shown to users who haven't signaled they want it.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout callout-gold">
+    <p><strong>The forcing function for sequencing:</strong> Phase 1 is not exciting to ship — it's invisible. But without it, Phase 2 features are just better search, and Phase 3 features are generic. The intelligence foundation is what transforms "AI features" into an AI-powered product. Skipping ahead produces the chatbot nobody wants.</p>
+  </div>
+
+</section>
+
+<!-- ════════════ SECTION: PRINCIPLES & RISKS ════════════ -->
+<section id="principles" class="section">
+
+  <div class="section-header">
+    <div class="section-tag">Design Principles</div>
+    <h2>What Makes This Best-in-Class</h2>
+    <p>These principles are the guardrails that prevent a great strategic vision from becoming a mediocre product. Each one was derived from a specific persona failure mode.</p>
+  </div>
+
+  <div class="principles-grid" style="margin-bottom: 40px;">
+    <div class="principle">
+      <div class="principle-num">Principle 01</div>
+      <h4>Answer, Don't Offer</h4>
+      <p>Across all four personas, the request is the same: <em>make the call for me</em>. The current product returns options. The AI-powered product returns answers, with visible reasoning. A filtered list with no explanation is worse than search — at least search never promised to know you.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">Principle 02</div>
+      <h4>Invisible by Default</h4>
+      <p>The majority of our audience (Established Home Cook, 50%) has documented AI skepticism — specifically around AI-generated content. AI runs beneath the experience by default. It labels itself only when the user has opted in or explicitly invoked it. The experience of good AI should feel like the platform got smarter, not like talking to a bot.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">Principle 03</div>
+      <h4>Think in Time Horizons, Not Moments</h4>
+      <p>The System Thinker doesn't want a "what should I make tonight" tool — they already solved that. The AI must be capable of thinking in weeks and maintaining state across sessions. Single-turn interactions are not sufficient for the highest-value, highest-loyalty user segment.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">Principle 04</div>
+      <h4>Recovery is a Feature, Not an Edge Case</h4>
+      <p>The Weeknight Reducer's entire evening is fragile. The System Thinker's entire week is one disruption away from collapse. Recovery paths — from ingredient substitution to full plan rebalancing — must be designed as first-class features, not error handling.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">Principle 05</div>
+      <h4>Show Your Work</h4>
+      <p>For users with low AI trust, unexplained AI recommendations are worse than no recommendation at all. Every AI-driven answer should surface the logic: why this recipe, why now, what constraints were considered. Trust is earned through transparency, not authority.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">Principle 06</div>
+      <h4>Same Engine, Different Surfaces</h4>
+      <p>The Enthusiast wants a knowledgeable curator. The Weeknight Reducer wants a crisis manager. The System Thinker wants a planning partner. Build one intelligence engine with multiple surface modes — not separate AI features for each persona. This is how personalization compounds.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-header">
+    <div class="section-tag">Risks & Mitigations</div>
+    <h2>What Could Break This Strategy</h2>
+  </div>
+
+  <div class="risk-grid">
+    <div class="risk">
+      <h4>AI Labeling Alienates the Majority</h4>
+      <p>50% of the audience will disengage at the first "AI Generated" label. Prominently branded AI features risk damaging the core experience for the most frequent users.</p>
+      <div class="mitigation">Mitigation → Layer 1 and Layer 2 never surface AI labels. Layer 3 is opt-in only and persona-gated. Test labeling language carefully with the Established Home Cook segment before shipping.</div>
+    </div>
+    <div class="risk">
+      <h4>Skipping the Foundation</h4>
+      <p>Pressure to ship visible features fast could lead to building Layer 2 or 3 before the intelligence foundation is ready — producing generic AI that fails to deliver on the promise.</p>
+      <div class="mitigation">Mitigation → Treat Phase 1 as non-negotiable infra, not a backlog item. Establish the data flywheel (metadata + memory) as a hard prerequisite for any personalized surface feature.</div>
+    </div>
+    <div class="risk">
+      <h4>Planning Partner Becomes a Chatbot</h4>
+      <p>The System Thinker explicitly does not want a reactive assistant. "What should I make tonight?" is a solved problem for them. An AI that waits for prompts is the wrong interaction model.</p>
+      <div class="mitigation">Mitigation → The planning partner is proactive, not conversational. It proposes a week, not a meal. Design the interaction as a structured workflow, not a chat thread.</div>
+    </div>
+    <div class="risk">
+      <h4>Generic Suggestions for the Enthusiast</h4>
+      <p>A recommendation that "could have been served to anyone" is a fast path to distrust for the highest AI-affinity persona. The Enthusiast expects AI to already understand their taste and ambition.</p>
+      <div class="mitigation">Mitigation → Repertoire-aware novelty scoring (Phase 1) is the prerequisite. Never surface a recommendation to an Enthusiast without a taste-profile match score above threshold.</div>
+    </div>
+    <div class="risk">
+      <h4>Fragmentation Under Shipping Pressure</h4>
+      <p>Cross-functional teams shipping independently could produce isolated features that don't share state — breaking the "one engine" principle and making cross-journey experiences impossible.</p>
+      <div class="mitigation">Mitigation → Define the shared data model (preference memory, plan state, pantry state) as a platform primitive before any feature team ships. API contracts before UIs.</div>
+    </div>
+    <div class="risk">
+      <h4>Recovery UX as an Afterthought</h4>
+      <p>Execution disruption is the highest-stakes moment for two of four personas. If recovery is designed after the main flows, it will feel bolted-on — exactly when the experience needs to feel most trustworthy.</p>
+      <div class="mitigation">Mitigation → Design the substitution engine and plan recovery engine alongside — not after — the primary planning and execution flows. Failure paths are first-class design surfaces.</div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('visible');
+    const idx = ['answer','journey','layers','phases','principles'].indexOf(id);
+    document.querySelectorAll('nav button')[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
