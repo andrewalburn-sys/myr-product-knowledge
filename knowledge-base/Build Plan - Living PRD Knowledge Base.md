@@ -43,11 +43,12 @@ The central safety rule is that automation may detect drift, generate reports, a
 As of September 30, 2026:
 
 - Phase 0 decisions are complete: the bounded project has a private GitHub repository, and Andrew Alburn is the canonical approver.
-- KB 1–KB 7 have an initial baseline: governance entry point, classified manifest, templates and validator, authoritative-core metadata, decision log, app path-to-document impact map, and aligned coding-agent instructions.
+- KB 1–KB 8 have an initial baseline: governance entry point, classified manifest, templates and validator, authoritative-core metadata, decision log, app path-to-document impact map, aligned coding-agent instructions, and deterministic drift reporting.
 - `user-research/` remains local pending an access and indexing decision.
 - KB 6 is implemented in the app repository through `docs/assistant-documentation-map.json` and `scripts/documentation/checkImpact.mjs`, with fixture coverage for history, ingredient enforcement, visual-only changes, and unmapped capabilities.
 - KB 7 aligns the app repository's `AGENTS.md`, `.cursor/rules/llm-handoff.mdc`, and `HANDOFF.md` on the same source precedence, impact command, approval boundary, and no-copy policy. The documentation-impact fixture now checks that parity.
-- The next implementation package is KB 8, the deterministic drift-report generator.
+- KB 8 adds a deterministic generator and fixtures for coverage, documentation drift, open questions, and the machine-readable source index. The initial real audit reports no structural gaps, no unmapped assistant paths, and 17 mapped sources requiring human review against the current app worktree.
+- The next implementation package is KB 9, the initial benchmark question set and human-reviewed expected answers.
 
 ---
 

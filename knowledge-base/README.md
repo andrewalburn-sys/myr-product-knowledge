@@ -77,3 +77,16 @@ The initial governed corpus is the product-document set in `prd/`. Strategy may 
 5. Review the change with Andrew before treating a normative change as approved.
 
 See `UPDATE_POLICY.md` for the full workflow.
+
+## Generated audits
+
+Rebuild the non-authoritative coverage, drift, open-question, and source-index artifacts with:
+
+```bash
+node knowledge-base/scripts/generate-drift-reports.mjs \
+  --app-repo "/path/to/myrecipes-poc" \
+  --knowledge-ref HEAD \
+  --as-of YYYY-MM-DD
+```
+
+Use `--check` to validate the same evidence without writing files. The generator reads governed sources from the committed knowledge ref, so unfinished working-tree documents are reported as changes but never silently folded into the indexed source snapshot.
