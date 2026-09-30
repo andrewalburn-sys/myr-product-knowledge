@@ -2,7 +2,7 @@
 kb_id: living-prd-build-plan
 title: Build Plan for the Living PRD Knowledge Base
 authority: supporting
-status: in-progress
+status: paused-after-kb8
 owner: Andrew Alburn
 audience:
   - product
@@ -48,7 +48,9 @@ As of September 30, 2026:
 - KB 6 is implemented in the app repository through `docs/assistant-documentation-map.json` and `scripts/documentation/checkImpact.mjs`, with fixture coverage for history, ingredient enforcement, visual-only changes, and unmapped capabilities.
 - KB 7 aligns the app repository's `AGENTS.md`, `.cursor/rules/llm-handoff.mdc`, and `HANDOFF.md` on the same source precedence, impact command, approval boundary, and no-copy policy. The documentation-impact fixture now checks that parity.
 - KB 8 adds a deterministic generator and fixtures for coverage, documentation drift, open questions, and the machine-readable source index. The initial real audit reports no structural gaps, no unmapped assistant paths, and 17 mapped sources requiring human review against the current app worktree.
-- The next implementation package is KB 9, the initial benchmark question set and human-reviewed expected answers.
+- Execution is intentionally paused after KB 8. KB 9–KB 13 are deferred until Andrew decides to build the developer Q&A tool.
+- While paused, the source manifest, decision log, authoritative product documents, app impact map, and generated drift reports remain active maintenance infrastructure.
+- The next implementation package on resumption is KB 9, the initial benchmark question set and human-reviewed expected answers.
 
 ---
 

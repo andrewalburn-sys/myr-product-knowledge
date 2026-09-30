@@ -34,6 +34,7 @@ This log records decisions that change product or knowledge-base behavior. Sourc
 | `KB-003` | 2026-09-30 | accepted | Keep one editable source; published copies are read-only | Andrew Alburn |
 | `KB-004` | 2026-09-30 | accepted | Automation may draft and audit but may not silently change normative content | Andrew Alburn |
 | `KB-005` | 2026-09-30 | accepted | Hold user research out of Git and indexing pending access review | Andrew Alburn |
+| `KB-006` | 2026-09-30 | accepted | Pause tool-building after KB8 while continuing governed documentation maintenance | Andrew Alburn |
 | `PROD-OPEN-001` | 2026-09-30 | open | Define cross-surface conversation continuity | Andrew Alburn |
 
 ## KB-001 — Dedicated private repository
@@ -69,6 +70,14 @@ This log records decisions that change product or knowledge-base behavior. Sourc
 **Decision:** Keep `user-research/` local and out of the first Git publication and answer corpus.
 
 **Why:** Research access and participant-data sensitivity have not been reviewed. A later decision may allow selected, sanitized sources.
+
+## KB-006 — Pause after documentation infrastructure
+
+**Decision:** Pause execution after KB8. Defer the benchmark, retrieval, answer layer, publication workflow, and scheduled automation until Andrew decides to build the developer Q&A tool.
+
+**Why:** The immediate need is a well-structured, versioned, maintainable product-documentation base. The current governance, metadata, decision log, app impact mapping, aligned agent instructions, and drift reports satisfy that need without prematurely building a retrieval product.
+
+**Consequences:** Product and implementation changes must continue to update the governed sources and run the documentation-impact workflow. KB9 is the documented resumption point; it is not active work while this decision remains in effect.
 
 ## PROD-OPEN-001 — Cross-surface continuity
 

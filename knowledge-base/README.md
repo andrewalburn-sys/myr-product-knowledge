@@ -68,6 +68,8 @@ A reliable answer from this corpus should:
 
 The initial governed corpus is the product-document set in `prd/`. Strategy may be used as supporting context. Prototype and archive documents are excluded from production answers by default. `user-research/` remains local and is not committed or indexed until Andrew reviews its access policy.
 
+Tool-building is intentionally paused after KB8. The repository is currently in documentation-maintenance mode: keep sources, decisions, metadata, app mappings, and drift reports current, but do not begin the benchmark, retrieval, or Q&A layers until Andrew resumes that work.
+
 ## Making a change
 
 1. Read `SOURCE_MANIFEST.md` and the relevant authoritative source.
