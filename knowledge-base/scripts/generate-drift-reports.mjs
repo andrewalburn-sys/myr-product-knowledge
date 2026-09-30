@@ -13,6 +13,10 @@ const defaultAppRepository = '/Users/andrew.alburn/Library/CloudStorage/Dropbox/
 const authorityValues = new Set(['canonical', 'release', 'supporting', 'poc', 'generated', 'archived']);
 const generatedNotice = '<!-- GENERATED FILE — NON-AUTHORITATIVE. Rebuild with knowledge-base/scripts/generate-drift-reports.mjs. -->';
 
+function finishMarkdown(lines) {
+  return `${lines.join('\n').replace(/\n+$/, '')}\n`;
+}
+
 function run(command, args, cwd, allowFailure = false) {
   const result = spawnSync(command, args, { cwd, encoding: 'utf8' });
   if (result.status !== 0 && !allowFailure) {
@@ -293,10 +297,10 @@ export function renderDriftReport(model) {
     '',
     '**Authority:** Generated diagnostic; not a product requirement.',
     '',
-    `**Knowledge source fingerprint:** \`${model.sourceFingerprint}\`  `,
-    `**Knowledge ref:** \`${model.knowledgeRef}\`  `,
-    `**App state:** \`${model.appState}\`  `,
-    `**As of:** \`${model.asOf}\``,
+    `- **Knowledge source fingerprint:** \`${model.sourceFingerprint}\``,
+    `- **Knowledge ref:** \`${model.knowledgeRef}\``,
+    `- **App state:** \`${model.appState}\``,
+    `- **As of:** \`${model.asOf}\``,
     '',
     '## Summary',
     '',
@@ -330,7 +334,7 @@ export function renderDriftReport(model) {
     '- **Informational:** implementation and its mapped source both changed; human approval is still required for normative content.',
     '',
   );
-  return `${lines.join('\n')}\n`;
+  return finishMarkdown(lines);
 }
 
 export function renderCoverageReport(model) {
@@ -352,8 +356,8 @@ export function renderCoverageReport(model) {
     '',
     '**Authority:** Generated diagnostic; not a product requirement.',
     '',
-    `**Knowledge source fingerprint:** \`${model.sourceFingerprint}\`  `,
-    `**As of:** \`${model.asOf}\``,
+    `- **Knowledge source fingerprint:** \`${model.sourceFingerprint}\``,
+    `- **As of:** \`${model.asOf}\``,
     '',
     '## Source coverage',
     '',
@@ -389,7 +393,7 @@ export function renderCoverageReport(model) {
   if (gaps.length === 0) lines.push('No structural coverage gaps were detected.');
   else gaps.forEach((gap) => lines.push(`- ${gap}`));
   lines.push('');
-  return `${lines.join('\n')}\n`;
+  return finishMarkdown(lines);
 }
 
 export function renderOpenQuestions(model) {
@@ -432,7 +436,7 @@ export function renderOpenQuestions(model) {
     }
     lines.push('');
   }
-  return `${lines.join('\n')}\n`;
+  return finishMarkdown(lines);
 }
 
 export function buildSourceIndex(model) {

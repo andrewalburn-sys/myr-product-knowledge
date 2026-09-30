@@ -3,8 +3,8 @@
 
 **Authority:** Generated diagnostic; not a product requirement.
 
-**Knowledge source fingerprint:** `65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78`  
-**As of:** `2026-09-30`
+- **Knowledge source fingerprint:** `65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78`
+- **As of:** `2026-09-30`
 
 ## Source coverage
 
@@ -33,4 +33,3 @@
 ## Gaps
 
 No structural coverage gaps were detected.
-

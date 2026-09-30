@@ -3,10 +3,10 @@
 
 **Authority:** Generated diagnostic; not a product requirement.
 
-**Knowledge source fingerprint:** `65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78`  
-**Knowledge ref:** `HEAD`  
-**App state:** `working tree from 323755456097`  
-**As of:** `2026-09-30`
+- **Knowledge source fingerprint:** `65e16b827042d5684c13742519652f011824c84e14fbd02f4a5e9a7d9e2c1f78`
+- **Knowledge ref:** `HEAD`
+- **App state:** `working tree from 323755456097`
+- **As of:** `2026-09-30`
 
 ## Summary
 
@@ -146,4 +146,3 @@
 - **Review:** implementation changed and the mapped source needs review.
 - **Stale:** an authoritative source exceeded the 90-day review interval.
 - **Informational:** implementation and its mapped source both changed; human approval is still required for normative content.
-

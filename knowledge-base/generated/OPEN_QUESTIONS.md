@@ -26,4 +26,3 @@
 - [prd/poc/PRD - Photo-Based Recipe Discovery.md](<../../prd/poc/PRD - Photo-Based Recipe Discovery.md>) — **15. Open Questions**
 - [prd/poc/PRD - User Recommendation Preferences.md](<../../prd/poc/PRD - User Recommendation Preferences.md>) — **15. Open Questions**
 - [knowledge-base/Build Plan - Living PRD Knowledge Base.md](<../../knowledge-base/Build Plan - Living PRD Knowledge Base.md>) — **11. Open decisions before implementation**
-
